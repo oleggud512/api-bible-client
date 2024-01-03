@@ -1,3 +1,4 @@
+import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatefulWidget {
@@ -10,8 +11,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Bible client"))
+    return const MaterialApp(
+      home: ChapterPage()
     );
   }
 }
