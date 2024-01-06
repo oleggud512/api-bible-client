@@ -2,21 +2,20 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
-class ChapterPage extends StatelessWidget {
-  const ChapterPage({
+class ChaptersPage extends StatelessWidget {
+  const ChaptersPage({
     super.key,
     @PathParam('bibleId') required this.bibleId,
-    @PathParam('chapterId') required this.chapterId,
   });
 
   final String bibleId;
-  final String chapterId;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column()
+      appBar: AppBar(
+        title: Text('ChaptersPage'),
+      ),
     );
-    
   }
 }

@@ -1,4 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page.dart';
+import 'package:bible/src/get_it.dart';
+import 'package:bible/src/router.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatefulWidget {
@@ -11,8 +14,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: ChapterPage()
+    AppRouter router = getIt.get<AppRouter>();
+    return MaterialApp.router(
+      routerConfig: router.config(),
     );
   }
 }
