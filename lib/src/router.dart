@@ -15,9 +15,6 @@ part 'router.gr.dart';
 @Singleton()
 @AutoRouterConfig()
 class AppRouter extends _$AppRouter {
-  a() {
-    
-  }
 
   @override
   List<AutoRoute> get routes => [

@@ -1,13 +1,11 @@
 import 'package:bible/src/env.dart';
 import 'package:bible_openapi/bible_openapi.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'get_it.config.dart';
 
 final injector = GetIt.instance;
-
 
 @module
 abstract class RegisterModule {
