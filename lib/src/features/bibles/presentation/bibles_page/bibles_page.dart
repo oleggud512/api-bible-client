@@ -26,7 +26,7 @@ class BiblesPage extends StatelessWidget {
               children: [
                 ...state.bibles.map((b) => FilledButton(
                   onPressed: () {
-                    injector<AppRouter>().push(ChaptersRoute(bibleId: b.id));
+                    injector<AppRouter>().push(TocRoute(bibleId: b.id));
                   }, 
                   child: Text('${b.id} | ${b.name}')
                 ))

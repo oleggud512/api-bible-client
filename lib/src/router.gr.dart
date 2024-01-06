@@ -48,19 +48,6 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    ChaptersRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<ChaptersRouteArgs>(
-          orElse: () =>
-              ChaptersRouteArgs(bibleId: pathParams.getString('bibleId')));
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: ChaptersPage(
-          key: args.key,
-          bibleId: args.bibleId,
-        ),
-      );
-    },
     MainRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -83,6 +70,18 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SavedBiblesPage(),
+      );
+    },
+    TocRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<TocRouteArgs>(
+          orElse: () => TocRouteArgs(bibleId: pathParams.getString('bibleId')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TocPage(
+          key: args.key,
+          bibleId: args.bibleId,
+        ),
       );
     },
   };
@@ -192,45 +191,6 @@ class ChapterRouteArgs {
 }
 
 /// generated route for
-/// [ChaptersPage]
-class ChaptersRoute extends PageRouteInfo<ChaptersRouteArgs> {
-  ChaptersRoute({
-    Key? key,
-    required String bibleId,
-    List<PageRouteInfo>? children,
-  }) : super(
-          ChaptersRoute.name,
-          args: ChaptersRouteArgs(
-            key: key,
-            bibleId: bibleId,
-          ),
-          rawPathParams: {'bibleId': bibleId},
-          initialChildren: children,
-        );
-
-  static const String name = 'ChaptersRoute';
-
-  static const PageInfo<ChaptersRouteArgs> page =
-      PageInfo<ChaptersRouteArgs>(name);
-}
-
-class ChaptersRouteArgs {
-  const ChaptersRouteArgs({
-    this.key,
-    required this.bibleId,
-  });
-
-  final Key? key;
-
-  final String bibleId;
-
-  @override
-  String toString() {
-    return 'ChaptersRouteArgs{key: $key, bibleId: $bibleId}';
-  }
-}
-
-/// generated route for
 /// [MainPage]
 class MainRoute extends PageRouteInfo<void> {
   const MainRoute({List<PageRouteInfo>? children})
@@ -284,4 +244,42 @@ class SavedBiblesRoute extends PageRouteInfo<void> {
   static const String name = 'SavedBiblesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TocPage]
+class TocRoute extends PageRouteInfo<TocRouteArgs> {
+  TocRoute({
+    Key? key,
+    required String bibleId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TocRoute.name,
+          args: TocRouteArgs(
+            key: key,
+            bibleId: bibleId,
+          ),
+          rawPathParams: {'bibleId': bibleId},
+          initialChildren: children,
+        );
+
+  static const String name = 'TocRoute';
+
+  static const PageInfo<TocRouteArgs> page = PageInfo<TocRouteArgs>(name);
+}
+
+class TocRouteArgs {
+  const TocRouteArgs({
+    this.key,
+    required this.bibleId,
+  });
+
+  final Key? key;
+
+  final String bibleId;
+
+  @override
+  String toString() {
+    return 'TocRouteArgs{key: $key, bibleId: $bibleId}';
+  }
 }

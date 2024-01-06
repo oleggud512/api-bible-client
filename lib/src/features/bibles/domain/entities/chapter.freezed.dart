@@ -19,10 +19,12 @@ mixin _$Chapter {
   String get id => throw _privateConstructorUsedError;
   String get bibleId => throw _privateConstructorUsedError;
   String get bookId => throw _privateConstructorUsedError;
+  String get number => throw _privateConstructorUsedError;
   String get reference => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String bibleId, String bookId, String reference)
+    TResult Function(String id, String bibleId, String bookId, String number,
+            String reference)
         $default, {
     required TResult Function(
             String id,
@@ -39,8 +41,8 @@ mixin _$Chapter {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            String id, String bibleId, String bookId, String reference)?
+    TResult? Function(String id, String bibleId, String bookId, String number,
+            String reference)?
         $default, {
     TResult? Function(
             String id,
@@ -57,8 +59,8 @@ mixin _$Chapter {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String id, String bibleId, String bookId, String reference)?
+    TResult Function(String id, String bibleId, String bookId, String number,
+            String reference)?
         $default, {
     TResult Function(
             String id,
@@ -103,7 +105,12 @@ abstract class $ChapterCopyWith<$Res> {
   factory $ChapterCopyWith(Chapter value, $Res Function(Chapter) then) =
       _$ChapterCopyWithImpl<$Res, Chapter>;
   @useResult
-  $Res call({String id, String bibleId, String bookId, String reference});
+  $Res call(
+      {String id,
+      String bibleId,
+      String bookId,
+      String number,
+      String reference});
 }
 
 /// @nodoc
@@ -122,6 +129,7 @@ class _$ChapterCopyWithImpl<$Res, $Val extends Chapter>
     Object? id = null,
     Object? bibleId = null,
     Object? bookId = null,
+    Object? number = null,
     Object? reference = null,
   }) {
     return _then(_value.copyWith(
@@ -136,6 +144,10 @@ class _$ChapterCopyWithImpl<$Res, $Val extends Chapter>
       bookId: null == bookId
           ? _value.bookId
           : bookId // ignore: cast_nullable_to_non_nullable
+              as String,
+      number: null == number
+          ? _value.number
+          : number // ignore: cast_nullable_to_non_nullable
               as String,
       reference: null == reference
           ? _value.reference
@@ -152,7 +164,12 @@ abstract class _$$ChapterImplCopyWith<$Res> implements $ChapterCopyWith<$Res> {
       __$$ChapterImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String bibleId, String bookId, String reference});
+  $Res call(
+      {String id,
+      String bibleId,
+      String bookId,
+      String number,
+      String reference});
 }
 
 /// @nodoc
@@ -169,6 +186,7 @@ class __$$ChapterImplCopyWithImpl<$Res>
     Object? id = null,
     Object? bibleId = null,
     Object? bookId = null,
+    Object? number = null,
     Object? reference = null,
   }) {
     return _then(_$ChapterImpl(
@@ -183,6 +201,10 @@ class __$$ChapterImplCopyWithImpl<$Res>
       bookId: null == bookId
           ? _value.bookId
           : bookId // ignore: cast_nullable_to_non_nullable
+              as String,
+      number: null == number
+          ? _value.number
+          : number // ignore: cast_nullable_to_non_nullable
               as String,
       reference: null == reference
           ? _value.reference
@@ -199,6 +221,7 @@ class _$ChapterImpl implements _Chapter {
       {required this.id,
       required this.bibleId,
       required this.bookId,
+      required this.number,
       this.reference = ""});
 
   @override
@@ -208,12 +231,14 @@ class _$ChapterImpl implements _Chapter {
   @override
   final String bookId;
   @override
+  final String number;
+  @override
   @JsonKey()
   final String reference;
 
   @override
   String toString() {
-    return 'Chapter(id: $id, bibleId: $bibleId, bookId: $bookId, reference: $reference)';
+    return 'Chapter(id: $id, bibleId: $bibleId, bookId: $bookId, number: $number, reference: $reference)';
   }
 
   @override
@@ -224,12 +249,14 @@ class _$ChapterImpl implements _Chapter {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.bibleId, bibleId) || other.bibleId == bibleId) &&
             (identical(other.bookId, bookId) || other.bookId == bookId) &&
+            (identical(other.number, number) || other.number == number) &&
             (identical(other.reference, reference) ||
                 other.reference == reference));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, bibleId, bookId, reference);
+  int get hashCode =>
+      Object.hash(runtimeType, id, bibleId, bookId, number, reference);
 
   @JsonKey(ignore: true)
   @override
@@ -240,7 +267,8 @@ class _$ChapterImpl implements _Chapter {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String bibleId, String bookId, String reference)
+    TResult Function(String id, String bibleId, String bookId, String number,
+            String reference)
         $default, {
     required TResult Function(
             String id,
@@ -254,14 +282,14 @@ class _$ChapterImpl implements _Chapter {
             ChapterReference? next)
         display,
   }) {
-    return $default(id, bibleId, bookId, reference);
+    return $default(id, bibleId, bookId, number, reference);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            String id, String bibleId, String bookId, String reference)?
+    TResult? Function(String id, String bibleId, String bookId, String number,
+            String reference)?
         $default, {
     TResult? Function(
             String id,
@@ -275,14 +303,14 @@ class _$ChapterImpl implements _Chapter {
             ChapterReference? next)?
         display,
   }) {
-    return $default?.call(id, bibleId, bookId, reference);
+    return $default?.call(id, bibleId, bookId, number, reference);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String id, String bibleId, String bookId, String reference)?
+    TResult Function(String id, String bibleId, String bookId, String number,
+            String reference)?
         $default, {
     TResult Function(
             String id,
@@ -298,7 +326,7 @@ class _$ChapterImpl implements _Chapter {
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(id, bibleId, bookId, reference);
+      return $default(id, bibleId, bookId, number, reference);
     }
     return orElse();
   }
@@ -340,6 +368,7 @@ abstract class _Chapter implements Chapter {
       {required final String id,
       required final String bibleId,
       required final String bookId,
+      required final String number,
       final String reference}) = _$ChapterImpl;
 
   @override
@@ -348,6 +377,8 @@ abstract class _Chapter implements Chapter {
   String get bibleId;
   @override
   String get bookId;
+  @override
+  String get number;
   @override
   String get reference;
   @override
@@ -538,7 +569,8 @@ class _$DisplayChapterImpl implements DisplayChapter {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String bibleId, String bookId, String reference)
+    TResult Function(String id, String bibleId, String bookId, String number,
+            String reference)
         $default, {
     required TResult Function(
             String id,
@@ -559,8 +591,8 @@ class _$DisplayChapterImpl implements DisplayChapter {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            String id, String bibleId, String bookId, String reference)?
+    TResult? Function(String id, String bibleId, String bookId, String number,
+            String reference)?
         $default, {
     TResult? Function(
             String id,
@@ -581,8 +613,8 @@ class _$DisplayChapterImpl implements DisplayChapter {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String id, String bibleId, String bookId, String reference)?
+    TResult Function(String id, String bibleId, String bookId, String number,
+            String reference)?
         $default, {
     TResult Function(
             String id,
@@ -656,6 +688,7 @@ abstract class DisplayChapter implements Chapter {
   String get bookId;
   @override
   String get reference;
+  @override
   String get number;
   String get content;
   String get copyright;

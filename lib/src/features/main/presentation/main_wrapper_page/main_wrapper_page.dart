@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bible/src/core/utils/extensions/string.dart';
+import 'package:bible/src/core/common/extensions/string.dart';
 import 'package:bible/src/router.dart';
 import 'package:flutter/material.dart';
 

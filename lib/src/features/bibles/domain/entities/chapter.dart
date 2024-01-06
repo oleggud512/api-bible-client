@@ -9,6 +9,7 @@ class Chapter with _$Chapter {
     required String id, 
     required String bibleId,
     required String bookId,
+    required String number,
     @Default("") String reference,
   }) = _Chapter;
 

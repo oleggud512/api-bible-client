@@ -57,6 +57,7 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
           id: chapter.id,
           bibleId: chapter.bibleId,
           bookId: chapter.bookId,
+          number: chapter.number,
           reference: chapter.reference ?? ""
         )).toList()
       )).toList();
