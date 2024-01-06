@@ -40,7 +40,7 @@ abstract class Chapter implements Built<Chapter, ChapterBuilder> {
   String get content;
 
   @BuiltValueField(wireName: r'reference')
-  String get reference;
+  String? get reference;
 
   @BuiltValueField(wireName: r'verseCount')
   int get verseCount;

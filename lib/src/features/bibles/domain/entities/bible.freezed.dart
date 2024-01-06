@@ -15,12 +15,28 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$Bible {}
+mixin _$Bible {
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get abbreviation => throw _privateConstructorUsedError;
+  String get language => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $BibleCopyWith<Bible> get copyWith => throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $BibleCopyWith<$Res> {
   factory $BibleCopyWith(Bible value, $Res Function(Bible) then) =
       _$BibleCopyWithImpl<$Res, Bible>;
+  @useResult
+  $Res call(
+      {String id,
+      String name,
+      String description,
+      String abbreviation,
+      String language});
 }
 
 /// @nodoc
@@ -32,13 +48,54 @@ class _$BibleCopyWithImpl<$Res, $Val extends Bible>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? description = null,
+    Object? abbreviation = null,
+    Object? language = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      abbreviation: null == abbreviation
+          ? _value.abbreviation
+          : abbreviation // ignore: cast_nullable_to_non_nullable
+              as String,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$BibleImplCopyWith<$Res> {
+abstract class _$$BibleImplCopyWith<$Res> implements $BibleCopyWith<$Res> {
   factory _$$BibleImplCopyWith(
           _$BibleImpl value, $Res Function(_$BibleImpl) then) =
       __$$BibleImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String name,
+      String description,
+      String abbreviation,
+      String language});
 }
 
 /// @nodoc
@@ -48,28 +105,115 @@ class __$$BibleImplCopyWithImpl<$Res>
   __$$BibleImplCopyWithImpl(
       _$BibleImpl _value, $Res Function(_$BibleImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+    Object? description = null,
+    Object? abbreviation = null,
+    Object? language = null,
+  }) {
+    return _then(_$BibleImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      abbreviation: null == abbreviation
+          ? _value.abbreviation
+          : abbreviation // ignore: cast_nullable_to_non_nullable
+              as String,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$BibleImpl implements _Bible {
-  _$BibleImpl();
+  _$BibleImpl(
+      {required this.id,
+      required this.name,
+      this.description = "",
+      this.abbreviation = "",
+      required this.language});
+
+  @override
+  final String id;
+  @override
+  final String name;
+  @override
+  @JsonKey()
+  final String description;
+  @override
+  @JsonKey()
+  final String abbreviation;
+  @override
+  final String language;
 
   @override
   String toString() {
-    return 'Bible()';
+    return 'Bible(id: $id, name: $name, description: $description, abbreviation: $abbreviation, language: $language)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$BibleImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$BibleImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.abbreviation, abbreviation) ||
+                other.abbreviation == abbreviation) &&
+            (identical(other.language, language) ||
+                other.language == language));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, description, abbreviation, language);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BibleImplCopyWith<_$BibleImpl> get copyWith =>
+      __$$BibleImplCopyWithImpl<_$BibleImpl>(this, _$identity);
 }
 
 abstract class _Bible implements Bible {
-  factory _Bible() = _$BibleImpl;
+  factory _Bible(
+      {required final String id,
+      required final String name,
+      final String description,
+      final String abbreviation,
+      required final String language}) = _$BibleImpl;
+
+  @override
+  String get id;
+  @override
+  String get name;
+  @override
+  String get description;
+  @override
+  String get abbreviation;
+  @override
+  String get language;
+  @override
+  @JsonKey(ignore: true)
+  _$$BibleImplCopyWith<_$BibleImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

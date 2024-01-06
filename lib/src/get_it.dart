@@ -1,8 +1,31 @@
+import 'package:bible/src/env.dart';
+import 'package:bible_openapi/bible_openapi.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'get_it.config.dart';
 
-final getIt = GetIt.instance;
+final injector = GetIt.instance;
+
+
+@module
+abstract class RegisterModule {
+
+  @singleton
+  BibleOpenapi get bibleOpenapi => BibleOpenapi(
+    interceptors: [
+      QueuedInterceptorsWrapper(
+        onRequest: (options, handler) {
+          options.headers['api-key'] = Env.apiKey;
+          handler.next(options);
+        }
+      )
+    ]
+  );
+
+}
+
 
 @InjectableInit()
-GetIt configureDependencies() => getIt.init();
+GetIt configureDependencies() => injector.init();

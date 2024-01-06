@@ -31,7 +31,7 @@ abstract class ChapterSummary implements Built<ChapterSummary, ChapterSummaryBui
   String get bookId;
 
   @BuiltValueField(wireName: r'reference')
-  String get reference;
+  String? get reference;
 
   ChapterSummary._();
 

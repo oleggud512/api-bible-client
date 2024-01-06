@@ -18,7 +18,7 @@ class _$Chapter extends Chapter {
   @override
   final String content;
   @override
-  final String reference;
+  final String? reference;
   @override
   final int verseCount;
   @override
@@ -37,7 +37,7 @@ class _$Chapter extends Chapter {
       required this.number,
       required this.bookId,
       required this.content,
-      required this.reference,
+      this.reference,
       required this.verseCount,
       this.next,
       this.previous,
@@ -48,7 +48,6 @@ class _$Chapter extends Chapter {
     BuiltValueNullFieldError.checkNotNull(number, r'Chapter', 'number');
     BuiltValueNullFieldError.checkNotNull(bookId, r'Chapter', 'bookId');
     BuiltValueNullFieldError.checkNotNull(content, r'Chapter', 'content');
-    BuiltValueNullFieldError.checkNotNull(reference, r'Chapter', 'reference');
     BuiltValueNullFieldError.checkNotNull(verseCount, r'Chapter', 'verseCount');
     BuiltValueNullFieldError.checkNotNull(copyright, r'Chapter', 'copyright');
   }
@@ -204,8 +203,7 @@ class ChapterBuilder implements Builder<Chapter, ChapterBuilder> {
                   bookId, r'Chapter', 'bookId'),
               content: BuiltValueNullFieldError.checkNotNull(
                   content, r'Chapter', 'content'),
-              reference: BuiltValueNullFieldError.checkNotNull(
-                  reference, r'Chapter', 'reference'),
+              reference: reference,
               verseCount: BuiltValueNullFieldError.checkNotNull(
                   verseCount, r'Chapter', 'verseCount'),
               next: _next?.build(),

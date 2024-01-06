@@ -16,7 +16,7 @@ class _$ChapterSummary extends ChapterSummary {
   @override
   final String bookId;
   @override
-  final String reference;
+  final String? reference;
 
   factory _$ChapterSummary([void Function(ChapterSummaryBuilder)? updates]) =>
       (new ChapterSummaryBuilder()..update(updates))._build();
@@ -26,15 +26,13 @@ class _$ChapterSummary extends ChapterSummary {
       required this.bibleId,
       required this.number,
       required this.bookId,
-      required this.reference})
+      this.reference})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'ChapterSummary', 'id');
     BuiltValueNullFieldError.checkNotNull(
         bibleId, r'ChapterSummary', 'bibleId');
     BuiltValueNullFieldError.checkNotNull(number, r'ChapterSummary', 'number');
     BuiltValueNullFieldError.checkNotNull(bookId, r'ChapterSummary', 'bookId');
-    BuiltValueNullFieldError.checkNotNull(
-        reference, r'ChapterSummary', 'reference');
   }
 
   @override
@@ -146,8 +144,7 @@ class ChapterSummaryBuilder
                 number, r'ChapterSummary', 'number'),
             bookId: BuiltValueNullFieldError.checkNotNull(
                 bookId, r'ChapterSummary', 'bookId'),
-            reference: BuiltValueNullFieldError.checkNotNull(
-                reference, r'ChapterSummary', 'reference'));
+            reference: reference);
     replace(_$result);
     return _$result;
   }

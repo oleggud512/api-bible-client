@@ -14,9 +14,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    AppRouter router = getIt.get<AppRouter>();
+    AppRouter router = injector.get<AppRouter>();
     return MaterialApp.router(
       routerConfig: router.config(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue)
+      )
     );
   }
 }
