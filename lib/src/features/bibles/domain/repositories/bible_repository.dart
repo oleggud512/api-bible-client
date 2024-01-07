@@ -12,5 +12,5 @@ abstract interface class BibleRepository {
   Future<Either<AppException, List<Book>>> getBooks(String bibleId);
   
   /// get a single known chapter with it's content
-  Future<Either<AppException, Chapter>> getChapter(String bibleId, String chapterId);
+  Future<Either<AppException, DisplayChapter>> getChapter(String bibleId, String chapterId);
 }

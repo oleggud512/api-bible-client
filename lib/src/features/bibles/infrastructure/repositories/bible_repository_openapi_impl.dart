@@ -70,7 +70,7 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
   }
 
   @override
-  Future<Either<AppException, Chapter>> getChapter(String bibleId, String chapterId) async {
+  Future<Either<AppException, DisplayChapter>> getChapter(String bibleId, String chapterId) async {
     try {
       final resp = await chaptersApi.getChapter(
         bibleId: bibleId, 
@@ -79,7 +79,7 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
         contentType: 'text',
       );
       final apiChapter = resp.data!.data;
-      final resChapter = Chapter.display(
+      final resChapter = DisplayChapter(
         id: apiChapter.id, 
         bibleId: apiChapter.bibleId, 
         bookId: apiChapter.bookId, 
