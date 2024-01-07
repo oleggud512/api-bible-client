@@ -8,6 +8,8 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:bible/src/core/application/use_cases/get_languages_use_case.dart'
+    as _i12;
 import 'package:bible/src/core/external/data_source/assets_root_bundle_data_source_impl.dart'
     as _i5;
 import 'package:bible/src/core/infrastructure/data_source/assets_data_source.dart'
@@ -23,12 +25,12 @@ import 'package:bible/src/features/bibles/domain/repositories/bible_repository.d
 import 'package:bible/src/features/bibles/infrastructure/repositories/bible_repository_openapi_impl.dart'
     as _i8;
 import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_bloc.dart'
-    as _i13;
-import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_bloc.dart'
     as _i14;
+import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_bloc.dart'
+    as _i15;
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc.dart'
-    as _i12;
-import 'package:bible/src/get_it.dart' as _i15;
+    as _i13;
+import 'package:bible/src/get_it.dart' as _i16;
 import 'package:bible/src/router.dart' as _i3;
 import 'package:bible_openapi/bible_openapi.dart' as _i6;
 import 'package:get_it/get_it.dart' as _i1;
@@ -57,21 +59,25 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i10.GetBiblesUseCase(gh<_i7.BibleRepository>()));
     gh.factory<_i11.GetChapterUseCase>(
         () => _i11.GetChapterUseCase(gh<_i7.BibleRepository>()));
-    gh.factoryParam<_i12.TocPageBloc, String, dynamic>((
+    gh.factory<_i12.GetLanguagesUseCase>(
+        () => _i12.GetLanguagesUseCase(gh<_i4.AssetsDataSource>()));
+    gh.factoryParam<_i13.TocPageBloc, String, dynamic>((
       bibleId,
       _,
     ) =>
-        _i12.TocPageBloc(
+        _i13.TocPageBloc(
           gh<_i9.GetBibleBooksUseCase>(),
           bibleId,
         ));
-    gh.factory<_i13.BiblesPageBloc>(
-        () => _i13.BiblesPageBloc(gh<_i10.GetBiblesUseCase>()));
-    gh.factoryParam<_i14.ChapterPageBloc, String, String>((
+    gh.factory<_i14.BiblesPageBloc>(() => _i14.BiblesPageBloc(
+          gh<_i10.GetBiblesUseCase>(),
+          gh<_i12.GetLanguagesUseCase>(),
+        ));
+    gh.factoryParam<_i15.ChapterPageBloc, String, String>((
       bibleId,
       chapterId,
     ) =>
-        _i14.ChapterPageBloc(
+        _i15.ChapterPageBloc(
           gh<_i11.GetChapterUseCase>(),
           bibleId,
           chapterId,
@@ -80,4 +86,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$RegisterModule extends _i15.RegisterModule {}
+class _$RegisterModule extends _i16.RegisterModule {}

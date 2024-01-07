@@ -6,7 +6,7 @@ import 'package:bible/src/features/bibles/domain/entities/chapter.dart';
 
 abstract interface class BibleRepository {
   /// just get a list of bibles
-  Future<Either<AppException, List<Bible>>> getBibles();
+  Future<Either<AppException, List<Bible>>> getBibles(String? lang);
 
   /// get all books with chapters for each book of the bible
   Future<Either<AppException, List<Book>>> getBooks(String bibleId);

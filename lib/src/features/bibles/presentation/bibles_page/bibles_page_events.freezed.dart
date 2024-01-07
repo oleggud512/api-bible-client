@@ -17,40 +17,40 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BiblesPageEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
+  TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(String? lang) langChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
+  TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function(String? lang)? langChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(String? lang)? langChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_BiblesPageEvent value) $default, {
+  TResult map<TResult extends Object?>({
     required TResult Function(BiblesPageLoadEvent value) load,
+    required TResult Function(BiblesPageLangChangedEvent value) langChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_BiblesPageEvent value)? $default, {
+  TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BiblesPageLoadEvent value)? load,
+    TResult? Function(BiblesPageLangChangedEvent value)? langChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_BiblesPageEvent value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
     TResult Function(BiblesPageLoadEvent value)? load,
+    TResult Function(BiblesPageLangChangedEvent value)? langChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,108 +72,6 @@ class _$BiblesPageEventCopyWithImpl<$Res, $Val extends BiblesPageEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$BiblesPageEventImplCopyWith<$Res> {
-  factory _$$BiblesPageEventImplCopyWith(_$BiblesPageEventImpl value,
-          $Res Function(_$BiblesPageEventImpl) then) =
-      __$$BiblesPageEventImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$BiblesPageEventImplCopyWithImpl<$Res>
-    extends _$BiblesPageEventCopyWithImpl<$Res, _$BiblesPageEventImpl>
-    implements _$$BiblesPageEventImplCopyWith<$Res> {
-  __$$BiblesPageEventImplCopyWithImpl(
-      _$BiblesPageEventImpl _value, $Res Function(_$BiblesPageEventImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$BiblesPageEventImpl implements _BiblesPageEvent {
-  _$BiblesPageEventImpl();
-
-  @override
-  String toString() {
-    return 'BiblesPageEvent()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$BiblesPageEventImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
-    required TResult Function() load,
-  }) {
-    return $default();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
-    TResult? Function()? load,
-  }) {
-    return $default?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
-    TResult Function()? load,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_BiblesPageEvent value) $default, {
-    required TResult Function(BiblesPageLoadEvent value) load,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_BiblesPageEvent value)? $default, {
-    TResult? Function(BiblesPageLoadEvent value)? load,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_BiblesPageEvent value)? $default, {
-    TResult Function(BiblesPageLoadEvent value)? load,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _BiblesPageEvent implements BiblesPageEvent {
-  factory _BiblesPageEvent() = _$BiblesPageEventImpl;
 }
 
 /// @nodoc
@@ -214,27 +112,27 @@ class _$BiblesPageLoadEventImpl implements BiblesPageLoadEvent {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function() $default, {
+  TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(String? lang) langChanged,
   }) {
     return load();
   }
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function()? $default, {
+  TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function(String? lang)? langChanged,
   }) {
     return load?.call();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
+  TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(String? lang)? langChanged,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -245,27 +143,27 @@ class _$BiblesPageLoadEventImpl implements BiblesPageLoadEvent {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_BiblesPageEvent value) $default, {
+  TResult map<TResult extends Object?>({
     required TResult Function(BiblesPageLoadEvent value) load,
+    required TResult Function(BiblesPageLangChangedEvent value) langChanged,
   }) {
     return load(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_BiblesPageEvent value)? $default, {
+  TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BiblesPageLoadEvent value)? load,
+    TResult? Function(BiblesPageLangChangedEvent value)? langChanged,
   }) {
     return load?.call(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_BiblesPageEvent value)? $default, {
+  TResult maybeMap<TResult extends Object?>({
     TResult Function(BiblesPageLoadEvent value)? load,
+    TResult Function(BiblesPageLangChangedEvent value)? langChanged,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -277,4 +175,142 @@ class _$BiblesPageLoadEventImpl implements BiblesPageLoadEvent {
 
 abstract class BiblesPageLoadEvent implements BiblesPageEvent {
   factory BiblesPageLoadEvent() = _$BiblesPageLoadEventImpl;
+}
+
+/// @nodoc
+abstract class _$$BiblesPageLangChangedEventImplCopyWith<$Res> {
+  factory _$$BiblesPageLangChangedEventImplCopyWith(
+          _$BiblesPageLangChangedEventImpl value,
+          $Res Function(_$BiblesPageLangChangedEventImpl) then) =
+      __$$BiblesPageLangChangedEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? lang});
+}
+
+/// @nodoc
+class __$$BiblesPageLangChangedEventImplCopyWithImpl<$Res>
+    extends _$BiblesPageEventCopyWithImpl<$Res,
+        _$BiblesPageLangChangedEventImpl>
+    implements _$$BiblesPageLangChangedEventImplCopyWith<$Res> {
+  __$$BiblesPageLangChangedEventImplCopyWithImpl(
+      _$BiblesPageLangChangedEventImpl _value,
+      $Res Function(_$BiblesPageLangChangedEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? lang = freezed,
+  }) {
+    return _then(_$BiblesPageLangChangedEventImpl(
+      freezed == lang
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$BiblesPageLangChangedEventImpl implements BiblesPageLangChangedEvent {
+  _$BiblesPageLangChangedEventImpl(this.lang);
+
+  @override
+  final String? lang;
+
+  @override
+  String toString() {
+    return 'BiblesPageEvent.langChanged(lang: $lang)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BiblesPageLangChangedEventImpl &&
+            (identical(other.lang, lang) || other.lang == lang));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, lang);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BiblesPageLangChangedEventImplCopyWith<_$BiblesPageLangChangedEventImpl>
+      get copyWith => __$$BiblesPageLangChangedEventImplCopyWithImpl<
+          _$BiblesPageLangChangedEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(String? lang) langChanged,
+  }) {
+    return langChanged(lang);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(String? lang)? langChanged,
+  }) {
+    return langChanged?.call(lang);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(String? lang)? langChanged,
+    required TResult orElse(),
+  }) {
+    if (langChanged != null) {
+      return langChanged(lang);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BiblesPageLoadEvent value) load,
+    required TResult Function(BiblesPageLangChangedEvent value) langChanged,
+  }) {
+    return langChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(BiblesPageLoadEvent value)? load,
+    TResult? Function(BiblesPageLangChangedEvent value)? langChanged,
+  }) {
+    return langChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BiblesPageLoadEvent value)? load,
+    TResult Function(BiblesPageLangChangedEvent value)? langChanged,
+    required TResult orElse(),
+  }) {
+    if (langChanged != null) {
+      return langChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BiblesPageLangChangedEvent implements BiblesPageEvent {
+  factory BiblesPageLangChangedEvent(final String? lang) =
+      _$BiblesPageLangChangedEventImpl;
+
+  String? get lang;
+  @JsonKey(ignore: true)
+  _$$BiblesPageLangChangedEventImplCopyWith<_$BiblesPageLangChangedEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -11,8 +11,8 @@ class GetBiblesUseCase {
 
   GetBiblesUseCase(this.repo);
   
-  Future<Either<AppException, List<Bible>>> call([String? language]) async {
-    final res = await repo.getBibles();
+  Future<Either<AppException, List<Bible>>> call([String? lang]) async {
+    final res = await repo.getBibles(lang);
     return res;
   }
 }

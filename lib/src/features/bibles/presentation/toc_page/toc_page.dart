@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bible/src/core/common/constants/sizes.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_events.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_states.dart';

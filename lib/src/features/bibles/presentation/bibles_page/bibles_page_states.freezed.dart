@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BiblesPageState {
   bool get isLoading => throw _privateConstructorUsedError;
   List<Bible> get bibles => throw _privateConstructorUsedError;
+  List<Lang> get languages => throw _privateConstructorUsedError;
+  String? get curLang => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BiblesPageStateCopyWith<BiblesPageState> get copyWith =>
@@ -30,7 +32,11 @@ abstract class $BiblesPageStateCopyWith<$Res> {
           BiblesPageState value, $Res Function(BiblesPageState) then) =
       _$BiblesPageStateCopyWithImpl<$Res, BiblesPageState>;
   @useResult
-  $Res call({bool isLoading, List<Bible> bibles});
+  $Res call(
+      {bool isLoading,
+      List<Bible> bibles,
+      List<Lang> languages,
+      String? curLang});
 }
 
 /// @nodoc
@@ -48,6 +54,8 @@ class _$BiblesPageStateCopyWithImpl<$Res, $Val extends BiblesPageState>
   $Res call({
     Object? isLoading = null,
     Object? bibles = null,
+    Object? languages = null,
+    Object? curLang = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -58,6 +66,14 @@ class _$BiblesPageStateCopyWithImpl<$Res, $Val extends BiblesPageState>
           ? _value.bibles
           : bibles // ignore: cast_nullable_to_non_nullable
               as List<Bible>,
+      languages: null == languages
+          ? _value.languages
+          : languages // ignore: cast_nullable_to_non_nullable
+              as List<Lang>,
+      curLang: freezed == curLang
+          ? _value.curLang
+          : curLang // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -70,7 +86,11 @@ abstract class _$$BiblesPageStateImplCopyWith<$Res>
       __$$BiblesPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, List<Bible> bibles});
+  $Res call(
+      {bool isLoading,
+      List<Bible> bibles,
+      List<Lang> languages,
+      String? curLang});
 }
 
 /// @nodoc
@@ -86,6 +106,8 @@ class __$$BiblesPageStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? bibles = null,
+    Object? languages = null,
+    Object? curLang = freezed,
   }) {
     return _then(_$BiblesPageStateImpl(
       isLoading: null == isLoading
@@ -96,6 +118,14 @@ class __$$BiblesPageStateImplCopyWithImpl<$Res>
           ? _value._bibles
           : bibles // ignore: cast_nullable_to_non_nullable
               as List<Bible>,
+      languages: null == languages
+          ? _value._languages
+          : languages // ignore: cast_nullable_to_non_nullable
+              as List<Lang>,
+      curLang: freezed == curLang
+          ? _value.curLang
+          : curLang // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -104,8 +134,12 @@ class __$$BiblesPageStateImplCopyWithImpl<$Res>
 
 class _$BiblesPageStateImpl implements _BiblesPageState {
   _$BiblesPageStateImpl(
-      {this.isLoading = false, final List<Bible> bibles = const []})
-      : _bibles = bibles;
+      {this.isLoading = false,
+      final List<Bible> bibles = const [],
+      final List<Lang> languages = const [],
+      this.curLang})
+      : _bibles = bibles,
+        _languages = languages;
 
   @override
   @JsonKey()
@@ -119,9 +153,21 @@ class _$BiblesPageStateImpl implements _BiblesPageState {
     return EqualUnmodifiableListView(_bibles);
   }
 
+  final List<Lang> _languages;
+  @override
+  @JsonKey()
+  List<Lang> get languages {
+    if (_languages is EqualUnmodifiableListView) return _languages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_languages);
+  }
+
+  @override
+  final String? curLang;
+
   @override
   String toString() {
-    return 'BiblesPageState(isLoading: $isLoading, bibles: $bibles)';
+    return 'BiblesPageState(isLoading: $isLoading, bibles: $bibles, languages: $languages, curLang: $curLang)';
   }
 
   @override
@@ -131,12 +177,19 @@ class _$BiblesPageStateImpl implements _BiblesPageState {
             other is _$BiblesPageStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            const DeepCollectionEquality().equals(other._bibles, _bibles));
+            const DeepCollectionEquality().equals(other._bibles, _bibles) &&
+            const DeepCollectionEquality()
+                .equals(other._languages, _languages) &&
+            (identical(other.curLang, curLang) || other.curLang == curLang));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, isLoading, const DeepCollectionEquality().hash(_bibles));
+      runtimeType,
+      isLoading,
+      const DeepCollectionEquality().hash(_bibles),
+      const DeepCollectionEquality().hash(_languages),
+      curLang);
 
   @JsonKey(ignore: true)
   @override
@@ -147,13 +200,20 @@ class _$BiblesPageStateImpl implements _BiblesPageState {
 }
 
 abstract class _BiblesPageState implements BiblesPageState {
-  factory _BiblesPageState({final bool isLoading, final List<Bible> bibles}) =
-      _$BiblesPageStateImpl;
+  factory _BiblesPageState(
+      {final bool isLoading,
+      final List<Bible> bibles,
+      final List<Lang> languages,
+      final String? curLang}) = _$BiblesPageStateImpl;
 
   @override
   bool get isLoading;
   @override
   List<Bible> get bibles;
+  @override
+  List<Lang> get languages;
+  @override
+  String? get curLang;
   @override
   @JsonKey(ignore: true)
   _$$BiblesPageStateImplCopyWith<_$BiblesPageStateImpl> get copyWith =>

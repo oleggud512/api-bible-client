@@ -22,9 +22,9 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
   }
 
   @override
-  Future<Either<AppException, List<Bible>>> getBibles() async {
+  Future<Either<AppException, List<Bible>>> getBibles(String? lang) async {
     try {
-      final resp = await biblesApi.getBibles(language: 'ukr');
+      final resp = await biblesApi.getBibles(language: lang);
 
       final bibles = resp.data!.data.map((bible) => Bible(
         id: bible.id, 
@@ -36,6 +36,7 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
       
       return Right(bibles);
     } catch (e) {
+      print(e);
       return Left(AppException("Couldn't get bibles."));
     }
   }
