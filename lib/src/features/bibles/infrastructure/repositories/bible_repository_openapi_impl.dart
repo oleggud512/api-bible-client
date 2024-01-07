@@ -22,7 +22,7 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
   }
 
   @override
-  Future<Either<AppException, List<Bible>>> getBibles(String? lang) async {
+  Future<Either<AppException, List<Bible>>> getBibles([String? lang]) async {
     try {
       final resp = await biblesApi.getBibles(language: lang);
 
