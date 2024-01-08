@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Bible _$BibleFromJson(Map<String, dynamic> json) {
+  return _Bible.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Bible {
   String get id => throw _privateConstructorUsedError;
@@ -22,6 +26,7 @@ mixin _$Bible {
   String get abbreviation => throw _privateConstructorUsedError;
   String get language => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BibleCopyWith<Bible> get copyWith => throw _privateConstructorUsedError;
 }
@@ -141,7 +146,7 @@ class __$$BibleImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$BibleImpl implements _Bible {
   _$BibleImpl(
       {required this.id,
@@ -149,6 +154,9 @@ class _$BibleImpl implements _Bible {
       this.description = "",
       this.abbreviation = "",
       required this.language});
+
+  factory _$BibleImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BibleImplFromJson(json);
 
   @override
   final String id;
@@ -183,6 +191,7 @@ class _$BibleImpl implements _Bible {
                 other.language == language));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, name, description, abbreviation, language);
@@ -192,6 +201,13 @@ class _$BibleImpl implements _Bible {
   @pragma('vm:prefer-inline')
   _$$BibleImplCopyWith<_$BibleImpl> get copyWith =>
       __$$BibleImplCopyWithImpl<_$BibleImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BibleImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Bible implements Bible {
@@ -201,6 +217,8 @@ abstract class _Bible implements Bible {
       final String description,
       final String abbreviation,
       required final String language}) = _$BibleImpl;
+
+  factory _Bible.fromJson(Map<String, dynamic> json) = _$BibleImpl.fromJson;
 
   @override
   String get id;
