@@ -6,7 +6,7 @@ import 'package:test/test.dart' as t;
 
 void main() async {
   await Env.init();
-  final getIt = configureDependencies();
+  final getIt = await configureDependencies();
   final repo = getIt.call<BibleRepository>();
 
   const someBibleId = '6c696cd1d82e2723-03';
