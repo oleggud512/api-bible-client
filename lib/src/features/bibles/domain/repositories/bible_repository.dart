@@ -8,6 +8,9 @@ abstract interface class BibleRepository {
   /// just get a list of bibles
   Future<Either<AppException, List<Bible>>> getBibles([String? lang]);
 
+  /// obtain a single bible
+  Future<Either<AppException, Bible>> getBible(String bibleId);
+
   /// get all books with chapters for each book of the bible
   Future<Either<AppException, List<Book>>> getBooks(String bibleId);
   

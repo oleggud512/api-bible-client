@@ -11,32 +11,63 @@ import 'package:sembast/sembast.dart';
 class BibleViewHistoryRepositorySembastImpl implements BibleViewHistoryRepository {
   final Database db;
 
-  final StoreRef store = StoreRef.main();
+  final store = stringMapStoreFactory.store('bible_view_history');
 
   BibleViewHistoryRepositorySembastImpl(this.db);
   
   @override
-  Future<Either<AppException, void>> addHistoryNode(Bible bible) {
-    // TODO: implement addHistoryNode
-    throw UnimplementedError();
+  Future<Either<AppException, List<BibleHistoryNode>>> getHistory() async {
+    try {
+      final res = await store.find(db);
+      final nodes = res
+        .map((node) => BibleHistoryNode.fromJson(node.value))
+        .toList();
+      return Right(nodes);
+    } catch (e) {
+      print(e);
+      return Left(AppException("couldn't create a node"));
+    }
   }
 
   @override
-  Future<Either<AppException, void>> clearHistory() {
-    // TODO: implement clearHistory
-    throw UnimplementedError();
+  Future<Either<AppException, BibleHistoryNode>> addHistoryNode(Bible bible) async {
+    try {
+      final node = BibleHistoryNode(
+        bible: bible, 
+        lastViewed: DateTime.now()
+      );
+      final newJson = await store
+        .record(bible.id)
+        .put(db, node.toJson());
+      final newNode = BibleHistoryNode.fromJson(newJson);
+      return Right(newNode);
+    } catch (e) {
+      print(e);
+      return Left(AppException("couldn't create a node"));
+    }
   }
 
   @override
-  Future<Either<AppException, void>> deleteHistoryNode(String bibldId) {
-    // TODO: implement deleteHistoryNode
-    throw UnimplementedError();
+  Future<Either<AppException, void>> clearHistory() async {
+    try {
+      await store.delete(db);
+      return const Right(null);
+    } catch (e) {
+      print(e);
+      return Left(AppException("couldn't clear history"));
+    }
   }
 
   @override
-  Future<Either<AppException, List<BibleHistoryNode>>> getHistory() {
-    // TODO: implement getHistory
-    throw UnimplementedError();
+  Future<Either<AppException, void>> deleteHistoryNode(String bibleId) async {
+    try {
+      final record = store.record(bibleId);
+      await record.delete(db);
+      return const Right(null);
+    } catch (e) {
+      print(e);
+      return Left(AppException("unable to delete HistoryNode with id $bibleId"));
+    }
   }
 
 }

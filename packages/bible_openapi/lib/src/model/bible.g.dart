@@ -26,9 +26,9 @@ class _$Bible extends Bible {
   @override
   final String nameLocal;
   @override
-  final String description;
+  final String? description;
   @override
-  final String descriptionLocal;
+  final String? descriptionLocal;
   @override
   final String info;
   @override
@@ -53,8 +53,8 @@ class _$Bible extends Bible {
       required this.countries,
       required this.name,
       required this.nameLocal,
-      required this.description,
-      required this.descriptionLocal,
+      this.description,
+      this.descriptionLocal,
       required this.info,
       required this.type,
       required this.updatedAt,
@@ -72,9 +72,6 @@ class _$Bible extends Bible {
     BuiltValueNullFieldError.checkNotNull(countries, r'Bible', 'countries');
     BuiltValueNullFieldError.checkNotNull(name, r'Bible', 'name');
     BuiltValueNullFieldError.checkNotNull(nameLocal, r'Bible', 'nameLocal');
-    BuiltValueNullFieldError.checkNotNull(description, r'Bible', 'description');
-    BuiltValueNullFieldError.checkNotNull(
-        descriptionLocal, r'Bible', 'descriptionLocal');
     BuiltValueNullFieldError.checkNotNull(info, r'Bible', 'info');
     BuiltValueNullFieldError.checkNotNull(type, r'Bible', 'type');
     BuiltValueNullFieldError.checkNotNull(updatedAt, r'Bible', 'updatedAt');
@@ -292,18 +289,16 @@ class BibleBuilder implements Builder<Bible, BibleBuilder> {
                   BuiltValueNullFieldError.checkNotNull(name, r'Bible', 'name'),
               nameLocal: BuiltValueNullFieldError.checkNotNull(
                   nameLocal, r'Bible', 'nameLocal'),
-              description: BuiltValueNullFieldError.checkNotNull(
-                  description, r'Bible', 'description'),
-              descriptionLocal: BuiltValueNullFieldError.checkNotNull(
-                  descriptionLocal, r'Bible', 'descriptionLocal'),
+              description: description,
+              descriptionLocal: descriptionLocal,
               info:
                   BuiltValueNullFieldError.checkNotNull(info, r'Bible', 'info'),
               type:
                   BuiltValueNullFieldError.checkNotNull(type, r'Bible', 'type'),
               updatedAt: BuiltValueNullFieldError.checkNotNull(
                   updatedAt, r'Bible', 'updatedAt'),
-              relatedDbl:
-                  BuiltValueNullFieldError.checkNotNull(relatedDbl, r'Bible', 'relatedDbl'),
+              relatedDbl: BuiltValueNullFieldError.checkNotNull(
+                  relatedDbl, r'Bible', 'relatedDbl'),
               audioBibles: audioBibles.build());
     } catch (_) {
       late String _$failedField;

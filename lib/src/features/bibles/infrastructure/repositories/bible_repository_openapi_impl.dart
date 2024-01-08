@@ -3,6 +3,8 @@ import 'package:bible/src/features/bibles/domain/entities/bible.dart';
 import 'package:bible/src/features/bibles/domain/entities/book.dart';
 import 'package:bible/src/features/bibles/domain/entities/chapter.dart';
 import 'package:bible/src/features/bibles/domain/entities/chapter_reference.dart';
+import 'package:bible/src/features/bibles/domain/mapping/bible.dart';
+import 'package:bible/src/features/bibles/domain/mapping/bible_summary.dart';
 import 'package:bible/src/features/bibles/domain/repositories/bible_repository.dart';
 import 'package:bible_openapi/bible_openapi.dart' as o;
 import 'package:either_dart/src/either.dart';
@@ -26,18 +28,24 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
     try {
       final resp = await biblesApi.getBibles(language: lang);
 
-      final bibles = resp.data!.data.map((bible) => Bible(
-        id: bible.id, 
-        name: bible.nameLocal, 
-        language: bible.language.id, 
-        description: bible.descriptionLocal ?? "", 
-        abbreviation: bible.abbreviationLocal
-      )).toList();
+      final bibles = resp.data!.data.map((b) => b.toDomain()).toList();
       
       return Right(bibles);
     } catch (e) {
       print(e);
       return Left(AppException("Couldn't get bibles."));
+    }
+  }
+
+  @override
+  Future<Either<AppException, Bible>> getBible(String bibleId) async {
+    try {
+      final resp = await biblesApi.getBible(bibleId: bibleId);
+      final bible = resp.data!.data.toDomain();
+      return Right(bible);
+    } catch (e) {
+      print(e);
+      return Left(AppException("Couldn't get bible by id $bibleId"));
     }
   }
 

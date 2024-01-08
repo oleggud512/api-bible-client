@@ -9,32 +9,34 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:bible/src/core/application/use_cases/get_languages_use_case.dart'
-    as _i13;
+    as _i12;
 import 'package:bible/src/core/external/data_source/assets_root_bundle_data_source_impl.dart'
     as _i5;
 import 'package:bible/src/core/infrastructure/data_source/assets_data_source.dart'
     as _i4;
 import 'package:bible/src/features/bibles/application/use_cases/get_bible_books_use_case.dart'
-    as _i10;
+    as _i18;
 import 'package:bible/src/features/bibles/application/use_cases/get_bibles_use_case.dart'
-    as _i11;
+    as _i10;
 import 'package:bible/src/features/bibles/application/use_cases/get_chapter_use_case.dart'
-    as _i12;
+    as _i11;
 import 'package:bible/src/features/bibles/domain/repositories/bible_repository.dart'
     as _i7;
 import 'package:bible/src/features/bibles/infrastructure/repositories/bible_repository_openapi_impl.dart'
     as _i8;
 import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_bloc.dart'
-    as _i17;
-import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_bloc.dart'
-    as _i18;
-import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc.dart'
-    as _i14;
-import 'package:bible/src/features/profile/domain/repositories/bible_view_history_repository.dart'
     as _i15;
-import 'package:bible/src/features/profile/infrastructure/repositories/bible_view_history_repository_sembast_impl.dart'
+import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_bloc.dart'
     as _i16;
-import 'package:bible/src/get_it.dart' as _i19;
+import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc.dart'
+    as _i19;
+import 'package:bible/src/features/profile/application/use_cases/add_bible_history_node_use_case.dart'
+    as _i17;
+import 'package:bible/src/features/profile/domain/repositories/bible_view_history_repository.dart'
+    as _i13;
+import 'package:bible/src/features/profile/infrastructure/repositories/bible_view_history_repository_sembast_impl.dart'
+    as _i14;
+import 'package:bible/src/get_it.dart' as _i20;
 import 'package:bible/src/router.dart' as _i3;
 import 'package:bible_openapi/bible_openapi.dart' as _i6;
 import 'package:get_it/get_it.dart' as _i1;
@@ -62,39 +64,43 @@ extension GetItInjectableX on _i1.GetIt {
       () => registerModule.sembastDb,
       preResolve: true,
     );
-    gh.factory<_i10.GetBibleBooksUseCase>(
-        () => _i10.GetBibleBooksUseCase(gh<_i7.BibleRepository>()));
-    gh.factory<_i11.GetBiblesUseCase>(
-        () => _i11.GetBiblesUseCase(gh<_i7.BibleRepository>()));
-    gh.factory<_i12.GetChapterUseCase>(
-        () => _i12.GetChapterUseCase(gh<_i7.BibleRepository>()));
-    gh.factory<_i13.GetLanguagesUseCase>(
-        () => _i13.GetLanguagesUseCase(gh<_i4.AssetsDataSource>()));
-    gh.factoryParam<_i14.TocPageBloc, String, dynamic>((
-      bibleId,
-      _,
-    ) =>
-        _i14.TocPageBloc(
-          gh<_i10.GetBibleBooksUseCase>(),
-          bibleId,
+    gh.factory<_i10.GetBiblesUseCase>(
+        () => _i10.GetBiblesUseCase(gh<_i7.BibleRepository>()));
+    gh.factory<_i11.GetChapterUseCase>(
+        () => _i11.GetChapterUseCase(gh<_i7.BibleRepository>()));
+    gh.factory<_i12.GetLanguagesUseCase>(
+        () => _i12.GetLanguagesUseCase(gh<_i4.AssetsDataSource>()));
+    gh.singleton<_i13.BibleViewHistoryRepository>(
+        _i14.BibleViewHistoryRepositorySembastImpl(gh<_i9.Database>()));
+    gh.factory<_i15.BiblesPageBloc>(() => _i15.BiblesPageBloc(
+          gh<_i10.GetBiblesUseCase>(),
+          gh<_i12.GetLanguagesUseCase>(),
         ));
-    gh.singleton<_i15.BibleViewHistoryRepository>(
-        _i16.BibleViewHistoryRepositorySembastImpl(gh<_i9.Database>()));
-    gh.factory<_i17.BiblesPageBloc>(() => _i17.BiblesPageBloc(
-          gh<_i11.GetBiblesUseCase>(),
-          gh<_i13.GetLanguagesUseCase>(),
-        ));
-    gh.factoryParam<_i18.ChapterPageBloc, String, String>((
+    gh.factoryParam<_i16.ChapterPageBloc, String, String>((
       bibleId,
       chapterId,
     ) =>
-        _i18.ChapterPageBloc(
-          gh<_i12.GetChapterUseCase>(),
+        _i16.ChapterPageBloc(
+          gh<_i11.GetChapterUseCase>(),
           bibleId,
           chapterId,
+        ));
+    gh.factory<_i17.AddBibleHistoryNodeUseCase>(() =>
+        _i17.AddBibleHistoryNodeUseCase(gh<_i13.BibleViewHistoryRepository>()));
+    gh.factory<_i18.GetBibleBooksUseCase>(() => _i18.GetBibleBooksUseCase(
+          gh<_i7.BibleRepository>(),
+          gh<_i17.AddBibleHistoryNodeUseCase>(),
+        ));
+    gh.factoryParam<_i19.TocPageBloc, String, dynamic>((
+      bibleId,
+      _,
+    ) =>
+        _i19.TocPageBloc(
+          gh<_i18.GetBibleBooksUseCase>(),
+          bibleId,
         ));
     return this;
   }
 }
 
-class _$RegisterModule extends _i19.RegisterModule {}
+class _$RegisterModule extends _i20.RegisterModule {}
