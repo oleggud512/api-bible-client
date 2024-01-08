@@ -1,4 +1,3 @@
-import 'package:bible_openapi/bible_openapi.dart' as api;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bible.freezed.dart';

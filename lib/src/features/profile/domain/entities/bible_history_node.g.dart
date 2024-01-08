@@ -16,6 +16,6 @@ _$BibleHistoryNodeImpl _$$BibleHistoryNodeImplFromJson(
 Map<String, dynamic> _$$BibleHistoryNodeImplToJson(
         _$BibleHistoryNodeImpl instance) =>
     <String, dynamic>{
-      'bible': instance.bible,
+      'bible': instance.bible.toJson(),
       'lastViewed': instance.lastViewed.toIso8601String(),
     };

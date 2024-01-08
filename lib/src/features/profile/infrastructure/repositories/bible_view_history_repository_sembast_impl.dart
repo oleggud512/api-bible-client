@@ -18,7 +18,7 @@ class BibleViewHistoryRepositorySembastImpl implements BibleViewHistoryRepositor
   @override
   Future<Either<AppException, List<BibleHistoryNode>>> getHistory() async {
     try {
-      final res = await store.find(db);
+      final res = await store.find(db, finder: Finder(sortOrders: [SortOrder('lastViewed')]));
       final nodes = res
         .map((node) => BibleHistoryNode.fromJson(node.value))
         .toList();
