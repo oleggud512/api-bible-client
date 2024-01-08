@@ -39,7 +39,7 @@ class TocPage extends StatelessWidget {
                   Wrap(
                     children: book.chapters.map((chapter) => ActionChip(
                       onPressed: () {
-                        injector<AppRouter>().push(ChapterRoute(
+                        context.router.push(ChapterRoute(
                           bibleId: chapter.bibleId, 
                           chapterId: chapter.id
                         ));

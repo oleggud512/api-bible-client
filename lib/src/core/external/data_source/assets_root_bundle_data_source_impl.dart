@@ -12,7 +12,12 @@ class AssetsRootBundleDataSourceImpl implements AssetsDataSource {
   Future<List<Lang>> getLangauges() async {
     final str = await rootBundle.loadString('assets/languages.json');
     final json = jsonDecode(str);
-    return List<Map<String, dynamic>>.from(json).map(Lang.fromJson).toList();
+    return List<Map<String, dynamic>>.from(json)
+      .map(Lang.fromJson)
+      .toList()
+      // TODO: sort json file itself and remove this
+      ..sort((prev, next) => 
+        prev.code.toLowerCase().compareTo(next.code.toLowerCase()));
   }
 
 }

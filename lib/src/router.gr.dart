@@ -21,17 +21,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const BiblesPage(),
       );
     },
-    BookRoute.name: (routeData) {
-      final args = routeData.argsAs<BookRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: BookPage(
-          key: args.key,
-          bibleId: args.bibleId,
-          bookId: args.bookId,
-        ),
-      );
-    },
     ChapterRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<ChapterRouteArgs>(
@@ -99,48 +88,6 @@ class BiblesRoute extends PageRouteInfo<void> {
   static const String name = 'BiblesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [BookPage]
-class BookRoute extends PageRouteInfo<BookRouteArgs> {
-  BookRoute({
-    Key? key,
-    required String bibleId,
-    required String bookId,
-    List<PageRouteInfo>? children,
-  }) : super(
-          BookRoute.name,
-          args: BookRouteArgs(
-            key: key,
-            bibleId: bibleId,
-            bookId: bookId,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'BookRoute';
-
-  static const PageInfo<BookRouteArgs> page = PageInfo<BookRouteArgs>(name);
-}
-
-class BookRouteArgs {
-  const BookRouteArgs({
-    this.key,
-    required this.bibleId,
-    required this.bookId,
-  });
-
-  final Key? key;
-
-  final String bibleId;
-
-  final String bookId;
-
-  @override
-  String toString() {
-    return 'BookRouteArgs{key: $key, bibleId: $bibleId, bookId: $bookId}';
-  }
 }
 
 /// generated route for

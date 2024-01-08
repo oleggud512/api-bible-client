@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bible/src/features/bibles/presentation/book_page/book_page.dart';
 import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page.dart';
 import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page.dart';
