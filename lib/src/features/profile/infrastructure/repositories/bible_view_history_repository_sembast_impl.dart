@@ -1,3 +1,4 @@
+import 'package:bible/src/core/common/logger.dart';
 import 'package:bible/src/core/domain/exceptions.dart';
 import 'package:bible/src/features/bibles/domain/entities/bible.dart';
 import 'package:bible/src/features/profile/domain/entities/bible_history_node.dart';
@@ -28,7 +29,7 @@ class BibleViewHistoryRepositorySembastImpl implements BibleViewHistoryRepositor
         .toList();
       return Right(nodes);
     } catch (e) {
-      print(e);
+      glogger.e(e);
       return Left(AppException("couldn't create a node"));
     }
   }
@@ -54,7 +55,7 @@ class BibleViewHistoryRepositorySembastImpl implements BibleViewHistoryRepositor
       final newNode = BibleHistoryNode.fromJson(newJson);
       return Right(newNode);
     } catch (e) {
-      print(e);
+      glogger.e(e);
       return Left(AppException("couldn't create a node"));
     }
   }
@@ -65,7 +66,7 @@ class BibleViewHistoryRepositorySembastImpl implements BibleViewHistoryRepositor
       await store.delete(db);
       return const Right(null);
     } catch (e) {
-      print(e);
+      glogger.e(e);
       return Left(AppException("couldn't clear history"));
     }
   }
@@ -77,7 +78,7 @@ class BibleViewHistoryRepositorySembastImpl implements BibleViewHistoryRepositor
       await record.delete(db);
       return const Right(null);
     } catch (e) {
-      print(e);
+      glogger.e(e);
       return Left(AppException("unable to delete HistoryNode with id $bibleId"));
     }
   }

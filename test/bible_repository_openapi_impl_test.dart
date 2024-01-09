@@ -1,3 +1,4 @@
+import 'package:bible/src/core/common/logger.dart';
 import 'package:bible/src/env.dart';
 import 'package:bible/src/features/bibles/domain/repositories/bible_repository.dart';
 import 'package:bible/src/features/bibles/infrastructure/repositories/bible_repository_openapi_impl.dart';
@@ -21,7 +22,7 @@ void main() async {
           t.fail(left.toString());
         }, 
         (right) {
-          print(right);
+          glogger.i(right);
         }
       );
     });
@@ -33,7 +34,7 @@ void main() async {
           t.fail(left.toString());
         }, 
         (right) {
-          print(right);
+          glogger.i(right);
         }
       );
     });
@@ -45,7 +46,7 @@ void main() async {
           t.fail(left.toString());
         }, 
         (right) {
-          print(right);
+          glogger.i(right);
         }
       );
     });

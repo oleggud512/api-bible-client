@@ -1,3 +1,4 @@
+import 'package:bible/src/core/common/logger.dart';
 import 'package:bible/src/core/domain/exceptions.dart';
 import 'package:bible/src/features/bibles/domain/entities/bible.dart';
 import 'package:bible/src/features/bibles/domain/entities/book.dart';
@@ -32,7 +33,7 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
       
       return Right(bibles);
     } catch (e) {
-      print(e);
+      glogger.e(e);
       return Left(AppException("Couldn't get bibles."));
     }
   }
@@ -44,7 +45,7 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
       final bible = resp.data!.data.toDomain();
       return Right(bible);
     } catch (e) {
-      print(e);
+      glogger.e(e);
       return Left(AppException("Couldn't get bible by id $bibleId"));
     }
   }
@@ -73,7 +74,7 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
 
       return Right(books);
     } catch (e) {
-      print(e);
+      glogger.e(e);
       return Left(AppException("Couldn't get books for bible with id $bibleId"));
     }
   }
@@ -113,7 +114,7 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
       );
       return Right(resChapter);
     } catch (e) {
-      print(e);
+      glogger.e(e);
       return Left(AppException("Couldn't get chapter of $bibleId with id $chapterId"));
     }
   }

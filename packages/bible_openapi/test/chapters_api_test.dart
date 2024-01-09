@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:html/dom.dart';
 import 'package:html/parser.dart';
+import 'package:logger/logger.dart';
 import 'package:test/test.dart';
 import 'package:xml2json/xml2json.dart' as xml;
 import 'package:bible_openapi/bible_openapi.dart';
@@ -36,7 +37,7 @@ void main() async {
         chapterId: 'MAT.23',
         contentType: 'html'
       );
-      print(resp);
+      Logger().i(resp);
     });
 
     // Gets an array of `Chapter` objects for a given `bibleId` and `bookId` 
