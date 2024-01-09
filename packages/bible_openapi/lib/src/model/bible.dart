@@ -76,7 +76,7 @@ abstract class Bible implements Built<Bible, BibleBuilder> {
   DateTime get updatedAt;
 
   @BuiltValueField(wireName: r'relatedDbl')
-  String get relatedDbl;
+  String? get relatedDbl;
 
   @BuiltValueField(wireName: r'audioBibles')
   BuiltList<AudioBibleSummary> get audioBibles;

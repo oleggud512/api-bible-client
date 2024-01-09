@@ -12,13 +12,17 @@ class BibleViewHistoryRepositorySembastImpl implements BibleViewHistoryRepositor
   final Database db;
 
   final store = stringMapStoreFactory.store('bible_view_history');
+  
+  QueryRef<String, Map<String, Object?>> get historyQuery => store.query(
+    finder: Finder(sortOrders: [SortOrder('lastViewed', false)])
+  );
 
   BibleViewHistoryRepositorySembastImpl(this.db);
   
   @override
   Future<Either<AppException, List<BibleHistoryNode>>> getHistory() async {
     try {
-      final res = await store.find(db, finder: Finder(sortOrders: [SortOrder('lastViewed')]));
+      final res = await historyQuery.getSnapshots(db);
       final nodes = res
         .map((node) => BibleHistoryNode.fromJson(node.value))
         .toList();
@@ -27,6 +31,14 @@ class BibleViewHistoryRepositorySembastImpl implements BibleViewHistoryRepositor
       print(e);
       return Left(AppException("couldn't create a node"));
     }
+  }
+
+  @override
+  Stream<List<BibleHistoryNode>> watchHistory() {
+    return historyQuery.onSnapshots(db)
+      .map((history) => history
+        .map((node) => BibleHistoryNode.fromJson(node.value)).toList()
+      );
   }
 
   @override

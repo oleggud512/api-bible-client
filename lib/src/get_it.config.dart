@@ -15,7 +15,7 @@ import 'package:bible/src/core/external/data_source/assets_root_bundle_data_sour
 import 'package:bible/src/core/infrastructure/data_source/assets_data_source.dart'
     as _i4;
 import 'package:bible/src/features/bibles/application/use_cases/get_bible_books_use_case.dart'
-    as _i18;
+    as _i20;
 import 'package:bible/src/features/bibles/application/use_cases/get_bibles_use_case.dart'
     as _i10;
 import 'package:bible/src/features/bibles/application/use_cases/get_chapter_use_case.dart'
@@ -29,14 +29,20 @@ import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_b
 import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_bloc.dart'
     as _i16;
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc.dart'
-    as _i19;
+    as _i22;
+import 'package:bible/src/features/main/presentation/main_page/main_page_bloc.dart'
+    as _i21;
 import 'package:bible/src/features/profile/application/use_cases/add_bible_history_node_use_case.dart'
+    as _i19;
+import 'package:bible/src/features/profile/application/use_cases/get_bible_view_history_use_case.dart'
     as _i17;
+import 'package:bible/src/features/profile/application/use_cases/watch_bible_view_history_use_case.dart'
+    as _i18;
 import 'package:bible/src/features/profile/domain/repositories/bible_view_history_repository.dart'
     as _i13;
 import 'package:bible/src/features/profile/infrastructure/repositories/bible_view_history_repository_sembast_impl.dart'
     as _i14;
-import 'package:bible/src/get_it.dart' as _i20;
+import 'package:bible/src/get_it.dart' as _i23;
 import 'package:bible/src/router.dart' as _i3;
 import 'package:bible_openapi/bible_openapi.dart' as _i6;
 import 'package:get_it/get_it.dart' as _i1;
@@ -85,22 +91,29 @@ extension GetItInjectableX on _i1.GetIt {
           bibleId,
           chapterId,
         ));
-    gh.factory<_i17.AddBibleHistoryNodeUseCase>(() =>
-        _i17.AddBibleHistoryNodeUseCase(gh<_i13.BibleViewHistoryRepository>()));
-    gh.factory<_i18.GetBibleBooksUseCase>(() => _i18.GetBibleBooksUseCase(
+    gh.factory<_i17.GetBibleViewHistoryUseCase>(() =>
+        _i17.GetBibleViewHistoryUseCase(gh<_i13.BibleViewHistoryRepository>()));
+    gh.factory<_i18.WatchBibleViewHistoryUseCase>(() =>
+        _i18.WatchBibleViewHistoryUseCase(
+            gh<_i13.BibleViewHistoryRepository>()));
+    gh.factory<_i19.AddBibleHistoryNodeUseCase>(() =>
+        _i19.AddBibleHistoryNodeUseCase(gh<_i13.BibleViewHistoryRepository>()));
+    gh.factory<_i20.GetBibleBooksUseCase>(() => _i20.GetBibleBooksUseCase(
           gh<_i7.BibleRepository>(),
-          gh<_i17.AddBibleHistoryNodeUseCase>(),
+          gh<_i19.AddBibleHistoryNodeUseCase>(),
         ));
-    gh.factoryParam<_i19.TocPageBloc, String, dynamic>((
+    gh.factory<_i21.MainPageBloc>(
+        () => _i21.MainPageBloc(gh<_i18.WatchBibleViewHistoryUseCase>()));
+    gh.factoryParam<_i22.TocPageBloc, String, dynamic>((
       bibleId,
       _,
     ) =>
-        _i19.TocPageBloc(
-          gh<_i18.GetBibleBooksUseCase>(),
+        _i22.TocPageBloc(
+          gh<_i20.GetBibleBooksUseCase>(),
           bibleId,
         ));
     return this;
   }
 }
 
-class _$RegisterModule extends _i20.RegisterModule {}
+class _$RegisterModule extends _i23.RegisterModule {}

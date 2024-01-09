@@ -36,7 +36,7 @@ class _$Bible extends Bible {
   @override
   final DateTime updatedAt;
   @override
-  final String relatedDbl;
+  final String? relatedDbl;
   @override
   final BuiltList<AudioBibleSummary> audioBibles;
 
@@ -58,7 +58,7 @@ class _$Bible extends Bible {
       required this.info,
       required this.type,
       required this.updatedAt,
-      required this.relatedDbl,
+      this.relatedDbl,
       required this.audioBibles})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'Bible', 'id');
@@ -75,7 +75,6 @@ class _$Bible extends Bible {
     BuiltValueNullFieldError.checkNotNull(info, r'Bible', 'info');
     BuiltValueNullFieldError.checkNotNull(type, r'Bible', 'type');
     BuiltValueNullFieldError.checkNotNull(updatedAt, r'Bible', 'updatedAt');
-    BuiltValueNullFieldError.checkNotNull(relatedDbl, r'Bible', 'relatedDbl');
     BuiltValueNullFieldError.checkNotNull(audioBibles, r'Bible', 'audioBibles');
   }
 
@@ -297,8 +296,7 @@ class BibleBuilder implements Builder<Bible, BibleBuilder> {
                   BuiltValueNullFieldError.checkNotNull(type, r'Bible', 'type'),
               updatedAt: BuiltValueNullFieldError.checkNotNull(
                   updatedAt, r'Bible', 'updatedAt'),
-              relatedDbl: BuiltValueNullFieldError.checkNotNull(
-                  relatedDbl, r'Bible', 'relatedDbl'),
+              relatedDbl: relatedDbl,
               audioBibles: audioBibles.build());
     } catch (_) {
       late String _$failedField;

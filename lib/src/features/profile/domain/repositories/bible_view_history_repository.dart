@@ -6,6 +6,7 @@ import 'package:either_dart/either.dart';
 abstract interface class BibleViewHistoryRepository {
   Future<Either<AppException, BibleHistoryNode>> addHistoryNode(Bible bible);
   Future<Either<AppException, List<BibleHistoryNode>>> getHistory();
+  Stream<List<BibleHistoryNode>> watchHistory();
   Future<Either<AppException, void>> clearHistory();
   Future<Either<AppException, void>> deleteHistoryNode(String bibldId);
 }
