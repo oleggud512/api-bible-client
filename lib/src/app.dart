@@ -17,7 +17,10 @@ class _MyAppState extends State<MyApp> {
       routerConfig: router.config(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue)
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder()
+        )
       )
     );
   }

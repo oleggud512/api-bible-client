@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bible/src/core/common/constants/sizes.dart';
 import 'package:bible/src/core/common/extensions/string.dart';
 import 'package:bible/src/core/presentation/simple_loading.dart';
+import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget.dart';
 import 'package:bible/src/features/main/presentation/main_page/main_page_bloc.dart';
 import 'package:bible/src/features/main/presentation/main_page/main_page_events.dart';
 import 'package:bible/src/features/main/presentation/main_page/main_page_states.dart';
 import 'package:bible/src/get_it.dart';
-import 'package:bible/src/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,12 +35,7 @@ class MainPage extends StatelessWidget {
               separatorBuilder: (context, i) => h8gap,
               itemBuilder: (context, i) {
                 final node = state.history[i];
-                return FilledButton.tonal(
-                  onPressed: () {
-                    context.router.push(TocRoute(bibleId: node.bible.id));
-                  }, 
-                  child: Text('${node.bible.id} | ${node.bible.name}\n${node.lastViewed.toLocal()}')
-                );
+                return BibleWidget.fromHistoryNode(node: node);
               }
             );
           }
