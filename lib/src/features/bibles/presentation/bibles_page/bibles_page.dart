@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bible/src/core/common/constants/sizes.dart';
 import 'package:bible/src/core/common/extensions/string.dart';
+import 'package:bible/src/core/presentation/simple_loading.dart';
 import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget.dart';
 import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_bloc.dart';
 import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_events.dart';
@@ -29,6 +30,8 @@ class BiblesPage extends StatelessWidget {
           ..add(BiblesPageEvent.load()),
         child: BlocBuilder<BiblesPageBloc, BiblesPageState>(
           builder: (context, state) {
+            if (state.isLoading) return SimpleLoading(message: 'Loading bibles...'.hardcoded);
+
             return ListView(
               padding: const EdgeInsets.all(p8),
               children: [

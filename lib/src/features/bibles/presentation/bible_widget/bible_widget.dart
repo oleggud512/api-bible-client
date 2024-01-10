@@ -61,10 +61,15 @@ class BibleWidget extends BaseBibleWidget {
     Key? key, 
     required BibleHistoryNode node,
   }) {
+    const dot = '\u00B7';
+    var bottomString = '${node.bible.language} $dot ${defaultDateFormat.format(node.lastViewed)}';
+    if (node.chapterId != null) {
+      bottomString = '$bottomString $dot ${node.chapterId}';
+    }
     return BibleWidget(
       key: key,
       bible: node.bible,
-      bottomString: '${node.bible.language}  \u00B7 ${defaultDateFormat.format(node.lastViewed)}'
+      bottomString: bottomString
     );
   }
 }

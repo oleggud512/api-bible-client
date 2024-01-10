@@ -11,6 +11,7 @@ _$BibleHistoryNodeImpl _$$BibleHistoryNodeImplFromJson(
     _$BibleHistoryNodeImpl(
       bible: Bible.fromJson(json['bible'] as Map<String, dynamic>),
       lastViewed: DateTime.parse(json['lastViewed'] as String),
+      chapterId: json['chapterId'] as String?,
     );
 
 Map<String, dynamic> _$$BibleHistoryNodeImplToJson(
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$BibleHistoryNodeImplToJson(
     <String, dynamic>{
       'bible': instance.bible.toJson(),
       'lastViewed': instance.lastViewed.toIso8601String(),
+      'chapterId': instance.chapterId,
     };

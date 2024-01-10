@@ -22,6 +22,7 @@ BibleHistoryNode _$BibleHistoryNodeFromJson(Map<String, dynamic> json) {
 mixin _$BibleHistoryNode {
   Bible get bible => throw _privateConstructorUsedError;
   DateTime get lastViewed => throw _privateConstructorUsedError;
+  String? get chapterId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $BibleHistoryNodeCopyWith<$Res> {
           BibleHistoryNode value, $Res Function(BibleHistoryNode) then) =
       _$BibleHistoryNodeCopyWithImpl<$Res, BibleHistoryNode>;
   @useResult
-  $Res call({Bible bible, DateTime lastViewed});
+  $Res call({Bible bible, DateTime lastViewed, String? chapterId});
 
   $BibleCopyWith<$Res> get bible;
 }
@@ -55,6 +56,7 @@ class _$BibleHistoryNodeCopyWithImpl<$Res, $Val extends BibleHistoryNode>
   $Res call({
     Object? bible = null,
     Object? lastViewed = null,
+    Object? chapterId = freezed,
   }) {
     return _then(_value.copyWith(
       bible: null == bible
@@ -65,6 +67,10 @@ class _$BibleHistoryNodeCopyWithImpl<$Res, $Val extends BibleHistoryNode>
           ? _value.lastViewed
           : lastViewed // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      chapterId: freezed == chapterId
+          ? _value.chapterId
+          : chapterId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -85,7 +91,7 @@ abstract class _$$BibleHistoryNodeImplCopyWith<$Res>
       __$$BibleHistoryNodeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Bible bible, DateTime lastViewed});
+  $Res call({Bible bible, DateTime lastViewed, String? chapterId});
 
   @override
   $BibleCopyWith<$Res> get bible;
@@ -104,6 +110,7 @@ class __$$BibleHistoryNodeImplCopyWithImpl<$Res>
   $Res call({
     Object? bible = null,
     Object? lastViewed = null,
+    Object? chapterId = freezed,
   }) {
     return _then(_$BibleHistoryNodeImpl(
       bible: null == bible
@@ -114,6 +121,10 @@ class __$$BibleHistoryNodeImplCopyWithImpl<$Res>
           ? _value.lastViewed
           : lastViewed // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      chapterId: freezed == chapterId
+          ? _value.chapterId
+          : chapterId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -121,7 +132,8 @@ class __$$BibleHistoryNodeImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BibleHistoryNodeImpl implements _BibleHistoryNode {
-  _$BibleHistoryNodeImpl({required this.bible, required this.lastViewed});
+  _$BibleHistoryNodeImpl(
+      {required this.bible, required this.lastViewed, this.chapterId});
 
   factory _$BibleHistoryNodeImpl.fromJson(Map<String, dynamic> json) =>
       _$$BibleHistoryNodeImplFromJson(json);
@@ -130,10 +142,12 @@ class _$BibleHistoryNodeImpl implements _BibleHistoryNode {
   final Bible bible;
   @override
   final DateTime lastViewed;
+  @override
+  final String? chapterId;
 
   @override
   String toString() {
-    return 'BibleHistoryNode(bible: $bible, lastViewed: $lastViewed)';
+    return 'BibleHistoryNode(bible: $bible, lastViewed: $lastViewed, chapterId: $chapterId)';
   }
 
   @override
@@ -143,12 +157,14 @@ class _$BibleHistoryNodeImpl implements _BibleHistoryNode {
             other is _$BibleHistoryNodeImpl &&
             (identical(other.bible, bible) || other.bible == bible) &&
             (identical(other.lastViewed, lastViewed) ||
-                other.lastViewed == lastViewed));
+                other.lastViewed == lastViewed) &&
+            (identical(other.chapterId, chapterId) ||
+                other.chapterId == chapterId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, bible, lastViewed);
+  int get hashCode => Object.hash(runtimeType, bible, lastViewed, chapterId);
 
   @JsonKey(ignore: true)
   @override
@@ -168,7 +184,8 @@ class _$BibleHistoryNodeImpl implements _BibleHistoryNode {
 abstract class _BibleHistoryNode implements BibleHistoryNode {
   factory _BibleHistoryNode(
       {required final Bible bible,
-      required final DateTime lastViewed}) = _$BibleHistoryNodeImpl;
+      required final DateTime lastViewed,
+      final String? chapterId}) = _$BibleHistoryNodeImpl;
 
   factory _BibleHistoryNode.fromJson(Map<String, dynamic> json) =
       _$BibleHistoryNodeImpl.fromJson;
@@ -177,6 +194,8 @@ abstract class _BibleHistoryNode implements BibleHistoryNode {
   Bible get bible;
   @override
   DateTime get lastViewed;
+  @override
+  String? get chapterId;
   @override
   @JsonKey(ignore: true)
   _$$BibleHistoryNodeImplCopyWith<_$BibleHistoryNodeImpl> get copyWith =>

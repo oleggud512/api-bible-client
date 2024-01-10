@@ -10,7 +10,7 @@ class BiblesPageBloc extends Bloc<BiblesPageEvent, BiblesPageState> {
   final GetBiblesUseCase _getBibles;
   final GetLanguagesUseCase _getLangs;
 
-  BiblesPageBloc(this._getBibles, this._getLangs) : super(BiblesPageState()) {
+  BiblesPageBloc(this._getBibles, this._getLangs) : super(BiblesPageState(isLoading: true)) {
     on<BiblesPageLoadEvent>(load);
     on<BiblesPageLangChangedEvent>(changeLang);
   }
@@ -22,6 +22,7 @@ class BiblesPageBloc extends Bloc<BiblesPageEvent, BiblesPageState> {
       emit(state.copyWith(
         bibles: right,
         languages: langRes,
+        isLoading: false,
       ));
     });
   }

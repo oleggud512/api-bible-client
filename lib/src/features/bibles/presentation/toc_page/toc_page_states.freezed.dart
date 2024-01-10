@@ -16,7 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TocPageState {
+  bool get isLoading => throw _privateConstructorUsedError;
   List<Book> get books => throw _privateConstructorUsedError;
+  String? get suggestChapterId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TocPageStateCopyWith<TocPageState> get copyWith =>
@@ -29,7 +31,7 @@ abstract class $TocPageStateCopyWith<$Res> {
           TocPageState value, $Res Function(TocPageState) then) =
       _$TocPageStateCopyWithImpl<$Res, TocPageState>;
   @useResult
-  $Res call({List<Book> books});
+  $Res call({bool isLoading, List<Book> books, String? suggestChapterId});
 }
 
 /// @nodoc
@@ -45,13 +47,23 @@ class _$TocPageStateCopyWithImpl<$Res, $Val extends TocPageState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? books = null,
+    Object? suggestChapterId = freezed,
   }) {
     return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       books: null == books
           ? _value.books
           : books // ignore: cast_nullable_to_non_nullable
               as List<Book>,
+      suggestChapterId: freezed == suggestChapterId
+          ? _value.suggestChapterId
+          : suggestChapterId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -64,7 +76,7 @@ abstract class _$$TocPageStateImplCopyWith<$Res>
       __$$TocPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Book> books});
+  $Res call({bool isLoading, List<Book> books, String? suggestChapterId});
 }
 
 /// @nodoc
@@ -78,13 +90,23 @@ class __$$TocPageStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? books = null,
+    Object? suggestChapterId = freezed,
   }) {
     return _then(_$TocPageStateImpl(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       books: null == books
           ? _value._books
           : books // ignore: cast_nullable_to_non_nullable
               as List<Book>,
+      suggestChapterId: freezed == suggestChapterId
+          ? _value.suggestChapterId
+          : suggestChapterId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -92,8 +114,15 @@ class __$$TocPageStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TocPageStateImpl implements _TocPageState {
-  _$TocPageStateImpl({final List<Book> books = const []}) : _books = books;
+  _$TocPageStateImpl(
+      {this.isLoading = false,
+      final List<Book> books = const [],
+      this.suggestChapterId})
+      : _books = books;
 
+  @override
+  @JsonKey()
+  final bool isLoading;
   final List<Book> _books;
   @override
   @JsonKey()
@@ -104,8 +133,11 @@ class _$TocPageStateImpl implements _TocPageState {
   }
 
   @override
+  final String? suggestChapterId;
+
+  @override
   String toString() {
-    return 'TocPageState(books: $books)';
+    return 'TocPageState(isLoading: $isLoading, books: $books, suggestChapterId: $suggestChapterId)';
   }
 
   @override
@@ -113,12 +145,16 @@ class _$TocPageStateImpl implements _TocPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TocPageStateImpl &&
-            const DeepCollectionEquality().equals(other._books, _books));
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            const DeepCollectionEquality().equals(other._books, _books) &&
+            (identical(other.suggestChapterId, suggestChapterId) ||
+                other.suggestChapterId == suggestChapterId));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_books));
+  int get hashCode => Object.hash(runtimeType, isLoading,
+      const DeepCollectionEquality().hash(_books), suggestChapterId);
 
   @JsonKey(ignore: true)
   @override
@@ -128,10 +164,17 @@ class _$TocPageStateImpl implements _TocPageState {
 }
 
 abstract class _TocPageState implements TocPageState {
-  factory _TocPageState({final List<Book> books}) = _$TocPageStateImpl;
+  factory _TocPageState(
+      {final bool isLoading,
+      final List<Book> books,
+      final String? suggestChapterId}) = _$TocPageStateImpl;
 
   @override
+  bool get isLoading;
+  @override
   List<Book> get books;
+  @override
+  String? get suggestChapterId;
   @override
   @JsonKey(ignore: true)
   _$$TocPageStateImplCopyWith<_$TocPageStateImpl> get copyWith =>

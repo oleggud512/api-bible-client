@@ -5,9 +5,8 @@ part 'chapter_page_states.freezed.dart';
 
 @freezed
 sealed class ChapterPageState with _$ChapterPageState {
-  factory ChapterPageState.main({
-    required DisplayChapter chapter
+  factory ChapterPageState({
+    @Default(false) bool isLoading,
+    DisplayChapter? chapter
   }) = ChapterPageMainState;
-  factory ChapterPageState.idle() = ChapterPageIdleState;
-  factory ChapterPageState.loading() = ChapterPageLoadingState;
 }

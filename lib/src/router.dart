@@ -42,7 +42,7 @@ class AppRouter extends _$AppRouter {
     ),
     AutoRoute(
       page: TocRoute.page,
-      path: '/bibles/:bibleId/chapters'
+      path: '/bibles/:bibleId/chapters',
     ),
     AutoRoute(
       page: ChapterRoute.page,

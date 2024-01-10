@@ -15,12 +15,15 @@ class ChapterPageBloc extends Bloc<ChapterPageEvent, ChapterPageState> {
     this._getChapter, 
     @factoryParam this.bibleId, 
     @factoryParam this.chapterId
-  ) : super(ChapterPageState.idle()) {
+  ) : super(ChapterPageState(isLoading: true)) {
 
     on<ChapterPageLoadEvent>((event, emit) async {
       final res = await _getChapter(bibleId, chapterId);
       res.map((right) {
-        emit(ChapterPageState.main(chapter: right));
+        emit(ChapterPageState(
+          chapter: right,
+          isLoading: false,
+        ));
       });
     });
   

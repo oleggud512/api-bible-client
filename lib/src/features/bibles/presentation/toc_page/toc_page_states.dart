@@ -6,6 +6,8 @@ part 'toc_page_states.freezed.dart';
 @freezed
 class TocPageState with _$TocPageState {
   factory TocPageState({
+    @Default(false) bool isLoading,
     @Default([]) List<Book> books,
+    String? suggestChapterId,
   }) = _TocPageState;
 }

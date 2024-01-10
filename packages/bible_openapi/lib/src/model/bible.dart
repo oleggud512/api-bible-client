@@ -67,7 +67,7 @@ abstract class Bible implements Built<Bible, BibleBuilder> {
   String? get descriptionLocal;
 
   @BuiltValueField(wireName: r'info')
-  String get info;
+  String? get info;
 
   @BuiltValueField(wireName: r'type')
   String get type;

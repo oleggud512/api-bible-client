@@ -43,11 +43,12 @@ class BibleViewHistoryRepositorySembastImpl implements BibleViewHistoryRepositor
   }
 
   @override
-  Future<Either<AppException, BibleHistoryNode>> addHistoryNode(Bible bible) async {
+  Future<Either<AppException, BibleHistoryNode>> addHistoryNode(Bible bible, [String? chapterId]) async {
     try {
       final node = BibleHistoryNode(
         bible: bible, 
-        lastViewed: DateTime.now()
+        lastViewed: DateTime.now(), 
+        chapterId: chapterId,
       );
       final newJson = await store
         .record(bible.id)
@@ -56,7 +57,19 @@ class BibleViewHistoryRepositorySembastImpl implements BibleViewHistoryRepositor
       return Right(newNode);
     } catch (e) {
       glogger.e(e);
-      return Left(AppException("couldn't create a node"));
+      return Left(AppException("Couldn't create a node"));
+    }
+  }
+
+  @override
+  Future<Either<AppException, BibleHistoryNode>> getHistoryNode(String bibleId) async {
+    try {
+      final res = await store.record(bibleId).get(db);
+      if (res == null) return Left(AppException('No history node found for bible with id $bibleId'));
+      return Right(BibleHistoryNode.fromJson(res));
+    } catch (e) {
+      glogger.e(e);
+      return Left(AppException("Couldn't get history node for bible with id $bibleId"));
     }
   }
 

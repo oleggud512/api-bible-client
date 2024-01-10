@@ -8,7 +8,8 @@ part 'bible_history_node.g.dart';
 class BibleHistoryNode with _$BibleHistoryNode {
   factory BibleHistoryNode({
     required Bible bible,
-    required DateTime lastViewed
+    required DateTime lastViewed,
+    String? chapterId,
   }) = _BibleHistoryNode;
 
   factory BibleHistoryNode.fromJson(Map<String, dynamic> json) => _$BibleHistoryNodeFromJson(json);
