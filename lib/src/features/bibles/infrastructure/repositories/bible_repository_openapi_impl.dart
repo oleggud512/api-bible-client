@@ -8,7 +8,7 @@ import 'package:bible/src/features/bibles/domain/mapping/bible.dart';
 import 'package:bible/src/features/bibles/domain/mapping/bible_summary.dart';
 import 'package:bible/src/features/bibles/domain/repositories/bible_repository.dart';
 import 'package:bible_openapi/bible_openapi.dart' as o;
-import 'package:either_dart/src/either.dart';
+import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton(as: BibleRepository)

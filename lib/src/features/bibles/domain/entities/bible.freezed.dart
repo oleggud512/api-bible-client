@@ -24,7 +24,7 @@ mixin _$Bible {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get abbreviation => throw _privateConstructorUsedError;
-  String get language => throw _privateConstructorUsedError;
+  Lang get language => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +41,9 @@ abstract class $BibleCopyWith<$Res> {
       String name,
       String description,
       String abbreviation,
-      String language});
+      Lang language});
+
+  $LangCopyWith<$Res> get language;
 }
 
 /// @nodoc
@@ -83,8 +85,16 @@ class _$BibleCopyWithImpl<$Res, $Val extends Bible>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Lang,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LangCopyWith<$Res> get language {
+    return $LangCopyWith<$Res>(_value.language, (value) {
+      return _then(_value.copyWith(language: value) as $Val);
+    });
   }
 }
 
@@ -100,7 +110,10 @@ abstract class _$$BibleImplCopyWith<$Res> implements $BibleCopyWith<$Res> {
       String name,
       String description,
       String abbreviation,
-      String language});
+      Lang language});
+
+  @override
+  $LangCopyWith<$Res> get language;
 }
 
 /// @nodoc
@@ -140,7 +153,7 @@ class __$$BibleImplCopyWithImpl<$Res>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Lang,
     ));
   }
 }
@@ -169,7 +182,7 @@ class _$BibleImpl implements _Bible {
   @JsonKey()
   final String abbreviation;
   @override
-  final String language;
+  final Lang language;
 
   @override
   String toString() {
@@ -216,7 +229,7 @@ abstract class _Bible implements Bible {
       required final String name,
       final String description,
       final String abbreviation,
-      required final String language}) = _$BibleImpl;
+      required final Lang language}) = _$BibleImpl;
 
   factory _Bible.fromJson(Map<String, dynamic> json) = _$BibleImpl.fromJson;
 
@@ -229,7 +242,7 @@ abstract class _Bible implements Bible {
   @override
   String get abbreviation;
   @override
-  String get language;
+  Lang get language;
   @override
   @JsonKey(ignore: true)
   _$$BibleImplCopyWith<_$BibleImpl> get copyWith =>

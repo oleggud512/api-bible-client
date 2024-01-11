@@ -21,6 +21,7 @@ Lang _$LangFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Lang {
   String get name => throw _privateConstructorUsedError;
+  String get nameLocal => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +34,7 @@ abstract class $LangCopyWith<$Res> {
   factory $LangCopyWith(Lang value, $Res Function(Lang) then) =
       _$LangCopyWithImpl<$Res, Lang>;
   @useResult
-  $Res call({String name, String code});
+  $Res call({String name, String nameLocal, String code});
 }
 
 /// @nodoc
@@ -50,12 +51,17 @@ class _$LangCopyWithImpl<$Res, $Val extends Lang>
   @override
   $Res call({
     Object? name = null,
+    Object? nameLocal = null,
     Object? code = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      nameLocal: null == nameLocal
+          ? _value.nameLocal
+          : nameLocal // ignore: cast_nullable_to_non_nullable
               as String,
       code: null == code
           ? _value.code
@@ -72,7 +78,7 @@ abstract class _$$LangImplCopyWith<$Res> implements $LangCopyWith<$Res> {
       __$$LangImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String code});
+  $Res call({String name, String nameLocal, String code});
 }
 
 /// @nodoc
@@ -86,12 +92,17 @@ class __$$LangImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? nameLocal = null,
     Object? code = null,
   }) {
     return _then(_$LangImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      nameLocal: null == nameLocal
+          ? _value.nameLocal
+          : nameLocal // ignore: cast_nullable_to_non_nullable
               as String,
       code: null == code
           ? _value.code
@@ -104,7 +115,7 @@ class __$$LangImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LangImpl implements _Lang {
-  _$LangImpl({required this.name, required this.code});
+  _$LangImpl({required this.name, required this.nameLocal, required this.code});
 
   factory _$LangImpl.fromJson(Map<String, dynamic> json) =>
       _$$LangImplFromJson(json);
@@ -112,11 +123,13 @@ class _$LangImpl implements _Lang {
   @override
   final String name;
   @override
+  final String nameLocal;
+  @override
   final String code;
 
   @override
   String toString() {
-    return 'Lang(name: $name, code: $code)';
+    return 'Lang(name: $name, nameLocal: $nameLocal, code: $code)';
   }
 
   @override
@@ -125,12 +138,14 @@ class _$LangImpl implements _Lang {
         (other.runtimeType == runtimeType &&
             other is _$LangImpl &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.nameLocal, nameLocal) ||
+                other.nameLocal == nameLocal) &&
             (identical(other.code, code) || other.code == code));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, code);
+  int get hashCode => Object.hash(runtimeType, name, nameLocal, code);
 
   @JsonKey(ignore: true)
   @override
@@ -147,13 +162,17 @@ class _$LangImpl implements _Lang {
 }
 
 abstract class _Lang implements Lang {
-  factory _Lang({required final String name, required final String code}) =
-      _$LangImpl;
+  factory _Lang(
+      {required final String name,
+      required final String nameLocal,
+      required final String code}) = _$LangImpl;
 
   factory _Lang.fromJson(Map<String, dynamic> json) = _$LangImpl.fromJson;
 
   @override
   String get name;
+  @override
+  String get nameLocal;
   @override
   String get code;
   @override

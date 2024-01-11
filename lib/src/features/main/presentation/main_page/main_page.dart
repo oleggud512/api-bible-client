@@ -18,7 +18,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MainPage')
+        title: Text('History'.hardcoded)
       ),
       body: BlocProvider(
         create: (context) => injector<MainPageBloc>()

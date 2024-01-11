@@ -55,14 +55,14 @@ class BibleWidget extends BaseBibleWidget {
     super.key, 
     required super.bible,
     String? bottomString,
-  }) : super(bottomString: bottomString ?? bible.language);
+  }) : super(bottomString: bottomString ?? bible.language.name);
 
   factory BibleWidget.fromHistoryNode({
     Key? key, 
     required BibleHistoryNode node,
   }) {
     const dot = '\u00B7';
-    var bottomString = '${node.bible.language} $dot ${defaultDateFormat.format(node.lastViewed)}';
+    var bottomString = '${node.bible.language.name} $dot ${defaultDateFormat.format(node.lastViewed)}';
     if (node.chapterId != null) {
       bottomString = '$bottomString $dot ${node.chapterId}';
     }

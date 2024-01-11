@@ -30,15 +30,16 @@ class _TocPageState extends State<TocPage> {
     if (chapterId == null || isSuggestionShown) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       behavior: SnackBarBehavior.floating,
-      content: InkWell(
-        onTap: () {
+      action: SnackBarAction(
+        label: 'Go to $chapterId', 
+        onPressed: () {
           context.router.push(ChapterRoute(
             bibleId: widget.bibleId, 
             chapterId: chapterId
           ));
-        },
-        child: Text('Continue reading $chapterId'),
-      )
+        }
+      ),
+      content: Text('Continue reading $chapterId?')
     ));
     isSuggestionShown = true;
   }

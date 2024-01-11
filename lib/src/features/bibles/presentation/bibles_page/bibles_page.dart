@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bible/src/core/common/constants/sizes.dart';
 import 'package:bible/src/core/common/extensions/string.dart';
+import 'package:bible/src/core/infrastructure/data_source/models/lang.dart';
 import 'package:bible/src/core/presentation/simple_loading.dart';
 import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget.dart';
 import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_bloc.dart';
@@ -74,7 +75,7 @@ class BiblesPage extends StatelessWidget {
         value: state.curLang,
         items: state.languages.map((lang) => DropdownMenuItem(
           value: lang.code, 
-          child: Text(lang.name)
+          child: buildLanguagesDropdownItem(lang)
         )).toList()..insert(0, DropdownMenuItem(
           value: null, 
           child: Text('All languages'.hardcoded)
@@ -92,5 +93,19 @@ class BiblesPage extends StatelessWidget {
       itemCount: children.length,
       itemBuilder: (context, i) => children[i],
     );
+  }
+
+  Widget buildLanguagesDropdownItem(Lang lang) {
+    return Text.rich(TextSpan(
+      text: lang.name,
+      children: [
+        TextSpan(
+          text: ' (${lang.nameLocal})',
+          style: const TextStyle(
+            color: Colors.grey
+          )
+        )
+      ]
+    ));
   }
 }

@@ -7,6 +7,7 @@ part 'lang.g.dart';
 class Lang with _$Lang {
   factory Lang({
     required String name,
+    required String nameLocal,
     required String code,
   }) = _Lang;
 

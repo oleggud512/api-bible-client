@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bible/src/core/common/logger.dart';
+import 'package:bible/src/core/infrastructure/data_source/models/lang.dart';
 import 'package:bible/src/features/bibles/domain/entities/bible.dart';
 import 'package:bible/src/features/profile/infrastructure/repositories/bible_view_history_repository_sembast_impl.dart';
 import 'package:sembast/sembast_io.dart';
@@ -25,7 +26,7 @@ Future<void> main() async {
     });
 
     test('test addHistoryNode()', () async {
-      final res = await instance.addHistoryNode(Bible(id: 'id', name: 'name', language: 'language'));
+      final res = await instance.addHistoryNode(Bible(id: 'id', name: 'name', language: Lang(name: '', nameLocal: 'nameLocal', code: 'code')));
       res.map((right) => glogger.i(right));
     });
 
@@ -36,7 +37,7 @@ Future<void> main() async {
     });
 
     test('test deleteHistoryNode()', () async {
-      final res = await instance.addHistoryNode(Bible(id: 'id', name: 'name', language: 'language'));
+      final res = await instance.addHistoryNode(Bible(id: 'id', name: 'name', language: Lang(name: 'name', nameLocal: 'nameLocal', code: 'code')));
       await res.mapAsync((right) async {
         await instance.deleteHistoryNode(right.bible.id);
       });

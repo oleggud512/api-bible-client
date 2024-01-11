@@ -1,3 +1,4 @@
+import 'package:bible/src/core/infrastructure/data_source/models/lang.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'bible.freezed.dart';
@@ -10,7 +11,7 @@ class Bible with _$Bible {
     required String name,
     @Default("") String description,
     @Default("") String abbreviation,
-    required String language
+    required Lang language
   }) = _Bible;
 
   factory Bible.fromJson(Map<String, dynamic> json) => _$BibleFromJson(json);
