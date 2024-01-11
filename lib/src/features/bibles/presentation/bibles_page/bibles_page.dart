@@ -72,6 +72,7 @@ class BiblesPage extends StatelessWidget {
   ListView buildData(BiblesPageDataState state, BuildContext context) {
     final children = [
       DropdownButton<String>(
+        isExpanded: true,
         value: state.curLang,
         items: state.languages.map((lang) => DropdownMenuItem(
           value: lang.code, 
@@ -88,7 +89,7 @@ class BiblesPage extends StatelessWidget {
     ];
 
     return ListView.separated(
-      padding: const EdgeInsets.all(p8),
+      padding: const EdgeInsets.all(p16),
       separatorBuilder: (context, i) => h16gap,
       itemCount: children.length,
       itemBuilder: (context, i) => children[i],

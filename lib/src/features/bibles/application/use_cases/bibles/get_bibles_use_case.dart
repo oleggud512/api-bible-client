@@ -19,7 +19,6 @@ class GetBiblesUseCase {
     final bookmarksRes = await getBookmarks();
     return res.then((bibles) {
       return bookmarksRes.map((bookmarks) {
-        glogger.i(bookmarks);
         return bibles.map((b) => b.copyWith(
           isBookmarked: bookmarks.contains(b.id)
         )).toList();
