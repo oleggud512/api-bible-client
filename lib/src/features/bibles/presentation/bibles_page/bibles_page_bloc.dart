@@ -10,30 +10,49 @@ class BiblesPageBloc extends Bloc<BiblesPageEvent, BiblesPageState> {
   final GetBiblesUseCase _getBibles;
   final GetLanguagesUseCase _getLangs;
 
-  BiblesPageBloc(this._getBibles, this._getLangs) : super(BiblesPageState(isLoading: true)) {
+  BiblesPageBloc(this._getBibles, this._getLangs) : super(BiblesPageState.loading()) {
     on<BiblesPageLoadEvent>(load);
+    on<BiblesPageReloadEvent>(reload);
     on<BiblesPageLangChangedEvent>(changeLang);
   }
 
   Future<void> load(BiblesPageLoadEvent event, Emitter<BiblesPageState> emit) async {
     final res = await _getBibles();
     final langRes = await _getLangs();
-    res.map((right) {
-      emit(state.copyWith(
-        bibles: right,
-        languages: langRes,
-        isLoading: false,
-      ));
-    });
+    
+    res.fold(
+      (left) {
+        emit(BiblesPageState.error(left));
+      },
+      (right) {
+        emit(BiblesPageState.data(
+          bibles: right, 
+          languages: langRes
+        ));
+      }
+    );
+  }
+
+  Future<void> reload(BiblesPageReloadEvent event, Emitter<BiblesPageState> emit) async {
+    emit(BiblesPageState.loading());
+    add(BiblesPageEvent.load());
   }
 
   Future<void> changeLang(BiblesPageLangChangedEvent event, Emitter<BiblesPageState> emit) async {
     final res = await _getBibles(event.lang);
-    res.map((right) {
-      emit(state.copyWith(
-        bibles: right,
-        curLang: event.lang
-      ));
-    });
+    // TODO: remove duplicate...
+    res.fold(
+      (left) {
+        emit(BiblesPageState.error(left));
+      },
+      (right) {
+        emit(state.mapOrNull(
+          data: (state) => state.copyWith(
+            bibles: right,
+            curLang: event.lang
+          ),
+        )!);
+      }
+    );
   }
 }

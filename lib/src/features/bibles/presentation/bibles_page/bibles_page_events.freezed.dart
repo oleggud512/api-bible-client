@@ -19,18 +19,21 @@ mixin _$BiblesPageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function() reload,
     required TResult Function(String? lang) langChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function()? reload,
     TResult? Function(String? lang)? langChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function()? reload,
     TResult Function(String? lang)? langChanged,
     required TResult orElse(),
   }) =>
@@ -38,18 +41,21 @@ mixin _$BiblesPageEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BiblesPageLoadEvent value) load,
+    required TResult Function(BiblesPageReloadEvent value) reload,
     required TResult Function(BiblesPageLangChangedEvent value) langChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BiblesPageLoadEvent value)? load,
+    TResult? Function(BiblesPageReloadEvent value)? reload,
     TResult? Function(BiblesPageLangChangedEvent value)? langChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BiblesPageLoadEvent value)? load,
+    TResult Function(BiblesPageReloadEvent value)? reload,
     TResult Function(BiblesPageLangChangedEvent value)? langChanged,
     required TResult orElse(),
   }) =>
@@ -114,6 +120,7 @@ class _$BiblesPageLoadEventImpl implements BiblesPageLoadEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function() reload,
     required TResult Function(String? lang) langChanged,
   }) {
     return load();
@@ -123,6 +130,7 @@ class _$BiblesPageLoadEventImpl implements BiblesPageLoadEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function()? reload,
     TResult? Function(String? lang)? langChanged,
   }) {
     return load?.call();
@@ -132,6 +140,7 @@ class _$BiblesPageLoadEventImpl implements BiblesPageLoadEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function()? reload,
     TResult Function(String? lang)? langChanged,
     required TResult orElse(),
   }) {
@@ -145,6 +154,7 @@ class _$BiblesPageLoadEventImpl implements BiblesPageLoadEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BiblesPageLoadEvent value) load,
+    required TResult Function(BiblesPageReloadEvent value) reload,
     required TResult Function(BiblesPageLangChangedEvent value) langChanged,
   }) {
     return load(this);
@@ -154,6 +164,7 @@ class _$BiblesPageLoadEventImpl implements BiblesPageLoadEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BiblesPageLoadEvent value)? load,
+    TResult? Function(BiblesPageReloadEvent value)? reload,
     TResult? Function(BiblesPageLangChangedEvent value)? langChanged,
   }) {
     return load?.call(this);
@@ -163,6 +174,7 @@ class _$BiblesPageLoadEventImpl implements BiblesPageLoadEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BiblesPageLoadEvent value)? load,
+    TResult Function(BiblesPageReloadEvent value)? reload,
     TResult Function(BiblesPageLangChangedEvent value)? langChanged,
     required TResult orElse(),
   }) {
@@ -175,6 +187,116 @@ class _$BiblesPageLoadEventImpl implements BiblesPageLoadEvent {
 
 abstract class BiblesPageLoadEvent implements BiblesPageEvent {
   factory BiblesPageLoadEvent() = _$BiblesPageLoadEventImpl;
+}
+
+/// @nodoc
+abstract class _$$BiblesPageReloadEventImplCopyWith<$Res> {
+  factory _$$BiblesPageReloadEventImplCopyWith(
+          _$BiblesPageReloadEventImpl value,
+          $Res Function(_$BiblesPageReloadEventImpl) then) =
+      __$$BiblesPageReloadEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$BiblesPageReloadEventImplCopyWithImpl<$Res>
+    extends _$BiblesPageEventCopyWithImpl<$Res, _$BiblesPageReloadEventImpl>
+    implements _$$BiblesPageReloadEventImplCopyWith<$Res> {
+  __$$BiblesPageReloadEventImplCopyWithImpl(_$BiblesPageReloadEventImpl _value,
+      $Res Function(_$BiblesPageReloadEventImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$BiblesPageReloadEventImpl implements BiblesPageReloadEvent {
+  _$BiblesPageReloadEventImpl();
+
+  @override
+  String toString() {
+    return 'BiblesPageEvent.reload()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BiblesPageReloadEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function() reload,
+    required TResult Function(String? lang) langChanged,
+  }) {
+    return reload();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function()? reload,
+    TResult? Function(String? lang)? langChanged,
+  }) {
+    return reload?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? reload,
+    TResult Function(String? lang)? langChanged,
+    required TResult orElse(),
+  }) {
+    if (reload != null) {
+      return reload();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BiblesPageLoadEvent value) load,
+    required TResult Function(BiblesPageReloadEvent value) reload,
+    required TResult Function(BiblesPageLangChangedEvent value) langChanged,
+  }) {
+    return reload(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(BiblesPageLoadEvent value)? load,
+    TResult? Function(BiblesPageReloadEvent value)? reload,
+    TResult? Function(BiblesPageLangChangedEvent value)? langChanged,
+  }) {
+    return reload?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BiblesPageLoadEvent value)? load,
+    TResult Function(BiblesPageReloadEvent value)? reload,
+    TResult Function(BiblesPageLangChangedEvent value)? langChanged,
+    required TResult orElse(),
+  }) {
+    if (reload != null) {
+      return reload(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class BiblesPageReloadEvent implements BiblesPageEvent {
+  factory BiblesPageReloadEvent() = _$BiblesPageReloadEventImpl;
 }
 
 /// @nodoc
@@ -246,6 +368,7 @@ class _$BiblesPageLangChangedEventImpl implements BiblesPageLangChangedEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function() reload,
     required TResult Function(String? lang) langChanged,
   }) {
     return langChanged(lang);
@@ -255,6 +378,7 @@ class _$BiblesPageLangChangedEventImpl implements BiblesPageLangChangedEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function()? reload,
     TResult? Function(String? lang)? langChanged,
   }) {
     return langChanged?.call(lang);
@@ -264,6 +388,7 @@ class _$BiblesPageLangChangedEventImpl implements BiblesPageLangChangedEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function()? reload,
     TResult Function(String? lang)? langChanged,
     required TResult orElse(),
   }) {
@@ -277,6 +402,7 @@ class _$BiblesPageLangChangedEventImpl implements BiblesPageLangChangedEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(BiblesPageLoadEvent value) load,
+    required TResult Function(BiblesPageReloadEvent value) reload,
     required TResult Function(BiblesPageLangChangedEvent value) langChanged,
   }) {
     return langChanged(this);
@@ -286,6 +412,7 @@ class _$BiblesPageLangChangedEventImpl implements BiblesPageLangChangedEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(BiblesPageLoadEvent value)? load,
+    TResult? Function(BiblesPageReloadEvent value)? reload,
     TResult? Function(BiblesPageLangChangedEvent value)? langChanged,
   }) {
     return langChanged?.call(this);
@@ -295,6 +422,7 @@ class _$BiblesPageLangChangedEventImpl implements BiblesPageLangChangedEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(BiblesPageLoadEvent value)? load,
+    TResult Function(BiblesPageReloadEvent value)? reload,
     TResult Function(BiblesPageLangChangedEvent value)? langChanged,
     required TResult orElse(),
   }) {

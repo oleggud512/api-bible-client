@@ -16,47 +16,81 @@ class BiblesPage extends StatelessWidget {
 
   void onChangeLang(BuildContext context, String? newLang) {
     final bloc = context.read<BiblesPageBloc>();
-    bloc.add(BiblesPageLangChangedEvent(newLang));
+    bloc.add(BiblesPageEvent.langChanged(newLang));
+  }
+
+  void reload(BuildContext context) {
+    final bloc = context.read<BiblesPageBloc>();
+    bloc.add(BiblesPageEvent.reload());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bibles PAGE')
+        title: Text('Bibles'.hardcoded)
       ),
       body: BlocProvider(
         create: (context) => injector<BiblesPageBloc>()
           ..add(BiblesPageEvent.load()),
         child: BlocBuilder<BiblesPageBloc, BiblesPageState>(
           builder: (context, state) {
-            if (state.isLoading) return SimpleLoading(message: 'Loading bibles...'.hardcoded);
-
-            return ListView(
-              padding: const EdgeInsets.all(p8),
-              children: [
-                DropdownButtonFormField<String>(
-                  value: state.curLang,
-                  items: state.languages.map((lang) => DropdownMenuItem(
-                    value: lang.code, 
-                    child: Text(lang.name)
-                  )).toList()..insert(0, DropdownMenuItem(
-                    value: null, 
-                    child: Text('All languages'.hardcoded)
-                  )), 
-                  onChanged: (newV) {
-                    onChangeLang(context, newV);
-                  },
-                ),
-                ...state.bibles.map((b) => Padding(
-                  padding: const EdgeInsets.only(top: p8),
-                  child: BibleWidget(bible: b),
-                ))
-              ],
-            );
+            return switch (state) {
+              BiblesPageLoadingState() => buildLoading(),
+              BiblesPageErrorState() => buildError(state, context),
+              BiblesPageDataState() => buildData(state, context)
+            };
           }
         )
       )
+    );
+  }
+
+  SimpleLoading buildLoading() {
+    return SimpleLoading(
+      message: 'Loading bibles...'.hardcoded
+    );
+  }
+
+  Center buildError(BiblesPageErrorState state, BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(state.error.message.hardcoded),
+          h8gap,
+          FilledButton(
+            onPressed: () => reload(context),
+            child: Text('Try again'.hardcoded)
+          )
+        ]
+      ),
+    );
+  }
+
+  ListView buildData(BiblesPageDataState state, BuildContext context) {
+    final children = [
+      DropdownButtonFormField<String>(
+        value: state.curLang,
+        items: state.languages.map((lang) => DropdownMenuItem(
+          value: lang.code, 
+          child: Text(lang.name)
+        )).toList()..insert(0, DropdownMenuItem(
+          value: null, 
+          child: Text('All languages'.hardcoded)
+        )), 
+        onChanged: (newV) {
+          onChangeLang(context, newV);
+        },
+      ),
+      ...state.bibles.map((b) => BibleWidget(bible: b))
+    ];
+
+    return ListView.separated(
+      padding: const EdgeInsets.all(p8),
+      separatorBuilder: (context, i) => h16gap,
+      itemCount: children.length,
+      itemBuilder: (context, i) => children[i],
     );
   }
 }
