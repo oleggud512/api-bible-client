@@ -9,5 +9,5 @@ abstract interface class BibleViewHistoryRepository {
   Future<Either<AppException, BibleHistoryNode>> addHistoryNode(Bible bible, [String? chapterId]);
   Future<Either<AppException, BibleHistoryNode>> getHistoryNode(String bibleId);
   Future<Either<AppException, void>> clearHistory();
-  Future<Either<AppException, void>> deleteHistoryNode(String bibldId);
+  Future<Either<AppException, void>> deleteHistoryNode(String bibleId);
 }
