@@ -25,6 +25,7 @@ mixin _$Bible {
   String get description => throw _privateConstructorUsedError;
   String get abbreviation => throw _privateConstructorUsedError;
   Lang get language => throw _privateConstructorUsedError;
+  bool get isBookmarked => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,8 @@ abstract class $BibleCopyWith<$Res> {
       String name,
       String description,
       String abbreviation,
-      Lang language});
+      Lang language,
+      bool isBookmarked});
 
   $LangCopyWith<$Res> get language;
 }
@@ -64,6 +66,7 @@ class _$BibleCopyWithImpl<$Res, $Val extends Bible>
     Object? description = null,
     Object? abbreviation = null,
     Object? language = null,
+    Object? isBookmarked = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -86,6 +89,10 @@ class _$BibleCopyWithImpl<$Res, $Val extends Bible>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as Lang,
+      isBookmarked: null == isBookmarked
+          ? _value.isBookmarked
+          : isBookmarked // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -110,7 +117,8 @@ abstract class _$$BibleImplCopyWith<$Res> implements $BibleCopyWith<$Res> {
       String name,
       String description,
       String abbreviation,
-      Lang language});
+      Lang language,
+      bool isBookmarked});
 
   @override
   $LangCopyWith<$Res> get language;
@@ -132,6 +140,7 @@ class __$$BibleImplCopyWithImpl<$Res>
     Object? description = null,
     Object? abbreviation = null,
     Object? language = null,
+    Object? isBookmarked = null,
   }) {
     return _then(_$BibleImpl(
       id: null == id
@@ -154,6 +163,10 @@ class __$$BibleImplCopyWithImpl<$Res>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as Lang,
+      isBookmarked: null == isBookmarked
+          ? _value.isBookmarked
+          : isBookmarked // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -166,7 +179,8 @@ class _$BibleImpl implements _Bible {
       required this.name,
       this.description = "",
       this.abbreviation = "",
-      required this.language});
+      required this.language,
+      this.isBookmarked = false});
 
   factory _$BibleImpl.fromJson(Map<String, dynamic> json) =>
       _$$BibleImplFromJson(json);
@@ -183,10 +197,13 @@ class _$BibleImpl implements _Bible {
   final String abbreviation;
   @override
   final Lang language;
+  @override
+  @JsonKey()
+  final bool isBookmarked;
 
   @override
   String toString() {
-    return 'Bible(id: $id, name: $name, description: $description, abbreviation: $abbreviation, language: $language)';
+    return 'Bible(id: $id, name: $name, description: $description, abbreviation: $abbreviation, language: $language, isBookmarked: $isBookmarked)';
   }
 
   @override
@@ -201,13 +218,15 @@ class _$BibleImpl implements _Bible {
             (identical(other.abbreviation, abbreviation) ||
                 other.abbreviation == abbreviation) &&
             (identical(other.language, language) ||
-                other.language == language));
+                other.language == language) &&
+            (identical(other.isBookmarked, isBookmarked) ||
+                other.isBookmarked == isBookmarked));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, description, abbreviation, language);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, description, abbreviation, language, isBookmarked);
 
   @JsonKey(ignore: true)
   @override
@@ -229,7 +248,8 @@ abstract class _Bible implements Bible {
       required final String name,
       final String description,
       final String abbreviation,
-      required final Lang language}) = _$BibleImpl;
+      required final Lang language,
+      final bool isBookmarked}) = _$BibleImpl;
 
   factory _Bible.fromJson(Map<String, dynamic> json) = _$BibleImpl.fromJson;
 
@@ -243,6 +263,8 @@ abstract class _Bible implements Bible {
   String get abbreviation;
   @override
   Lang get language;
+  @override
+  bool get isBookmarked;
   @override
   @JsonKey(ignore: true)
   _$$BibleImplCopyWith<_$BibleImpl> get copyWith =>

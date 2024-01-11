@@ -16,9 +16,12 @@ class MainPageBloc extends Bloc<MainPageEvent, MainPageState> {
   Future<void> _load(MainPageLoadEvent event, Emitter<MainPageState> emit) async {
     final res = watchHistory();
     await emit.forEach(res, onData: (history) {
-      return state.copyWith(
-        history: history,
-        isLoading: false,
+      return history.fold(
+        (left) => state.copyWith(isLoading: false),
+        (right) => state.copyWith(
+          isLoading: false,
+          history: right
+        )
       );
     });
   }

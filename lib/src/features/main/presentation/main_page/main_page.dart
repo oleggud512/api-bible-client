@@ -30,9 +30,9 @@ class MainPage extends StatelessWidget {
             if (state.history.isEmpty) return Center(child: Text('No history to display'.hardcoded));
 
             return ListView.separated(
-              padding: const EdgeInsets.all(p8),
+              padding: const EdgeInsets.all(p16),
               itemCount: state.history.length,
-              separatorBuilder: (context, i) => h8gap,
+              separatorBuilder: (context, i) => h16gap,
               itemBuilder: (context, i) {
                 final node = state.history[i];
                 return BibleHistoryNodeWidget(node: node);

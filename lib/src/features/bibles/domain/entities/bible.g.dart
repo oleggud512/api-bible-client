@@ -12,6 +12,7 @@ _$BibleImpl _$$BibleImplFromJson(Map<String, dynamic> json) => _$BibleImpl(
       description: json['description'] as String? ?? "",
       abbreviation: json['abbreviation'] as String? ?? "",
       language: Lang.fromJson(json['language'] as Map<String, dynamic>),
+      isBookmarked: json['isBookmarked'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$BibleImplToJson(_$BibleImpl instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$$BibleImplToJson(_$BibleImpl instance) =>
       'description': instance.description,
       'abbreviation': instance.abbreviation,
       'language': instance.language.toJson(),
+      'isBookmarked': instance.isBookmarked,
     };

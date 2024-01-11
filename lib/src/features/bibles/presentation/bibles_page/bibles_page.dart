@@ -71,7 +71,7 @@ class BiblesPage extends StatelessWidget {
 
   ListView buildData(BiblesPageDataState state, BuildContext context) {
     final children = [
-      DropdownButtonFormField<String>(
+      DropdownButton<String>(
         value: state.curLang,
         items: state.languages.map((lang) => DropdownMenuItem(
           value: lang.code, 

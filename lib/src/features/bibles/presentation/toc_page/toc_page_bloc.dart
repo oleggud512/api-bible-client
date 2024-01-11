@@ -1,4 +1,4 @@
-import 'package:bible/src/features/bibles/application/use_cases/get_bible_books_use_case.dart';
+import 'package:bible/src/features/bibles/application/use_cases/bibles/get_bible_books_use_case.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_events.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_states.dart';
 import 'package:bible/src/features/profile/application/use_cases/get_bible_history_node_use_case.dart';

@@ -1,4 +1,4 @@
-import 'package:bible/src/features/bibles/application/use_cases/get_chapter_use_case.dart';
+import 'package:bible/src/features/bibles/application/use_cases/bibles/get_chapter_use_case.dart';
 import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_events.dart';
 import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

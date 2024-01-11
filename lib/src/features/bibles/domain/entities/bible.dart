@@ -11,7 +11,8 @@ class Bible with _$Bible {
     required String name,
     @Default("") String description,
     @Default("") String abbreviation,
-    required Lang language
+    required Lang language,
+    @Default(false) bool isBookmarked,
   }) = _Bible;
 
   factory Bible.fromJson(Map<String, dynamic> json) => _$BibleFromJson(json);
