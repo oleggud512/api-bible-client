@@ -18,7 +18,7 @@ class SavedBiblesPageBloc extends Bloc<SavedBiblesPageEvent, SavedBiblesPageStat
   ) async {
     final res = await getBookmarkedBibles();
     emit(res.fold(
-      (left) => SavedBiblesPageState.error(), 
+      (left) => SavedBiblesPageState.error(left), 
       (right) => state.maybeMap(
         data: (state) {
           return state.copyWith(

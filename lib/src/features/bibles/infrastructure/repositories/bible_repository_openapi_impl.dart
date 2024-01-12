@@ -8,6 +8,7 @@ import 'package:bible/src/features/bibles/domain/mapping/bible.dart';
 import 'package:bible/src/features/bibles/domain/mapping/bible_summary.dart';
 import 'package:bible/src/features/bibles/domain/repositories/bible_repository.dart';
 import 'package:bible_openapi/bible_openapi.dart' as o;
+import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:injectable/injectable.dart';
 
@@ -44,8 +45,10 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
       final resp = await biblesApi.getBibles(ids: ids.join(','));
       final bibles = resp.data!.data.map((b) => b.toDomain()).toList();
       return Right(bibles);
-    } catch (e) {
-      glogger.e(e);
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.badResponse) {
+        return Left(AppException("No bibles found"));
+      }
       return Left(AppException("Couldn't get bibles"));
     }
   }

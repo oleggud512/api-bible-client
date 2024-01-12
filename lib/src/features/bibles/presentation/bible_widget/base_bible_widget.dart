@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bible/src/core/common/constants/sizes.dart';
+import 'package:bible/src/core/common/constants/unicode.dart';
 import 'package:bible/src/core/common/extensions/build_context.dart';
 import 'package:bible/src/core/common/extensions/string.dart';
 import 'package:bible/src/core/presentation/confirm_dialog.dart';
@@ -14,6 +15,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BaseBibleWidget extends StatelessWidget {
+  static String createBottomString(List<String> values) {
+    return values.join(' ${MyUnicode.middleDot} ');
+  }
+
   const BaseBibleWidget({
     super.key,
     required this.bible,

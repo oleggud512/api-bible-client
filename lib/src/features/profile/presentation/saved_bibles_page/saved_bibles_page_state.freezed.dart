@@ -19,21 +19,21 @@ mixin _$SavedBiblesPageState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(AppException error) error,
     required TResult Function(List<Bible> bibles) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? error,
+    TResult? Function(AppException error)? error,
     TResult? Function(List<Bible> bibles)? data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(AppException error)? error,
     TResult Function(List<Bible> bibles)? data,
     required TResult orElse(),
   }) =>
@@ -124,7 +124,7 @@ class _$SavedBiblesPageLoadingStateImpl implements SavedBiblesPageLoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(AppException error) error,
     required TResult Function(List<Bible> bibles) data,
   }) {
     return loading();
@@ -134,7 +134,7 @@ class _$SavedBiblesPageLoadingStateImpl implements SavedBiblesPageLoadingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? error,
+    TResult? Function(AppException error)? error,
     TResult? Function(List<Bible> bibles)? data,
   }) {
     return loading?.call();
@@ -144,7 +144,7 @@ class _$SavedBiblesPageLoadingStateImpl implements SavedBiblesPageLoadingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(AppException error)? error,
     TResult Function(List<Bible> bibles)? data,
     required TResult orElse(),
   }) {
@@ -199,6 +199,8 @@ abstract class _$$SavedBiblesPageErrorStateImplCopyWith<$Res> {
           _$SavedBiblesPageErrorStateImpl value,
           $Res Function(_$SavedBiblesPageErrorStateImpl) then) =
       __$$SavedBiblesPageErrorStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AppException error});
 }
 
 /// @nodoc
@@ -210,58 +212,82 @@ class __$$SavedBiblesPageErrorStateImplCopyWithImpl<$Res>
       _$SavedBiblesPageErrorStateImpl _value,
       $Res Function(_$SavedBiblesPageErrorStateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$SavedBiblesPageErrorStateImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as AppException,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SavedBiblesPageErrorStateImpl implements SavedBiblesPageErrorState {
-  _$SavedBiblesPageErrorStateImpl();
+  _$SavedBiblesPageErrorStateImpl(this.error);
+
+  @override
+  final AppException error;
 
   @override
   String toString() {
-    return 'SavedBiblesPageState.error()';
+    return 'SavedBiblesPageState.error(error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SavedBiblesPageErrorStateImpl);
+            other is _$SavedBiblesPageErrorStateImpl &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SavedBiblesPageErrorStateImplCopyWith<_$SavedBiblesPageErrorStateImpl>
+      get copyWith => __$$SavedBiblesPageErrorStateImplCopyWithImpl<
+          _$SavedBiblesPageErrorStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(AppException error) error,
     required TResult Function(List<Bible> bibles) data,
   }) {
-    return error();
+    return error(this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? error,
+    TResult? Function(AppException error)? error,
     TResult? Function(List<Bible> bibles)? data,
   }) {
-    return error?.call();
+    return error?.call(this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(AppException error)? error,
     TResult Function(List<Bible> bibles)? data,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(this.error);
     }
     return orElse();
   }
@@ -302,7 +328,13 @@ class _$SavedBiblesPageErrorStateImpl implements SavedBiblesPageErrorState {
 }
 
 abstract class SavedBiblesPageErrorState implements SavedBiblesPageState {
-  factory SavedBiblesPageErrorState() = _$SavedBiblesPageErrorStateImpl;
+  factory SavedBiblesPageErrorState(final AppException error) =
+      _$SavedBiblesPageErrorStateImpl;
+
+  AppException get error;
+  @JsonKey(ignore: true)
+  _$$SavedBiblesPageErrorStateImplCopyWith<_$SavedBiblesPageErrorStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -381,7 +413,7 @@ class _$SavedBiblesPageDataStateImpl implements SavedBiblesPageDataState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(AppException error) error,
     required TResult Function(List<Bible> bibles) data,
   }) {
     return data(bibles);
@@ -391,7 +423,7 @@ class _$SavedBiblesPageDataStateImpl implements SavedBiblesPageDataState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function()? error,
+    TResult? Function(AppException error)? error,
     TResult? Function(List<Bible> bibles)? data,
   }) {
     return data?.call(bibles);
@@ -401,7 +433,7 @@ class _$SavedBiblesPageDataStateImpl implements SavedBiblesPageDataState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(AppException error)? error,
     TResult Function(List<Bible> bibles)? data,
     required TResult orElse(),
   }) {
