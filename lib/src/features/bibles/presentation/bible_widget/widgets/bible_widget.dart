@@ -4,11 +4,11 @@ import 'package:bible/src/features/bibles/presentation/bible_widget/base_bible_w
 class BibleWidget extends BaseBibleWidget {
   BibleWidget({
     super.key, 
-    required super.bible,
-    String? bottomString,
-  }) : super(bottomString: (bible) => bottomString ?? 
-    BaseBibleWidget.createBottomString([
+    required super.bible
+  }) : super(
+    statusData: (bible) => [
       if (bible.isBookmarked) MyUnicode.star,
       bible.language.name,
-    ]));
+    ]
+  );
 }

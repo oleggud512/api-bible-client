@@ -30,7 +30,7 @@ class _$Bible extends Bible {
   @override
   final String? descriptionLocal;
   @override
-  final String info;
+  final String? info;
   @override
   final String type;
   @override
@@ -55,7 +55,7 @@ class _$Bible extends Bible {
       required this.nameLocal,
       this.description,
       this.descriptionLocal,
-      required this.info,
+      this.info,
       required this.type,
       required this.updatedAt,
       this.relatedDbl,
@@ -72,7 +72,6 @@ class _$Bible extends Bible {
     BuiltValueNullFieldError.checkNotNull(countries, r'Bible', 'countries');
     BuiltValueNullFieldError.checkNotNull(name, r'Bible', 'name');
     BuiltValueNullFieldError.checkNotNull(nameLocal, r'Bible', 'nameLocal');
-    BuiltValueNullFieldError.checkNotNull(info, r'Bible', 'info');
     BuiltValueNullFieldError.checkNotNull(type, r'Bible', 'type');
     BuiltValueNullFieldError.checkNotNull(updatedAt, r'Bible', 'updatedAt');
     BuiltValueNullFieldError.checkNotNull(audioBibles, r'Bible', 'audioBibles');
@@ -290,8 +289,7 @@ class BibleBuilder implements Builder<Bible, BibleBuilder> {
                   nameLocal, r'Bible', 'nameLocal'),
               description: description,
               descriptionLocal: descriptionLocal,
-              info:
-                  BuiltValueNullFieldError.checkNotNull(info, r'Bible', 'info'),
+              info: info,
               type:
                   BuiltValueNullFieldError.checkNotNull(type, r'Bible', 'type'),
               updatedAt: BuiltValueNullFieldError.checkNotNull(

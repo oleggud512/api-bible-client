@@ -114,7 +114,7 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
         copyright: apiChapter.copyright,
         prev: apiChapter.previous != null 
           ? ChapterReference(
-            chapterId: apiChapter.previous!.id!, // TODO: WHY ARE THEY ALL NULLABLE?
+            chapterId: apiChapter.previous!.id!,
             bookId: apiChapter.previous!.bookId!,
             number: apiChapter.previous!.number!
           )

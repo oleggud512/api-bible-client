@@ -17,42 +17,25 @@ class BiblesPageBloc extends Bloc<BiblesPageEvent, BiblesPageState> {
   }
 
   Future<void> load(BiblesPageLoadEvent event, Emitter<BiblesPageState> emit) async {
-    final res = await _getBibles();
-    final langRes = await _getLangs();
+    final bibles = await _getBibles(event.lang);
+    final langs = await _getLangs();
     
-    res.fold(
-      (left) {
-        emit(BiblesPageState.error(left));
-      },
-      (right) {
-        emit(BiblesPageState.data(
-          bibles: right, 
-          languages: langRes
-        ));
-      }
-    );
+    emit(bibles.fold(
+      (left) => BiblesPageState.error(left),
+      (right) => BiblesPageState.data(
+        bibles: right,
+        languages: langs,
+        curLang: event.lang,
+      )
+    ));
   }
 
   Future<void> reload(BiblesPageReloadEvent event, Emitter<BiblesPageState> emit) async {
     emit(BiblesPageState.loading());
-    add(BiblesPageEvent.load());
+    add(BiblesPageEvent.load(event.lang));
   }
 
   Future<void> changeLang(BiblesPageLangChangedEvent event, Emitter<BiblesPageState> emit) async {
-    final res = await _getBibles(event.lang);
-    // TODO: remove duplicate...
-    res.fold(
-      (left) {
-        emit(BiblesPageState.error(left));
-      },
-      (right) {
-        emit(state.mapOrNull(
-          data: (state) => state.copyWith(
-            bibles: right,
-            curLang: event.lang
-          ),
-        )!);
-      }
-    );
+    add(BiblesPageEvent.reload(event.lang));
   }
 }

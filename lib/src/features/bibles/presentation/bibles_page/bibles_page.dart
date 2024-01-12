@@ -3,7 +3,7 @@ import 'package:bible/src/core/common/constants/sizes.dart';
 import 'package:bible/src/core/common/extensions/string.dart';
 import 'package:bible/src/core/infrastructure/data_source/models/lang.dart';
 import 'package:bible/src/core/presentation/simple_loading.dart';
-import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget.dart';
+import 'package:bible/src/features/bibles/presentation/bible_widget/widgets/bible_widget.dart';
 import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_bloc.dart';
 import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_events.dart';
 import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_states.dart';
@@ -36,6 +36,7 @@ class BiblesPage extends StatelessWidget {
           ..add(BiblesPageEvent.load()),
         child: BlocBuilder<BiblesPageBloc, BiblesPageState>(
           builder: (context, state) {
+            print('rebuilding');
             return switch (state) {
               BiblesPageLoadingState() => buildLoading(),
               BiblesPageErrorState() => buildError(state, context),

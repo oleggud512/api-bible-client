@@ -9,11 +9,11 @@ class BibleHistoryNodeWidget extends BaseBibleWidget {
     required BibleHistoryNode node,
   }) : super(
     bible: node.bible,
-    bottomString: (bible) => BaseBibleWidget.createBottomString([
+    statusData: (bible) => [
       if (bible.isBookmarked) MyUnicode.star,
       bible.language.name,
       defaultDateFormat.format(node.lastViewed),
       if (node.chapterId != null) node.chapterId!,
-    ])
+    ]
   );
 }

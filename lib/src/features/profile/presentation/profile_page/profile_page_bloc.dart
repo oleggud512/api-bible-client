@@ -6,7 +6,6 @@ import 'package:injectable/injectable.dart';
 
 @Injectable()
 class ProfilePageBloc extends Bloc<ProfilePageEvent, ProfilePageState> {
-  // TODO: should I add this underscore or not? Why?
   final ClearViewHistoryUseCase _clearHistory;
 
   ProfilePageBloc(this._clearHistory) : super(ProfilePageState()) {

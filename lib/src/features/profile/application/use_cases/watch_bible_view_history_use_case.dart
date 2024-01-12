@@ -16,7 +16,6 @@ class WatchBibleViewHistoryUseCase {
     final res = repo.watchHistory().asyncMap((history) async {
       final bookmarks = await getBookmarks();
       return bookmarks.map((bookmarks) {
-        // TODO: extract to util function
         return history.map((node) => node.copyWith.bible(
           isBookmarked: bookmarks.contains(node.bible.id)
         )).toList();

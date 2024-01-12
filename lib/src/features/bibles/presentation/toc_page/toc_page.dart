@@ -3,6 +3,7 @@ import 'package:bible/src/core/common/extensions/string.dart';
 import 'package:bible/src/core/common/logger.dart';
 import 'package:bible/src/core/presentation/simple_loading.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc.dart';
+import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc_params.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_events.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_states.dart';
 import 'package:bible/src/get_it.dart';
@@ -51,8 +52,7 @@ class _TocPageState extends State<TocPage> {
         title: Text('ChaptersPage'),
       ),
       body: BlocProvider(
-        // TODO: create [SomeBloc]Params objects for every bloc.
-        create: (context) => injector.get<TocPageBloc>(param1: widget.bibleId)
+        create: (context) => injector.get<TocPageBloc>(param1: TocPageBlocParams(widget.bibleId))
           ..add(TocPageEvent.load()),
         child: BlocConsumer<TocPageBloc, TocPageState>(
           listener: (context, state) {
@@ -61,7 +61,6 @@ class _TocPageState extends State<TocPage> {
           builder: (context, state) {
             if (state.isLoading) return SimpleLoading(message: "Loading bible table of contents...".hardcoded);
             
-            // TODO: replace with builer
             return ListView(
               children: state.books.map((book) => Column(
                 mainAxisSize: MainAxisSize.min,

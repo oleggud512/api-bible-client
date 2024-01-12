@@ -3,7 +3,7 @@ import 'package:bible/src/core/common/constants/sizes.dart';
 import 'package:bible/src/core/common/extensions/string.dart';
 import 'package:bible/src/core/presentation/simple_error.dart';
 import 'package:bible/src/core/presentation/simple_loading.dart';
-import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget.dart';
+import 'package:bible/src/features/bibles/presentation/bible_widget/widgets/bible_widget.dart';
 import 'package:bible/src/features/profile/presentation/saved_bibles_page/saved_bibles_page_bloc.dart';
 import 'package:bible/src/features/profile/presentation/saved_bibles_page/saved_bibles_page_event.dart';
 import 'package:bible/src/features/profile/presentation/saved_bibles_page/saved_bibles_page_state.dart';

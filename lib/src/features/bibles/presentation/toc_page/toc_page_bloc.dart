@@ -1,4 +1,5 @@
 import 'package:bible/src/features/bibles/application/use_cases/bibles/get_bible_books_use_case.dart';
+import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc_params.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_events.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_states.dart';
 import 'package:bible/src/features/profile/application/use_cases/get_bible_history_node_use_case.dart';
@@ -15,8 +16,9 @@ class TocPageBloc extends Bloc<TocPageEvent, TocPageState> {
   TocPageBloc(
     this._getBooks, 
     this._getBibleHistoryNode, 
-    @factoryParam this.bibleId
-  ) : super(TocPageState(isLoading: true)) {
+    @factoryParam TocPageBlocParams params
+  ) : bibleId = params.bibleId, 
+      super(TocPageState(isLoading: true)) {
 
     on<TocPageLoadEvent>((event, emit) async {
       final res = await _getBooks(bibleId);

@@ -15,8 +15,7 @@ class GetBibleBooksUseCase {
 
   Future<Either<AppException, List<Book>>> call(String bibleId) async {
     final res = await repo.getBooks(bibleId);
-    repo.getBible(bibleId)
-      .mapRight((right) => addHistory(right));
+    addHistory(bibleId);
     return res;
   }
 }

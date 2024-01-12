@@ -15,8 +15,7 @@ class GetChapterUseCase {
   
   Future<Either<AppException, DisplayChapter>> call(String bibleId, String chapterId) async {
     final res = await repo.getChapter(bibleId, chapterId);
-    // TODO: duplicate...
-    repo.getBible(bibleId).mapRight((bible) => addHistory(bible, chapterId));
+    addHistory(bibleId, chapterId);
     return res;
   }
 }

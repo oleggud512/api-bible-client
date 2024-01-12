@@ -5,8 +5,9 @@ import 'package:bible/src/core/common/extensions/build_context.dart';
 import 'package:bible/src/core/common/extensions/string.dart';
 import 'package:bible/src/core/presentation/confirm_dialog.dart';
 import 'package:bible/src/features/bibles/domain/entities/bible.dart';
-import 'package:bible/src/features/bibles/presentation/bible_widget/bible_history_node_widget.dart';
+import 'package:bible/src/features/bibles/presentation/bible_widget/widgets/bible_history_node_widget.dart';
 import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget_bloc.dart';
+import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget_bloc_params.dart';
 import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget_event.dart';
 import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget_state.dart';
 import 'package:bible/src/get_it.dart';
@@ -15,19 +16,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BaseBibleWidget extends StatelessWidget {
-  static String createBottomString(List<String> values) {
-    return values.join(' ${MyUnicode.middleDot} ');
-  }
-
+  
   const BaseBibleWidget({
     super.key,
     required this.bible,
-    required this.bottomString,
+    required this.statusData,
   });
 
   final Bible bible;
-  // TODO: Replace this. This became too complex.
-  final String Function(Bible bible) bottomString;
+
+  final List<String> Function(Bible bible) statusData;
+
+  String _createStatusString(Bible bible) {
+    return statusData(bible).join(' ${MyUnicode.middleDot} ');
+  }
 
   void onTap(BuildContext context) {
     context.router.push(TocRoute(bibleId: bible.id));
@@ -53,7 +55,7 @@ class BaseBibleWidget extends StatelessWidget {
     return buildContainer(
       context: context,
       child: BlocProvider(
-        create: (context) => injector<BibleWidgetBloc>(param1: bible),
+        create: (context) => injector<BibleWidgetBloc>(param1: BibleWidgetBlocParams(bible)),
         child: BlocBuilder<BibleWidgetBloc, BibleWidgetState>(
           builder: (context, state) {
             return Column(
@@ -78,7 +80,7 @@ class BaseBibleWidget extends StatelessWidget {
                     buildActionsButton(context, state)
                   ]
                 ),
-                Text(bottomString(state.bible),
+                Text(_createStatusString(state.bible),
                   textAlign: TextAlign.right,
                   style: Theme.of(context).textTheme.labelMedium
                 ),
@@ -121,31 +123,26 @@ class BaseBibleWidget extends StatelessWidget {
         return [
           PopupMenuItem(
             onTap: () => onBookmark(context, bloc),
-            child: Row(
-              children: [
-                // TODO: rewrite this...
-                Icon(state.bible.isBookmarked 
-                  ? Icons.star 
-                  : Icons.star_border_purple500),
-                w8gap,
-                Text(state.bible.isBookmarked 
-                  ? 'Remove'.hardcoded 
-                  : 'Save'.hardcoded),
-              ],
-            )
+            child: state.bible.isBookmarked
+              ? ListTile(
+                leading: const Icon(Icons.star),
+                title: Text('Remove'.hardcoded),
+              )
+              : ListTile(
+                leading: const Icon(Icons.star_border_purple500),
+                title: Text('Bookmark'.hardcoded),
+              )
           ),
           if (this is BibleHistoryNodeWidget) PopupMenuItem(
             onTap: () => onDelete(context, bloc),
-            child: Row(
-              children: [
-                const Icon(Icons.delete_outline),
-                w8gap,
-                Text('Delete'.hardcoded),
-              ],
+            child: ListTile(
+              leading: const Icon(Icons.delete_outline),
+              title: Text('Delete'.hardcoded),
             )
           ),
         ];
       },
     );
   }
+
 }
