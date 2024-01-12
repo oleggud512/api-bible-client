@@ -6,8 +6,9 @@ class BibleWidget extends BaseBibleWidget {
     super.key, 
     required super.bible,
     String? bottomString,
-  }) : super(bottomString: bottomString ?? BaseBibleWidget.createBottomString([
-    if (bible.isBookmarked) MyUnicode.star,
-    bible.language.name,
-  ]));
+  }) : super(bottomString: (bible) => bottomString ?? 
+    BaseBibleWidget.createBottomString([
+      if (bible.isBookmarked) MyUnicode.star,
+      bible.language.name,
+    ]));
 }

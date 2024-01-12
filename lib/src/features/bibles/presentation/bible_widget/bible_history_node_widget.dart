@@ -9,9 +9,9 @@ class BibleHistoryNodeWidget extends BaseBibleWidget {
     required BibleHistoryNode node,
   }) : super(
     bible: node.bible,
-    bottomString: BaseBibleWidget.createBottomString([
-      if (node.bible.isBookmarked) MyUnicode.star,
-      node.bible.language.name,
+    bottomString: (bible) => BaseBibleWidget.createBottomString([
+      if (bible.isBookmarked) MyUnicode.star,
+      bible.language.name,
       defaultDateFormat.format(node.lastViewed),
       if (node.chapterId != null) node.chapterId!,
     ])

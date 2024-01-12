@@ -26,7 +26,8 @@ class BaseBibleWidget extends StatelessWidget {
   });
 
   final Bible bible;
-  final String bottomString;
+  // TODO: Replace this. This became too complex.
+  final String Function(Bible bible) bottomString;
 
   void onTap(BuildContext context) {
     context.router.push(TocRoute(bibleId: bible.id));
@@ -77,7 +78,7 @@ class BaseBibleWidget extends StatelessWidget {
                     buildActionsButton(context, state)
                   ]
                 ),
-                Text(bottomString,
+                Text(bottomString(state.bible),
                   textAlign: TextAlign.right,
                   style: Theme.of(context).textTheme.labelMedium
                 ),
@@ -93,16 +94,18 @@ class BaseBibleWidget extends StatelessWidget {
     required BuildContext context,
     required Widget child
   }) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(p8),
-      onTap: () => onTap(context),
-      child: Container(
-        padding: const EdgeInsets.all(p8),
-        decoration: BoxDecoration(
+    return Card(
+      margin: EdgeInsets.zero,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
           borderRadius: BorderRadius.circular(p8),
-          border: Border.all(color: Colors.grey)
+          onTap: () => onTap(context),
+          child: Padding(
+            padding: const EdgeInsets.all(p8),
+            child: child,
+          ),
         ),
-        child: child
       ),
     );
   }
