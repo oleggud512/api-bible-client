@@ -33,13 +33,19 @@ class SavedBiblesPage extends StatelessWidget {
               SavedBiblesPageErrorState(:final error) => SimpleError(
                 error: error
               ),
-              SavedBiblesPageDataState(:final bibles) => ListView.separated(
-                padding: const EdgeInsets.all(p16),
-                separatorBuilder: (context, i) => h16gap, 
-                itemCount: bibles.length,
-                itemBuilder: (context, i) {
-                  return BibleWidget(bible: bibles[i]);
-                }, 
+              SavedBiblesPageDataState(:final bibles) => RefreshIndicator(
+                onRefresh: () async {
+                  context.read<SavedBiblesPageBloc>()
+                    .add(SavedBiblesPageEvent.load());
+                },
+                child: ListView.separated(
+                  padding: const EdgeInsets.all(p16),
+                  separatorBuilder: (context, i) => h16gap, 
+                  itemCount: bibles.length,
+                  itemBuilder: (context, i) {
+                    return BibleWidget(bible: bibles[i]);
+                  }, 
+                ),
               )
             };
           }

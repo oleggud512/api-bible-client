@@ -1,8 +1,6 @@
 import 'package:bible/src/core/common/logger.dart';
 import 'package:bible/src/env.dart';
-import 'package:bible/src/features/bibles/domain/repositories/bible_repository.dart';
 import 'package:bible/src/features/bibles/infrastructure/repositories/bible_repository_openapi_impl.dart';
-import 'package:bible/src/get_it.dart';
 import 'package:bible_openapi/bible_openapi.dart';
 import 'package:dio/dio.dart';
 import 'package:test/test.dart' as t;
