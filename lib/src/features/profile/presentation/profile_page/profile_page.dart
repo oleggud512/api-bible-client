@@ -6,6 +6,7 @@ import 'package:bible/src/features/profile/presentation/profile_page/profile_pag
 import 'package:bible/src/features/profile/presentation/profile_page/profile_page_event.dart';
 import 'package:bible/src/features/profile/presentation/profile_page/profile_page_state.dart';
 import 'package:bible/src/get_it.dart';
+import 'package:bible/src/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,6 +34,13 @@ class ProfilePage extends StatelessWidget {
             return ListView(
               padding: const EdgeInsets.all(p8),
               children: [
+                ListTile(
+                  onTap: () {
+                    context.router.push(const SavedBiblesRoute());
+                  },
+                  trailing: const Icon(Icons.arrow_forward_ios_outlined),
+                  title: Text("Bookmarks"),
+                ),
                 FilledButton(
                   onPressed: () => onClearHistory(context),
                   child: Text('Clear view history'.hardcoded)

@@ -3,12 +3,23 @@ import 'package:bible/src/env.dart';
 import 'package:bible/src/features/bibles/domain/repositories/bible_repository.dart';
 import 'package:bible/src/features/bibles/infrastructure/repositories/bible_repository_openapi_impl.dart';
 import 'package:bible/src/get_it.dart';
+import 'package:bible_openapi/bible_openapi.dart';
+import 'package:dio/dio.dart';
 import 'package:test/test.dart' as t;
 
 void main() async {
   await Env.init();
-  final getIt = await configureDependencies();
-  final repo = getIt.call<BibleRepository>();
+  final openapi = BibleOpenapi(
+    interceptors: [
+      QueuedInterceptorsWrapper(
+        onRequest: (options, handler) {
+          options.headers['api-key'] = Env.apiKey;
+          handler.next(options);
+        }
+      )
+    ]
+  );
+  final repo = BibleRepositoryOpenapiImpl(openapi);
 
   const someBibleId = '6c696cd1d82e2723-03';
   const someChapterId = 'PSA.105';
@@ -17,6 +28,18 @@ void main() async {
     
     t.test('test getBibles()', () async {
       final res = await repo.getBibles();
+      res.fold(
+        (left) {
+          t.fail(left.toString());
+        }, 
+        (right) {
+          glogger.i(right);
+        }
+      );
+    });
+
+    t.test('test getBiblesByIds()', () async {
+      final res = await repo.getBiblesByIds([someBibleId]);
       res.fold(
         (left) {
           t.fail(left.toString());

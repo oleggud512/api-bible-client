@@ -7,6 +7,7 @@ import 'package:bible/src/features/bibles/domain/entities/chapter.dart';
 abstract interface class BibleRepository {
   /// just get a list of bibles
   Future<Either<AppException, List<Bible>>> getBibles([String? lang]);
+  Future<Either<AppException, List<Bible>>> getBiblesByIds(List<String> ids);
 
   /// obtain a single bible
   Future<Either<AppException, Bible>> getBible(String bibleId);

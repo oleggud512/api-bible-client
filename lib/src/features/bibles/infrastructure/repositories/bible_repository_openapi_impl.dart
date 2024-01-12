@@ -39,6 +39,18 @@ class BibleRepositoryOpenapiImpl implements BibleRepository {
   }
 
   @override
+  Future<Either<AppException, List<Bible>>> getBiblesByIds(List<String> ids) async {
+    try {
+      final resp = await biblesApi.getBibles(ids: ids.join(','));
+      final bibles = resp.data!.data.map((b) => b.toDomain()).toList();
+      return Right(bibles);
+    } catch (e) {
+      glogger.e(e);
+      return Left(AppException("Couldn't get bibles"));
+    }
+  }
+
+  @override
   Future<Either<AppException, Bible>> getBible(String bibleId) async {
     try {
       final resp = await biblesApi.getBible(bibleId: bibleId);

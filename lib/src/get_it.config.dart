@@ -15,18 +15,20 @@ import 'package:bible/src/core/external/data_source/assets_root_bundle_data_sour
 import 'package:bible/src/core/infrastructure/data_source/assets_data_source.dart'
     as _i4;
 import 'package:bible/src/features/bibles/application/use_cases/bibles/get_bible_books_use_case.dart'
-    as _i29;
+    as _i31;
 import 'package:bible/src/features/bibles/application/use_cases/bibles/get_bibles_use_case.dart'
     as _i20;
 import 'package:bible/src/features/bibles/application/use_cases/bibles/get_chapter_use_case.dart'
-    as _i30;
+    as _i32;
 import 'package:bible/src/features/bibles/application/use_cases/bookmarks/add_bible_bookmark_use_case.dart'
-    as _i24;
+    as _i26;
 import 'package:bible/src/features/bibles/application/use_cases/bookmarks/get_bible_bookmarks_use_case.dart'
     as _i17;
+import 'package:bible/src/features/bibles/application/use_cases/bookmarks/get_bookmarked_bibles_use_case.dart'
+    as _i21;
 import 'package:bible/src/features/bibles/application/use_cases/bookmarks/remove_bible_bookmark_use_case.dart'
-    as _i22;
-import 'package:bible/src/features/bibles/domain/entities/bible.dart' as _i27;
+    as _i23;
+import 'package:bible/src/features/bibles/domain/entities/bible.dart' as _i29;
 import 'package:bible/src/features/bibles/domain/repositories/bible_bookmark_repository.dart'
     as _i11;
 import 'package:bible/src/features/bibles/domain/repositories/bible_repository.dart'
@@ -36,17 +38,17 @@ import 'package:bible/src/features/bibles/infrastructure/repositories/bible_book
 import 'package:bible/src/features/bibles/infrastructure/repositories/bible_repository_openapi_impl.dart'
     as _i8;
 import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget_bloc.dart'
-    as _i26;
-import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_bloc.dart'
     as _i28;
+import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_bloc.dart'
+    as _i30;
 import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_bloc.dart'
-    as _i33;
+    as _i35;
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc.dart'
-    as _i32;
+    as _i34;
 import 'package:bible/src/features/main/presentation/main_page/main_page_bloc.dart'
-    as _i31;
+    as _i33;
 import 'package:bible/src/features/profile/application/use_cases/add_bible_history_node_use_case.dart'
-    as _i25;
+    as _i27;
 import 'package:bible/src/features/profile/application/use_cases/clear_view_history_use_case.dart'
     as _i15;
 import 'package:bible/src/features/profile/application/use_cases/delete_bible_history_node_use_case.dart'
@@ -56,14 +58,16 @@ import 'package:bible/src/features/profile/application/use_cases/get_bible_histo
 import 'package:bible/src/features/profile/application/use_cases/get_bible_view_history_use_case.dart'
     as _i19;
 import 'package:bible/src/features/profile/application/use_cases/watch_bible_view_history_use_case.dart'
-    as _i23;
+    as _i25;
 import 'package:bible/src/features/profile/domain/repositories/bible_view_history_repository.dart'
     as _i13;
 import 'package:bible/src/features/profile/infrastructure/repositories/bible_view_history_repository_sembast_impl.dart'
     as _i14;
 import 'package:bible/src/features/profile/presentation/profile_page/profile_page_bloc.dart'
-    as _i21;
-import 'package:bible/src/get_it.dart' as _i34;
+    as _i22;
+import 'package:bible/src/features/profile/presentation/saved_bibles_page/saved_bibles_page_bloc.dart'
+    as _i24;
+import 'package:bible/src/get_it.dart' as _i36;
 import 'package:bible/src/router.dart' as _i3;
 import 'package:bible_openapi/bible_openapi.dart' as _i6;
 import 'package:get_it/get_it.dart' as _i1;
@@ -115,58 +119,65 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i7.BibleRepository>(),
           gh<_i17.GetBibleBookmarksUseCase>(),
         ));
-    gh.factory<_i21.ProfilePageBloc>(
-        () => _i21.ProfilePageBloc(gh<_i15.ClearViewHistoryUseCase>()));
-    gh.factory<_i22.RemoveBibleBookmarkUseCase>(() =>
-        _i22.RemoveBibleBookmarkUseCase(gh<_i11.BibleBookmarkRepository>()));
-    gh.factory<_i23.WatchBibleViewHistoryUseCase>(
-        () => _i23.WatchBibleViewHistoryUseCase(
+    gh.factory<_i21.GetBookmarkedBiblesUseCase>(
+        () => _i21.GetBookmarkedBiblesUseCase(
+              gh<_i17.GetBibleBookmarksUseCase>(),
+              gh<_i7.BibleRepository>(),
+            ));
+    gh.factory<_i22.ProfilePageBloc>(
+        () => _i22.ProfilePageBloc(gh<_i15.ClearViewHistoryUseCase>()));
+    gh.factory<_i23.RemoveBibleBookmarkUseCase>(() =>
+        _i23.RemoveBibleBookmarkUseCase(gh<_i11.BibleBookmarkRepository>()));
+    gh.factory<_i24.SavedBiblesPageBloc>(
+        () => _i24.SavedBiblesPageBloc(gh<_i21.GetBookmarkedBiblesUseCase>()));
+    gh.factory<_i25.WatchBibleViewHistoryUseCase>(
+        () => _i25.WatchBibleViewHistoryUseCase(
               gh<_i13.BibleViewHistoryRepository>(),
               gh<_i17.GetBibleBookmarksUseCase>(),
             ));
-    gh.factory<_i24.AddBibleBookmarkUseCase>(
-        () => _i24.AddBibleBookmarkUseCase(gh<_i11.BibleBookmarkRepository>()));
-    gh.factory<_i25.AddBibleHistoryNodeUseCase>(() =>
-        _i25.AddBibleHistoryNodeUseCase(gh<_i13.BibleViewHistoryRepository>()));
-    gh.factoryParam<_i26.BibleWidgetBloc, _i27.Bible, dynamic>((
+    gh.factory<_i26.AddBibleBookmarkUseCase>(
+        () => _i26.AddBibleBookmarkUseCase(gh<_i11.BibleBookmarkRepository>()));
+    gh.factory<_i27.AddBibleHistoryNodeUseCase>(() =>
+        _i27.AddBibleHistoryNodeUseCase(gh<_i13.BibleViewHistoryRepository>()));
+    gh.factoryParam<_i28.BibleWidgetBloc, _i29.Bible, dynamic>((
       bible,
       _,
     ) =>
-        _i26.BibleWidgetBloc(
-          gh<_i22.RemoveBibleBookmarkUseCase>(),
-          gh<_i24.AddBibleBookmarkUseCase>(),
+        _i28.BibleWidgetBloc(
+          gh<_i23.RemoveBibleBookmarkUseCase>(),
+          gh<_i26.AddBibleBookmarkUseCase>(),
           gh<_i16.DeleteBibleHistoryNodeUseCase>(),
           bible,
         ));
-    gh.factory<_i28.BiblesPageBloc>(() => _i28.BiblesPageBloc(
+    gh.factory<_i30.BiblesPageBloc>(() => _i30.BiblesPageBloc(
           gh<_i20.GetBiblesUseCase>(),
           gh<_i10.GetLanguagesUseCase>(),
         ));
-    gh.factory<_i29.GetBibleBooksUseCase>(() => _i29.GetBibleBooksUseCase(
+    gh.factory<_i31.GetBibleBooksUseCase>(() => _i31.GetBibleBooksUseCase(
           gh<_i7.BibleRepository>(),
-          gh<_i25.AddBibleHistoryNodeUseCase>(),
+          gh<_i27.AddBibleHistoryNodeUseCase>(),
         ));
-    gh.factory<_i30.GetChapterUseCase>(() => _i30.GetChapterUseCase(
+    gh.factory<_i32.GetChapterUseCase>(() => _i32.GetChapterUseCase(
           gh<_i7.BibleRepository>(),
-          gh<_i25.AddBibleHistoryNodeUseCase>(),
+          gh<_i27.AddBibleHistoryNodeUseCase>(),
         ));
-    gh.factory<_i31.MainPageBloc>(
-        () => _i31.MainPageBloc(gh<_i23.WatchBibleViewHistoryUseCase>()));
-    gh.factoryParam<_i32.TocPageBloc, String, dynamic>((
+    gh.factory<_i33.MainPageBloc>(
+        () => _i33.MainPageBloc(gh<_i25.WatchBibleViewHistoryUseCase>()));
+    gh.factoryParam<_i34.TocPageBloc, String, dynamic>((
       bibleId,
       _,
     ) =>
-        _i32.TocPageBloc(
-          gh<_i29.GetBibleBooksUseCase>(),
+        _i34.TocPageBloc(
+          gh<_i31.GetBibleBooksUseCase>(),
           gh<_i18.GetBibleHistoryNodeUseCase>(),
           bibleId,
         ));
-    gh.factoryParam<_i33.ChapterPageBloc, String, String>((
+    gh.factoryParam<_i35.ChapterPageBloc, String, String>((
       bibleId,
       chapterId,
     ) =>
-        _i33.ChapterPageBloc(
-          gh<_i30.GetChapterUseCase>(),
+        _i35.ChapterPageBloc(
+          gh<_i32.GetChapterUseCase>(),
           bibleId,
           chapterId,
         ));
@@ -174,4 +185,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$RegisterModule extends _i34.RegisterModule {}
+class _$RegisterModule extends _i36.RegisterModule {}
