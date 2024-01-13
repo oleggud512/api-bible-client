@@ -1,5 +1,5 @@
 import 'package:bible/src/app.dart';
-import 'package:bible/src/env.dart';
+import 'package:bible/src/core/common/env.dart';
 import 'package:bible/src/get_it.dart';
 import 'package:flutter/material.dart';
 

@@ -16,11 +16,49 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ChapterPageState {
-  bool get isLoading => throw _privateConstructorUsedError;
-  DisplayChapter? get chapter => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ChapterPageStateCopyWith<ChapterPageState> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DisplayChapter chapter) data,
+    required TResult Function() loading,
+    required TResult Function(AppException error) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DisplayChapter chapter)? data,
+    TResult? Function()? loading,
+    TResult? Function(AppException error)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DisplayChapter chapter)? data,
+    TResult Function()? loading,
+    TResult Function(AppException error)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChapterPageDataState value) data,
+    required TResult Function(ChapterPageLoadingState value) loading,
+    required TResult Function(ChapterPageErrorState value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ChapterPageDataState value)? data,
+    TResult? Function(ChapterPageLoadingState value)? loading,
+    TResult? Function(ChapterPageErrorState value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChapterPageDataState value)? data,
+    TResult Function(ChapterPageLoadingState value)? loading,
+    TResult Function(ChapterPageErrorState value)? error,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -29,8 +67,6 @@ abstract class $ChapterPageStateCopyWith<$Res> {
   factory $ChapterPageStateCopyWith(
           ChapterPageState value, $Res Function(ChapterPageState) then) =
       _$ChapterPageStateCopyWithImpl<$Res, ChapterPageState>;
-  @useResult
-  $Res call({bool isLoading, DisplayChapter? chapter});
 }
 
 /// @nodoc
@@ -42,114 +78,400 @@ class _$ChapterPageStateCopyWithImpl<$Res, $Val extends ChapterPageState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? chapter = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      chapter: freezed == chapter
-          ? _value.chapter
-          : chapter // ignore: cast_nullable_to_non_nullable
-              as DisplayChapter?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$ChapterPageMainStateImplCopyWith<$Res>
-    implements $ChapterPageStateCopyWith<$Res> {
-  factory _$$ChapterPageMainStateImplCopyWith(_$ChapterPageMainStateImpl value,
-          $Res Function(_$ChapterPageMainStateImpl) then) =
-      __$$ChapterPageMainStateImplCopyWithImpl<$Res>;
-  @override
+abstract class _$$ChapterPageDataStateImplCopyWith<$Res> {
+  factory _$$ChapterPageDataStateImplCopyWith(_$ChapterPageDataStateImpl value,
+          $Res Function(_$ChapterPageDataStateImpl) then) =
+      __$$ChapterPageDataStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({bool isLoading, DisplayChapter? chapter});
+  $Res call({DisplayChapter chapter});
 }
 
 /// @nodoc
-class __$$ChapterPageMainStateImplCopyWithImpl<$Res>
-    extends _$ChapterPageStateCopyWithImpl<$Res, _$ChapterPageMainStateImpl>
-    implements _$$ChapterPageMainStateImplCopyWith<$Res> {
-  __$$ChapterPageMainStateImplCopyWithImpl(_$ChapterPageMainStateImpl _value,
-      $Res Function(_$ChapterPageMainStateImpl) _then)
+class __$$ChapterPageDataStateImplCopyWithImpl<$Res>
+    extends _$ChapterPageStateCopyWithImpl<$Res, _$ChapterPageDataStateImpl>
+    implements _$$ChapterPageDataStateImplCopyWith<$Res> {
+  __$$ChapterPageDataStateImplCopyWithImpl(_$ChapterPageDataStateImpl _value,
+      $Res Function(_$ChapterPageDataStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoading = null,
     Object? chapter = freezed,
   }) {
-    return _then(_$ChapterPageMainStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
+    return _then(_$ChapterPageDataStateImpl(
       chapter: freezed == chapter
           ? _value.chapter
           : chapter // ignore: cast_nullable_to_non_nullable
-              as DisplayChapter?,
+              as DisplayChapter,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ChapterPageMainStateImpl implements ChapterPageMainState {
-  _$ChapterPageMainStateImpl({this.isLoading = false, this.chapter});
+class _$ChapterPageDataStateImpl implements ChapterPageDataState {
+  _$ChapterPageDataStateImpl({required this.chapter});
 
   @override
-  @JsonKey()
-  final bool isLoading;
-  @override
-  final DisplayChapter? chapter;
+  final DisplayChapter chapter;
 
   @override
   String toString() {
-    return 'ChapterPageState(isLoading: $isLoading, chapter: $chapter)';
+    return 'ChapterPageState.data(chapter: $chapter)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChapterPageMainStateImpl &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
+            other is _$ChapterPageDataStateImpl &&
             const DeepCollectionEquality().equals(other.chapter, chapter));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isLoading, const DeepCollectionEquality().hash(chapter));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(chapter));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ChapterPageMainStateImplCopyWith<_$ChapterPageMainStateImpl>
+  _$$ChapterPageDataStateImplCopyWith<_$ChapterPageDataStateImpl>
       get copyWith =>
-          __$$ChapterPageMainStateImplCopyWithImpl<_$ChapterPageMainStateImpl>(
+          __$$ChapterPageDataStateImplCopyWithImpl<_$ChapterPageDataStateImpl>(
               this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DisplayChapter chapter) data,
+    required TResult Function() loading,
+    required TResult Function(AppException error) error,
+  }) {
+    return data(chapter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DisplayChapter chapter)? data,
+    TResult? Function()? loading,
+    TResult? Function(AppException error)? error,
+  }) {
+    return data?.call(chapter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DisplayChapter chapter)? data,
+    TResult Function()? loading,
+    TResult Function(AppException error)? error,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(chapter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChapterPageDataState value) data,
+    required TResult Function(ChapterPageLoadingState value) loading,
+    required TResult Function(ChapterPageErrorState value) error,
+  }) {
+    return data(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ChapterPageDataState value)? data,
+    TResult? Function(ChapterPageLoadingState value)? loading,
+    TResult? Function(ChapterPageErrorState value)? error,
+  }) {
+    return data?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChapterPageDataState value)? data,
+    TResult Function(ChapterPageLoadingState value)? loading,
+    TResult Function(ChapterPageErrorState value)? error,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class ChapterPageMainState implements ChapterPageState {
-  factory ChapterPageMainState(
-      {final bool isLoading,
-      final DisplayChapter? chapter}) = _$ChapterPageMainStateImpl;
+abstract class ChapterPageDataState implements ChapterPageState {
+  factory ChapterPageDataState({required final DisplayChapter chapter}) =
+      _$ChapterPageDataStateImpl;
+
+  DisplayChapter get chapter;
+  @JsonKey(ignore: true)
+  _$$ChapterPageDataStateImplCopyWith<_$ChapterPageDataStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChapterPageLoadingStateImplCopyWith<$Res> {
+  factory _$$ChapterPageLoadingStateImplCopyWith(
+          _$ChapterPageLoadingStateImpl value,
+          $Res Function(_$ChapterPageLoadingStateImpl) then) =
+      __$$ChapterPageLoadingStateImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ChapterPageLoadingStateImplCopyWithImpl<$Res>
+    extends _$ChapterPageStateCopyWithImpl<$Res, _$ChapterPageLoadingStateImpl>
+    implements _$$ChapterPageLoadingStateImplCopyWith<$Res> {
+  __$$ChapterPageLoadingStateImplCopyWithImpl(
+      _$ChapterPageLoadingStateImpl _value,
+      $Res Function(_$ChapterPageLoadingStateImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ChapterPageLoadingStateImpl implements ChapterPageLoadingState {
+  _$ChapterPageLoadingStateImpl();
 
   @override
-  bool get isLoading;
+  String toString() {
+    return 'ChapterPageState.loading()';
+  }
+
   @override
-  DisplayChapter? get chapter;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChapterPageLoadingStateImpl);
+  }
+
   @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DisplayChapter chapter) data,
+    required TResult Function() loading,
+    required TResult Function(AppException error) error,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DisplayChapter chapter)? data,
+    TResult? Function()? loading,
+    TResult? Function(AppException error)? error,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DisplayChapter chapter)? data,
+    TResult Function()? loading,
+    TResult Function(AppException error)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChapterPageDataState value) data,
+    required TResult Function(ChapterPageLoadingState value) loading,
+    required TResult Function(ChapterPageErrorState value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ChapterPageDataState value)? data,
+    TResult? Function(ChapterPageLoadingState value)? loading,
+    TResult? Function(ChapterPageErrorState value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChapterPageDataState value)? data,
+    TResult Function(ChapterPageLoadingState value)? loading,
+    TResult Function(ChapterPageErrorState value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChapterPageLoadingState implements ChapterPageState {
+  factory ChapterPageLoadingState() = _$ChapterPageLoadingStateImpl;
+}
+
+/// @nodoc
+abstract class _$$ChapterPageErrorStateImplCopyWith<$Res> {
+  factory _$$ChapterPageErrorStateImplCopyWith(
+          _$ChapterPageErrorStateImpl value,
+          $Res Function(_$ChapterPageErrorStateImpl) then) =
+      __$$ChapterPageErrorStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AppException error});
+}
+
+/// @nodoc
+class __$$ChapterPageErrorStateImplCopyWithImpl<$Res>
+    extends _$ChapterPageStateCopyWithImpl<$Res, _$ChapterPageErrorStateImpl>
+    implements _$$ChapterPageErrorStateImplCopyWith<$Res> {
+  __$$ChapterPageErrorStateImplCopyWithImpl(_$ChapterPageErrorStateImpl _value,
+      $Res Function(_$ChapterPageErrorStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$ChapterPageErrorStateImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as AppException,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChapterPageErrorStateImpl implements ChapterPageErrorState {
+  _$ChapterPageErrorStateImpl(this.error);
+
+  @override
+  final AppException error;
+
+  @override
+  String toString() {
+    return 'ChapterPageState.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChapterPageErrorStateImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
   @JsonKey(ignore: true)
-  _$$ChapterPageMainStateImplCopyWith<_$ChapterPageMainStateImpl>
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChapterPageErrorStateImplCopyWith<_$ChapterPageErrorStateImpl>
+      get copyWith => __$$ChapterPageErrorStateImplCopyWithImpl<
+          _$ChapterPageErrorStateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(DisplayChapter chapter) data,
+    required TResult Function() loading,
+    required TResult Function(AppException error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(DisplayChapter chapter)? data,
+    TResult? Function()? loading,
+    TResult? Function(AppException error)? error,
+  }) {
+    return error?.call(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(DisplayChapter chapter)? data,
+    TResult Function()? loading,
+    TResult Function(AppException error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ChapterPageDataState value) data,
+    required TResult Function(ChapterPageLoadingState value) loading,
+    required TResult Function(ChapterPageErrorState value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ChapterPageDataState value)? data,
+    TResult? Function(ChapterPageLoadingState value)? loading,
+    TResult? Function(ChapterPageErrorState value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ChapterPageDataState value)? data,
+    TResult Function(ChapterPageLoadingState value)? loading,
+    TResult Function(ChapterPageErrorState value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChapterPageErrorState implements ChapterPageState {
+  factory ChapterPageErrorState(final AppException error) =
+      _$ChapterPageErrorStateImpl;
+
+  AppException get error;
+  @JsonKey(ignore: true)
+  _$$ChapterPageErrorStateImplCopyWith<_$ChapterPageErrorStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

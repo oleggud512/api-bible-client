@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bible/src/core/common/extensions/string.dart';
 import 'package:bible/src/core/common/logger.dart';
+import 'package:bible/src/core/presentation/simple_error.dart';
 import 'package:bible/src/core/presentation/simple_loading.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc.dart';
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc_params.dart';
@@ -56,32 +57,38 @@ class _TocPageState extends State<TocPage> {
           ..add(TocPageEvent.load()),
         child: BlocConsumer<TocPageBloc, TocPageState>(
           listener: (context, state) {
-            showSuggestChapter(state.suggestChapterId);
+            state.whenOrNull(
+              data: (books, suggestChapterId) => showSuggestChapter(suggestChapterId)
+            );
           },
           builder: (context, state) {
-            if (state.isLoading) return SimpleLoading(message: "Loading bible table of contents...".hardcoded);
-            
-            return ListView(
-              children: state.books.map((book) => Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(book.name, 
-                    style: Theme.of(context).textTheme.headlineSmall
-                  ),
-                  Wrap(
-                    children: book.chapters.map((chapter) => ActionChip(
-                      onPressed: () {
-                        context.router.push(ChapterRoute(
-                          bibleId: chapter.bibleId, 
-                          chapterId: chapter.id
-                        ));
-                      },
-                      label: Text(chapter.number)
-                    )).toList()
-                  )
-                ],
-              )).toList()
-            );
+            return switch (state) {
+              TocPageLoadingState() => SimpleLoading(
+                message: "Loading bible table of contents...".hardcoded
+              ),
+              TocPageErrorState(:final error) => SimpleError(error: error),
+              TocPageDataState(:final books) => ListView(
+                children: books.map((book) => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(book.name, 
+                      style: Theme.of(context).textTheme.headlineSmall
+                    ),
+                    Wrap(
+                      children: book.chapters.map((chapter) => ActionChip(
+                        onPressed: () {
+                          context.router.push(ChapterRoute(
+                            bibleId: chapter.bibleId, 
+                            chapterId: chapter.id
+                          ));
+                        },
+                        label: Text(chapter.number)
+                      )).toList()
+                    )
+                  ],
+                )).toList()
+              )
+            };
           },
         )
       )

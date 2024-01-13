@@ -1,4 +1,5 @@
 import 'package:bible/src/features/bibles/application/use_cases/bibles/get_chapter_use_case.dart';
+import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_bloc_params.dart';
 import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_events.dart';
 import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,18 +14,19 @@ class ChapterPageBloc extends Bloc<ChapterPageEvent, ChapterPageState> {
 
   ChapterPageBloc(
     this._getChapter, 
-    @factoryParam this.bibleId, 
-    @factoryParam this.chapterId
-  ) : super(ChapterPageState(isLoading: true)) {
+    @factoryParam ChapterPageBlocParams params
+  ) : bibleId = params.bibleId, 
+      chapterId = params.chapterId, 
+      super(ChapterPageState.loading()) {
 
     on<ChapterPageLoadEvent>((event, emit) async {
-      final res = await _getChapter(bibleId, chapterId);
-      res.map((right) {
-        emit(ChapterPageState(
-          chapter: right,
-          isLoading: false,
-        ));
-      });
+      if (state is! ChapterPageLoadingState) emit(ChapterPageState.loading());
+
+      final chapter = await _getChapter(bibleId, chapterId);
+      chapter.fold(
+        (left) => emit(ChapterPageState.error(left)),
+        (right) => emit(ChapterPageState.data(chapter: right))
+      );
     });
   
   }

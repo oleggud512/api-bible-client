@@ -17,38 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BibleWidgetState {
   Bible get bible => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Bible bible) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bible bible)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bible bible)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BibleWidgetDataState value) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BibleWidgetDataState value)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BibleWidgetDataState value)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BibleWidgetStateCopyWith<BibleWidgetState> get copyWith =>
@@ -99,11 +67,11 @@ class _$BibleWidgetStateCopyWithImpl<$Res, $Val extends BibleWidgetState>
 }
 
 /// @nodoc
-abstract class _$$BibleWidgetDataStateImplCopyWith<$Res>
+abstract class _$$BibleWidgetStateImplCopyWith<$Res>
     implements $BibleWidgetStateCopyWith<$Res> {
-  factory _$$BibleWidgetDataStateImplCopyWith(_$BibleWidgetDataStateImpl value,
-          $Res Function(_$BibleWidgetDataStateImpl) then) =
-      __$$BibleWidgetDataStateImplCopyWithImpl<$Res>;
+  factory _$$BibleWidgetStateImplCopyWith(_$BibleWidgetStateImpl value,
+          $Res Function(_$BibleWidgetStateImpl) then) =
+      __$$BibleWidgetStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Bible bible});
@@ -113,11 +81,11 @@ abstract class _$$BibleWidgetDataStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$BibleWidgetDataStateImplCopyWithImpl<$Res>
-    extends _$BibleWidgetStateCopyWithImpl<$Res, _$BibleWidgetDataStateImpl>
-    implements _$$BibleWidgetDataStateImplCopyWith<$Res> {
-  __$$BibleWidgetDataStateImplCopyWithImpl(_$BibleWidgetDataStateImpl _value,
-      $Res Function(_$BibleWidgetDataStateImpl) _then)
+class __$$BibleWidgetStateImplCopyWithImpl<$Res>
+    extends _$BibleWidgetStateCopyWithImpl<$Res, _$BibleWidgetStateImpl>
+    implements _$$BibleWidgetStateImplCopyWith<$Res> {
+  __$$BibleWidgetStateImplCopyWithImpl(_$BibleWidgetStateImpl _value,
+      $Res Function(_$BibleWidgetStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -125,7 +93,7 @@ class __$$BibleWidgetDataStateImplCopyWithImpl<$Res>
   $Res call({
     Object? bible = null,
   }) {
-    return _then(_$BibleWidgetDataStateImpl(
+    return _then(_$BibleWidgetStateImpl(
       bible: null == bible
           ? _value.bible
           : bible // ignore: cast_nullable_to_non_nullable
@@ -136,22 +104,22 @@ class __$$BibleWidgetDataStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BibleWidgetDataStateImpl implements BibleWidgetDataState {
-  _$BibleWidgetDataStateImpl({required this.bible});
+class _$BibleWidgetStateImpl implements _BibleWidgetState {
+  _$BibleWidgetStateImpl({required this.bible});
 
   @override
   final Bible bible;
 
   @override
   String toString() {
-    return 'BibleWidgetState.data(bible: $bible)';
+    return 'BibleWidgetState(bible: $bible)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BibleWidgetDataStateImpl &&
+            other is _$BibleWidgetStateImpl &&
             (identical(other.bible, bible) || other.bible == bible));
   }
 
@@ -161,76 +129,19 @@ class _$BibleWidgetDataStateImpl implements BibleWidgetDataState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BibleWidgetDataStateImplCopyWith<_$BibleWidgetDataStateImpl>
-      get copyWith =>
-          __$$BibleWidgetDataStateImplCopyWithImpl<_$BibleWidgetDataStateImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Bible bible) data,
-  }) {
-    return data(bible);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Bible bible)? data,
-  }) {
-    return data?.call(bible);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Bible bible)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(bible);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(BibleWidgetDataState value) data,
-  }) {
-    return data(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(BibleWidgetDataState value)? data,
-  }) {
-    return data?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(BibleWidgetDataState value)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(this);
-    }
-    return orElse();
-  }
+  _$$BibleWidgetStateImplCopyWith<_$BibleWidgetStateImpl> get copyWith =>
+      __$$BibleWidgetStateImplCopyWithImpl<_$BibleWidgetStateImpl>(
+          this, _$identity);
 }
 
-abstract class BibleWidgetDataState implements BibleWidgetState {
-  factory BibleWidgetDataState({required final Bible bible}) =
-      _$BibleWidgetDataStateImpl;
+abstract class _BibleWidgetState implements BibleWidgetState {
+  factory _BibleWidgetState({required final Bible bible}) =
+      _$BibleWidgetStateImpl;
 
   @override
   Bible get bible;
   @override
   @JsonKey(ignore: true)
-  _$$BibleWidgetDataStateImplCopyWith<_$BibleWidgetDataStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$BibleWidgetStateImplCopyWith<_$BibleWidgetStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

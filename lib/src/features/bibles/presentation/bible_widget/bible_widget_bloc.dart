@@ -20,7 +20,7 @@ class BibleWidgetBloc extends Bloc<BibleWidgetEvent, BibleWidgetState> {
     this.addBookmark,
     this.deleteHistoryNode, 
     @factoryParam BibleWidgetBlocParams params,
-  ) : super(BibleWidgetState.data(bible: params.bible)) {
+  ) : super(BibleWidgetState(bible: params.bible)) {
 
     on<BibleWidgetToggleBookmarkEvent>((event, emit) async {
       final res = state.bible.isBookmarked

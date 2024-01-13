@@ -44,6 +44,8 @@ import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_b
     as _i30;
 import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_bloc.dart'
     as _i36;
+import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_bloc_params.dart'
+    as _i37;
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc.dart'
     as _i34;
 import 'package:bible/src/features/bibles/presentation/toc_page/toc_page_bloc_params.dart'
@@ -70,7 +72,7 @@ import 'package:bible/src/features/profile/presentation/profile_page/profile_pag
     as _i22;
 import 'package:bible/src/features/profile/presentation/saved_bibles_page/saved_bibles_page_bloc.dart'
     as _i24;
-import 'package:bible/src/get_it.dart' as _i37;
+import 'package:bible/src/get_it.dart' as _i38;
 import 'package:bible/src/router.dart' as _i3;
 import 'package:bible_openapi/bible_openapi.dart' as _i6;
 import 'package:get_it/get_it.dart' as _i1;
@@ -176,17 +178,16 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i18.GetBibleHistoryNodeUseCase>(),
           params,
         ));
-    gh.factoryParam<_i36.ChapterPageBloc, String, String>((
-      bibleId,
-      chapterId,
+    gh.factoryParam<_i36.ChapterPageBloc, _i37.ChapterPageBlocParams, dynamic>((
+      params,
+      _,
     ) =>
         _i36.ChapterPageBloc(
           gh<_i32.GetChapterUseCase>(),
-          bibleId,
-          chapterId,
+          params,
         ));
     return this;
   }
 }
 
-class _$RegisterModule extends _i37.RegisterModule {}
+class _$RegisterModule extends _i38.RegisterModule {}

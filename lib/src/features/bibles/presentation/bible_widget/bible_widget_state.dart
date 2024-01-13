@@ -5,7 +5,7 @@ part 'bible_widget_state.freezed.dart';
 
 @freezed
 class BibleWidgetState with _$BibleWidgetState {
-  factory BibleWidgetState.data({
+  factory BibleWidgetState({
     required Bible bible
-  }) = BibleWidgetDataState;
+  }) = _BibleWidgetState;
 }

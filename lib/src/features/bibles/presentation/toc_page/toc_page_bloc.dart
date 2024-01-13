@@ -18,17 +18,18 @@ class TocPageBloc extends Bloc<TocPageEvent, TocPageState> {
     this._getBibleHistoryNode, 
     @factoryParam TocPageBlocParams params
   ) : bibleId = params.bibleId, 
-      super(TocPageState(isLoading: true)) {
+      super(TocPageState.loading()) {
 
     on<TocPageLoadEvent>((event, emit) async {
-      final res = await _getBooks(bibleId);
-      res.map((right) {
-        emit(state.copyWith(
-          books: right,
-          isLoading: false,
-        ));
-      });
+      if (state is! TocPageLoadingState) emit(TocPageState.loading());
 
+      final books = await _getBooks(bibleId);
+      books.fold(
+        (left) => TocPageState.error(left),
+        (right) => emit(TocPageState.data(books: right))
+      );
+
+      // TODO: don't show suggest chapter after reloading
       _getBibleHistoryNode(bibleId).mapRight((right) {
         if (right.chapterId != null) {
           add(TocPageShowSuggestChapterEvent(right.chapterId!));
@@ -37,7 +38,10 @@ class TocPageBloc extends Bloc<TocPageEvent, TocPageState> {
     });
 
     on<TocPageShowSuggestChapterEvent>((event, emit) async {
-      emit(state.copyWith(suggestChapterId: event.chapterId));
+      emit(state.maybeMap(
+        data: (state) => state.copyWith(suggestChapterId: event.chapterId),
+        orElse: () => TocPageState.data(suggestChapterId: event.chapterId))
+      );
     });
 
   }

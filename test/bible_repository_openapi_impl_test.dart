@@ -1,5 +1,5 @@
 import 'package:bible/src/core/common/logger.dart';
-import 'package:bible/src/env.dart';
+import 'package:bible/src/core/common/env.dart';
 import 'package:bible/src/features/bibles/infrastructure/repositories/bible_repository_openapi_impl.dart';
 import 'package:bible_openapi/bible_openapi.dart';
 import 'package:dio/dio.dart';

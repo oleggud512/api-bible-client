@@ -1,4 +1,4 @@
-import 'package:bible/src/env.dart';
+import 'package:bible/src/core/common/env.dart';
 import 'package:bible_openapi/bible_openapi.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
