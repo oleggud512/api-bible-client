@@ -1,5 +1,4 @@
 import 'package:bible/src/core/domain/exceptions.dart';
-import 'package:bible/src/core/infrastructure/data_source/models/lang.dart';
 import 'package:bible/src/features/bibles/domain/entities/bible.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bible/src/core/common/constants/sizes.dart';
 import 'package:bible/src/core/common/extensions/string.dart';
 import 'package:bible/src/core/common/logger.dart';
-import 'package:bible/src/core/infrastructure/data_source/models/lang.dart';
 import 'package:bible/src/core/presentation/simple_error.dart';
 import 'package:bible/src/core/presentation/simple_loading.dart';
 import 'package:bible/src/features/bibles/presentation/bible_widget/widgets/bible_widget.dart';
@@ -20,12 +19,12 @@ class BiblesPage extends StatelessWidget {
 
   void onChangeLang(BuildContext context, String? newLang) {
     final bloc = context.read<BiblesPageBloc>();
-    bloc.add(BiblesPageEvent.reload(newLang));
+    bloc.add(BiblesPageEvent.load(newLang));
   }
 
   void onRetry(BuildContext context) {
     final bloc = context.read<BiblesPageBloc>();
-    bloc.add(BiblesPageEvent.reload());
+    bloc.add(BiblesPageEvent.load());
   }
 
   @override
@@ -39,6 +38,7 @@ class BiblesPage extends StatelessWidget {
           ..add(BiblesPageEvent.load()),
         child: BlocBuilder<BiblesPageBloc, BiblesPageState>(
           builder: (context, state) {
+            glogger.w(state.runtimeType);
             return switch (state) {
               BiblesPageLoadingState() => SimpleLoading(
                 message: 'Loading bibles...'.hardcoded
