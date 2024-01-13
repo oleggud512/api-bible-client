@@ -8,24 +8,19 @@ import 'package:injectable/injectable.dart';
 @injectable
 class BiblesPageBloc extends Bloc<BiblesPageEvent, BiblesPageState> {
   final GetBiblesUseCase _getBibles;
-  final GetLanguagesUseCase _getLangs;
 
-  BiblesPageBloc(this._getBibles, this._getLangs) : super(BiblesPageState.loading()) {
+  BiblesPageBloc(this._getBibles) : super(BiblesPageState.loading()) {
     on<BiblesPageLoadEvent>(load);
     on<BiblesPageReloadEvent>(reload);
-    on<BiblesPageLangChangedEvent>(changeLang);
   }
 
   Future<void> load(BiblesPageLoadEvent event, Emitter<BiblesPageState> emit) async {
     final bibles = await _getBibles(event.lang);
-    final langs = await _getLangs();
     
     emit(bibles.fold(
       (left) => BiblesPageState.error(left),
       (right) => BiblesPageState.data(
         bibles: right,
-        languages: langs,
-        curLang: event.lang,
       )
     ));
   }
@@ -33,9 +28,5 @@ class BiblesPageBloc extends Bloc<BiblesPageEvent, BiblesPageState> {
   Future<void> reload(BiblesPageReloadEvent event, Emitter<BiblesPageState> emit) async {
     emit(BiblesPageState.loading());
     add(BiblesPageEvent.load(event.lang));
-  }
-
-  Future<void> changeLang(BiblesPageLangChangedEvent event, Emitter<BiblesPageState> emit) async {
-    add(BiblesPageEvent.reload(event.lang));
   }
 }

@@ -2,6 +2,7 @@ import 'package:bible/src/core/common/logger.dart';
 import 'package:bible/src/features/bibles/application/use_cases/bookmarks/add_bible_bookmark_use_case.dart';
 import 'package:bible/src/features/bibles/application/use_cases/bookmarks/remove_bible_bookmark_use_case.dart';
 import 'package:bible/src/features/bibles/domain/entities/bible.dart';
+import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget_bloc_params.dart';
 import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget_event.dart';
 import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget_state.dart';
 import 'package:bible/src/features/profile/application/use_cases/delete_bible_history_node_use_case.dart';
@@ -18,8 +19,8 @@ class BibleWidgetBloc extends Bloc<BibleWidgetEvent, BibleWidgetState> {
     this.removeBookmark, 
     this.addBookmark,
     this.deleteHistoryNode, 
-    @factoryParam Bible bible,
-  ) : super(BibleWidgetState.data(bible: bible)) {
+    @factoryParam BibleWidgetBlocParams params,
+  ) : super(BibleWidgetState.data(bible: params.bible)) {
 
     on<BibleWidgetToggleBookmarkEvent>((event, emit) async {
       final res = state.bible.isBookmarked

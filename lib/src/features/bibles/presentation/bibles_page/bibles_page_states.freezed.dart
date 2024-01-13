@@ -18,26 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BiblesPageState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<Bible> bibles, List<Lang> languages, String? curLang)
-        data,
+    required TResult Function(List<Bible> bibles) data,
     required TResult Function() loading,
     required TResult Function(AppException error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<Bible> bibles, List<Lang> languages, String? curLang)?
-        data,
+    TResult? Function(List<Bible> bibles)? data,
     TResult? Function()? loading,
     TResult? Function(AppException error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Bible> bibles, List<Lang> languages, String? curLang)?
-        data,
+    TResult Function(List<Bible> bibles)? data,
     TResult Function()? loading,
     TResult Function(AppException error)? error,
     required TResult orElse(),
@@ -91,7 +86,7 @@ abstract class _$$BiblesPageDataStateImplCopyWith<$Res> {
           $Res Function(_$BiblesPageDataStateImpl) then) =
       __$$BiblesPageDataStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Bible> bibles, List<Lang> languages, String? curLang});
+  $Res call({List<Bible> bibles});
 }
 
 /// @nodoc
@@ -106,22 +101,12 @@ class __$$BiblesPageDataStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? bibles = null,
-    Object? languages = null,
-    Object? curLang = freezed,
   }) {
     return _then(_$BiblesPageDataStateImpl(
       bibles: null == bibles
           ? _value._bibles
           : bibles // ignore: cast_nullable_to_non_nullable
               as List<Bible>,
-      languages: null == languages
-          ? _value._languages
-          : languages // ignore: cast_nullable_to_non_nullable
-              as List<Lang>,
-      curLang: freezed == curLang
-          ? _value.curLang
-          : curLang // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -129,12 +114,8 @@ class __$$BiblesPageDataStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BiblesPageDataStateImpl implements BiblesPageDataState {
-  _$BiblesPageDataStateImpl(
-      {final List<Bible> bibles = const [],
-      final List<Lang> languages = const [],
-      this.curLang})
-      : _bibles = bibles,
-        _languages = languages;
+  _$BiblesPageDataStateImpl({final List<Bible> bibles = const []})
+      : _bibles = bibles;
 
   final List<Bible> _bibles;
   @override
@@ -145,21 +126,9 @@ class _$BiblesPageDataStateImpl implements BiblesPageDataState {
     return EqualUnmodifiableListView(_bibles);
   }
 
-  final List<Lang> _languages;
-  @override
-  @JsonKey()
-  List<Lang> get languages {
-    if (_languages is EqualUnmodifiableListView) return _languages;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_languages);
-  }
-
-  @override
-  final String? curLang;
-
   @override
   String toString() {
-    return 'BiblesPageState.data(bibles: $bibles, languages: $languages, curLang: $curLang)';
+    return 'BiblesPageState.data(bibles: $bibles)';
   }
 
   @override
@@ -167,18 +136,12 @@ class _$BiblesPageDataStateImpl implements BiblesPageDataState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BiblesPageDataStateImpl &&
-            const DeepCollectionEquality().equals(other._bibles, _bibles) &&
-            const DeepCollectionEquality()
-                .equals(other._languages, _languages) &&
-            (identical(other.curLang, curLang) || other.curLang == curLang));
+            const DeepCollectionEquality().equals(other._bibles, _bibles));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_bibles),
-      const DeepCollectionEquality().hash(_languages),
-      curLang);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_bibles));
 
   @JsonKey(ignore: true)
   @override
@@ -190,38 +153,33 @@ class _$BiblesPageDataStateImpl implements BiblesPageDataState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<Bible> bibles, List<Lang> languages, String? curLang)
-        data,
+    required TResult Function(List<Bible> bibles) data,
     required TResult Function() loading,
     required TResult Function(AppException error) error,
   }) {
-    return data(bibles, languages, curLang);
+    return data(bibles);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<Bible> bibles, List<Lang> languages, String? curLang)?
-        data,
+    TResult? Function(List<Bible> bibles)? data,
     TResult? Function()? loading,
     TResult? Function(AppException error)? error,
   }) {
-    return data?.call(bibles, languages, curLang);
+    return data?.call(bibles);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Bible> bibles, List<Lang> languages, String? curLang)?
-        data,
+    TResult Function(List<Bible> bibles)? data,
     TResult Function()? loading,
     TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(bibles, languages, curLang);
+      return data(bibles);
     }
     return orElse();
   }
@@ -262,14 +220,10 @@ class _$BiblesPageDataStateImpl implements BiblesPageDataState {
 }
 
 abstract class BiblesPageDataState implements BiblesPageState {
-  factory BiblesPageDataState(
-      {final List<Bible> bibles,
-      final List<Lang> languages,
-      final String? curLang}) = _$BiblesPageDataStateImpl;
+  factory BiblesPageDataState({final List<Bible> bibles}) =
+      _$BiblesPageDataStateImpl;
 
   List<Bible> get bibles;
-  List<Lang> get languages;
-  String? get curLang;
   @JsonKey(ignore: true)
   _$$BiblesPageDataStateImplCopyWith<_$BiblesPageDataStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -316,9 +270,7 @@ class _$BiblesPageLoadingStateImpl implements BiblesPageLoadingState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<Bible> bibles, List<Lang> languages, String? curLang)
-        data,
+    required TResult Function(List<Bible> bibles) data,
     required TResult Function() loading,
     required TResult Function(AppException error) error,
   }) {
@@ -328,9 +280,7 @@ class _$BiblesPageLoadingStateImpl implements BiblesPageLoadingState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<Bible> bibles, List<Lang> languages, String? curLang)?
-        data,
+    TResult? Function(List<Bible> bibles)? data,
     TResult? Function()? loading,
     TResult? Function(AppException error)? error,
   }) {
@@ -340,8 +290,7 @@ class _$BiblesPageLoadingStateImpl implements BiblesPageLoadingState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Bible> bibles, List<Lang> languages, String? curLang)?
-        data,
+    TResult Function(List<Bible> bibles)? data,
     TResult Function()? loading,
     TResult Function(AppException error)? error,
     required TResult orElse(),
@@ -457,9 +406,7 @@ class _$BiblesPageErrorStateImpl implements BiblesPageErrorState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<Bible> bibles, List<Lang> languages, String? curLang)
-        data,
+    required TResult Function(List<Bible> bibles) data,
     required TResult Function() loading,
     required TResult Function(AppException error) error,
   }) {
@@ -469,9 +416,7 @@ class _$BiblesPageErrorStateImpl implements BiblesPageErrorState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<Bible> bibles, List<Lang> languages, String? curLang)?
-        data,
+    TResult? Function(List<Bible> bibles)? data,
     TResult? Function()? loading,
     TResult? Function(AppException error)? error,
   }) {
@@ -481,8 +426,7 @@ class _$BiblesPageErrorStateImpl implements BiblesPageErrorState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Bible> bibles, List<Lang> languages, String? curLang)?
-        data,
+    TResult Function(List<Bible> bibles)? data,
     TResult Function()? loading,
     TResult Function(AppException error)? error,
     required TResult orElse(),

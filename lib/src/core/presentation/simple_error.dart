@@ -7,11 +7,11 @@ class SimpleError extends StatelessWidget {
   const SimpleError({
     super.key, 
     required this.error,
-    this.onTryAgain
+    this.onRetry
   });
 
   final AppException error;
-  final void Function()? onTryAgain;
+  final void Function()? onRetry;
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +20,11 @@ class SimpleError extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(error.message),
-          if (onTryAgain != null) ...[
+          if (onRetry != null) ...[
             h8gap,
             FilledButton(
-              onPressed: onTryAgain, 
-              child: Text('Try again'.hardcoded)
+              onPressed: onRetry, 
+              child: Text('Retry'.hardcoded)
             )
           ]
         ]

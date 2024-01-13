@@ -28,7 +28,6 @@ import 'package:bible/src/features/bibles/application/use_cases/bookmarks/get_bo
     as _i21;
 import 'package:bible/src/features/bibles/application/use_cases/bookmarks/remove_bible_bookmark_use_case.dart'
     as _i23;
-import 'package:bible/src/features/bibles/domain/entities/bible.dart' as _i29;
 import 'package:bible/src/features/bibles/domain/repositories/bible_bookmark_repository.dart'
     as _i11;
 import 'package:bible/src/features/bibles/domain/repositories/bible_repository.dart'
@@ -39,6 +38,8 @@ import 'package:bible/src/features/bibles/infrastructure/repositories/bible_repo
     as _i8;
 import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget_bloc.dart'
     as _i28;
+import 'package:bible/src/features/bibles/presentation/bible_widget/bible_widget_bloc_params.dart'
+    as _i29;
 import 'package:bible/src/features/bibles/presentation/bibles_page/bibles_page_bloc.dart'
     as _i30;
 import 'package:bible/src/features/bibles/presentation/chapter_page/chapter_page_bloc.dart'
@@ -144,20 +145,18 @@ extension GetItInjectableX on _i1.GetIt {
               gh<_i7.BibleRepository>(),
               gh<_i13.BibleViewHistoryRepository>(),
             ));
-    gh.factoryParam<_i28.BibleWidgetBloc, _i29.Bible, dynamic>((
-      bible,
+    gh.factoryParam<_i28.BibleWidgetBloc, _i29.BibleWidgetBlocParams, dynamic>((
+      params,
       _,
     ) =>
         _i28.BibleWidgetBloc(
           gh<_i23.RemoveBibleBookmarkUseCase>(),
           gh<_i26.AddBibleBookmarkUseCase>(),
           gh<_i16.DeleteBibleHistoryNodeUseCase>(),
-          bible,
+          params,
         ));
-    gh.factory<_i30.BiblesPageBloc>(() => _i30.BiblesPageBloc(
-          gh<_i20.GetBiblesUseCase>(),
-          gh<_i10.GetLanguagesUseCase>(),
-        ));
+    gh.factory<_i30.BiblesPageBloc>(
+        () => _i30.BiblesPageBloc(gh<_i20.GetBiblesUseCase>()));
     gh.factory<_i31.GetBibleBooksUseCase>(() => _i31.GetBibleBooksUseCase(
           gh<_i7.BibleRepository>(),
           gh<_i27.AddBibleHistoryNodeUseCase>(),

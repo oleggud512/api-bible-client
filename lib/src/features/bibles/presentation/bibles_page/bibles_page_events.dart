@@ -6,5 +6,4 @@ part 'bibles_page_events.freezed.dart';
 sealed class BiblesPageEvent with _$BiblesPageEvent {
   factory BiblesPageEvent.load([String? lang]) = BiblesPageLoadEvent;
   factory BiblesPageEvent.reload([String? lang]) = BiblesPageReloadEvent;
-  factory BiblesPageEvent.langChanged(String? lang) = BiblesPageLangChangedEvent;
 }

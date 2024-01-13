@@ -10,8 +10,6 @@ sealed class BiblesPageState with _$BiblesPageState {
 
   factory BiblesPageState.data({
     @Default([]) List<Bible> bibles,
-    @Default([]) List<Lang> languages,
-    String? curLang,
   }) = BiblesPageDataState;
 
   factory BiblesPageState.loading() = BiblesPageLoadingState;
