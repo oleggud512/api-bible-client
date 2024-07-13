@@ -31,67 +31,64 @@ class _TocPageState extends State<TocPage> {
   void showSuggestChapter(String? chapterId) {
     if (chapterId == null || isSuggestionShown) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      behavior: SnackBarBehavior.floating,
-      action: SnackBarAction(
-        label: 'Go to $chapterId', 
-        onPressed: () {
-          context.router.push(ChapterRoute(
-            bibleId: widget.bibleId, 
-            chapterId: chapterId
-          ));
-        }
-      ),
-      content: Text('Continue reading $chapterId?')
-    ));
+        behavior: SnackBarBehavior.floating,
+        action: SnackBarAction(
+            label: 'Go to $chapterId'.hardcoded,
+            onPressed: () {
+              context.router.push(
+                  ChapterRoute(bibleId: widget.bibleId, chapterId: chapterId));
+            }),
+        content: Text('Continue reading $chapterId?'.hardcoded)));
     isSuggestionShown = true;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ChaptersPage'),
-      ),
-      body: BlocProvider(
-        create: (context) => injector.get<TocPageBloc>(param1: TocPageBlocParams(widget.bibleId))
-          ..add(TocPageEvent.load()),
-        child: BlocConsumer<TocPageBloc, TocPageState>(
-          listener: (context, state) {
-            state.whenOrNull(
-              data: (books, suggestChapterId) => showSuggestChapter(suggestChapterId)
-            );
-          },
-          builder: (context, state) {
-            return switch (state) {
-              TocPageLoadingState() => SimpleLoading(
-                message: "Loading bible table of contents...".hardcoded
-              ),
-              TocPageErrorState(:final error) => SimpleError(error: error),
-              TocPageDataState(:final books) => ListView(
-                children: books.map((book) => Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(book.name, 
-                      style: Theme.of(context).textTheme.headlineSmall
-                    ),
-                    Wrap(
-                      children: book.chapters.map((chapter) => ActionChip(
-                        onPressed: () {
-                          context.router.push(ChapterRoute(
-                            bibleId: chapter.bibleId, 
-                            chapterId: chapter.id
-                          ));
-                        },
-                        label: Text(chapter.number)
-                      )).toList()
-                    )
-                  ],
-                )).toList()
-              )
-            };
-          },
-        )
-      )
-    );
+        appBar: AppBar(
+          title: Text('ChaptersPage'.hardcoded),
+        ),
+        body: BlocProvider(
+            create: (context) => injector.get<TocPageBloc>(
+                param1: TocPageBlocParams(widget.bibleId))
+              ..add(TocPageEvent.load()),
+            child: BlocConsumer<TocPageBloc, TocPageState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                    data: (books, suggestChapterId) =>
+                        showSuggestChapter(suggestChapterId));
+              },
+              builder: (context, state) {
+                return switch (state) {
+                  TocPageLoadingState() => SimpleLoading(
+                      message: "Loading bible table of contents...".hardcoded),
+                  TocPageErrorState(:final error) => SimpleError(error: error),
+                  TocPageDataState(:final books) => ListView(
+                      children: books
+                          .map((book) => Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(book.name,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall),
+                                  Wrap(
+                                      children: book.chapters
+                                          .map((chapter) => ActionChip(
+                                              onPressed: () {
+                                                context.router.push(
+                                                    ChapterRoute(
+                                                        bibleId:
+                                                            chapter.bibleId,
+                                                        chapterId: chapter.id));
+                                              },
+                                              label: Text(chapter.number)))
+                                          .toList())
+                                ],
+                              ))
+                          .toList())
+                };
+              },
+            )));
   }
 }

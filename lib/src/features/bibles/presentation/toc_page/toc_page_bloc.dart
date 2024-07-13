@@ -7,7 +7,7 @@ import 'package:either_dart/either.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@Injectable()
 class TocPageBloc extends Bloc<TocPageEvent, TocPageState> {
   final GetBibleBooksUseCase _getBooks;
   final GetBibleHistoryNodeUseCase _getBibleHistoryNode;
