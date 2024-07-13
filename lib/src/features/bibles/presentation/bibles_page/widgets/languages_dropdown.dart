@@ -22,6 +22,14 @@ class _LanguagesDropdownState extends State<LanguagesDropdown> {
   
   String? currentLanguage;
 
+  void onChangeLanguage(String? language) {
+    widget.onChanged(language);
+    setState(() {
+      currentLanguage = language;
+      print("the new lang state");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -44,36 +52,41 @@ class _LanguagesDropdownState extends State<LanguagesDropdown> {
 
         return DropdownButtonFormField<String>(
           value: currentLanguage,
+          // iconSize: 16,
+          isExpanded: true,
           items: [
             nullItem,
             ...snapshot.data!.map((lang) => DropdownMenuItem(
               value: lang.code,
               child: buildItemContent(lang)
             ))
-          ], 
-          onChanged: (language) {
-            widget.onChanged(language);
-            setState(() {
-              currentLanguage = language;
-            });
-          }
+          ],
+          onChanged: onChangeLanguage
         );
       }
     );
   }
 
   Widget buildItemContent(Lang? lang) {
-    if (lang == null) return Text('All languages'.hardcoded);
-    return Text.rich(TextSpan(
-      text: lang.name,
-      children: [
-        TextSpan(
-          text: ' (${lang.nameLocal})',
-          style: const TextStyle(
-            color: Colors.grey
+    if (lang == null) {
+      return Text('All languages'.hardcoded, 
+        style: TextStyle(overflow: TextOverflow.fade),
+        overflow: TextOverflow.clip,
+      );
+    }
+    return Text.rich(
+      TextSpan(
+        text: lang.name,
+        children: [
+          TextSpan(
+            text: ' (${lang.nameLocal})',
+            style: const TextStyle(
+              color: Colors.grey
+            )
           )
-        )
-      ]
-    ));
+        ]
+      ), 
+      style: TextStyle(overflow: TextOverflow.fade)
+    );
   }
-}
+} 

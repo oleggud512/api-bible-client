@@ -36,40 +36,57 @@ class BiblesPage extends StatelessWidget {
       body: BlocProvider(
         create: (context) => injector<BiblesPageBloc>()
           ..add(BiblesPageEvent.load()),
-        child: BlocBuilder<BiblesPageBloc, BiblesPageState>(
-          builder: (context, state) {
-            glogger.w(state.runtimeType);
-            return switch (state) {
-              BiblesPageLoadingState() => SimpleLoading(
-                message: 'Loading bibles...'.hardcoded
-              ),
-              BiblesPageErrorState(:var error) => SimpleError(
-                error: error,
-                onRetry: () => onRetry(context),
-              ),
-              BiblesPageDataState() => buildData(state, context)
-            };
-          }
-        )
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Builder(
+              builder: (context) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: p16, right: p16, left: p16),
+                  child: LanguagesDropdown(
+                    onChanged: (lang) {
+                      onChangeLang(context, lang);
+                    }
+                  ),
+                );
+              }
+            ),
+            Expanded(
+              child: buildBibles()
+            )
+          ]
+        ),
       )
     );
   }
 
-  ListView buildData(BiblesPageDataState state, BuildContext context) {
-    final children = [
-      LanguagesDropdown(
-        onChanged: (lang) {
-          onChangeLang(context, lang);
-        }
-      ),
-      ...state.bibles.map((b) => BibleWidget(bible: b))
-    ];
+  Widget buildBibles() {
+    return BlocBuilder<BiblesPageBloc, BiblesPageState>(
+      builder: (context, state) {
+        glogger.w(state.runtimeType);
+        return switch (state) {
+          BiblesPageLoadingState() => SimpleLoading(
+            message: 'Loading bibles...'.hardcoded
+          ),
+          BiblesPageErrorState(:var error) => SimpleError(
+            error: error,
+            onRetry: () => onRetry(context),
+          ),
+          BiblesPageDataState() => buildBibleList(state, context)
+        };
+      }
+    );
+  }
 
+  ListView buildBibleList(BiblesPageDataState state, BuildContext context) {
     return ListView.separated(
       padding: const EdgeInsets.all(p16),
       separatorBuilder: (context, i) => h16gap,
-      itemCount: children.length,
-      itemBuilder: (context, i) => children[i],
+      itemCount: state.bibles.length,
+      itemBuilder: (context, i) {
+        final bible = state.bibles[i];
+        return BibleWidget(bible: bible);
+      },
     );
   }
 
