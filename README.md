@@ -1,3 +1,3 @@
 [API.Bible](https://scripture.api.bible/) mobile app.
 
-main other changes from develop
+se main other changes from develop
